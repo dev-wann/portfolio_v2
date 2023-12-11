@@ -1,10 +1,10 @@
 'use client';
 
-import styles from './LangButton.module.css';
 import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux';
 import langSlice, { LANG_ENUM } from '../redux/module/langSlice';
+import styles from './LangButton.module.scss';
 
 export default function LangButton() {
   const langRef = useRef<HTMLInputElement>(null);
@@ -39,12 +39,15 @@ export default function LangButton() {
     <div className={`${styles.switch} ${!lang ? styles.hidden : ''}`}>
       <input
         id="language-toggle"
-        className={`${styles['check-toggle']} ${styles['check-toggle-round-flat']}`}
+        className={styles['check-toggle']}
         type="checkbox"
         ref={langRef}
         onChange={onChangeHandler}
       />
-      <label htmlFor="language-toggle"></label>
+      <label
+        className={styles['switch-label']}
+        htmlFor="language-toggle"
+      ></label>
       <span className={styles.on}>ENG</span>
       <span className={styles.off}>KOR</span>
     </div>

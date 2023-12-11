@@ -1,0 +1,54 @@
+.nav-wrapper {
+  position: sticky;
+  top: 0px;
+}
+
+.navigation {
+  @include neumorphic-box-outer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 2vh 2vw;
+  padding: 0 5px;
+  height: 40px;
+  border-radius: 24px;
+}
+
+.routes {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  position: relative;
+  width: 480px;
+  height: 100%;
+  margin-right: 5%;
+  font-size: 18px;
+
+  a {
+    position: relative;
+    box-sizing: border-box;
+    flex-basis: 140px;
+    flex-shrink: 1;
+    padding: 0 1rem;
+    text-align: center;
+    color: $color-unselect;
+    &:hover {
+      color: $color-primary-dark;
+    }
+    transition: all 0.2s;
+  }
+}
+
+.selected {
+  color: $color-primary-dark !important;
+  font-weight: bolder;
+}
+
+.selected-bg {
+  @include neumorphic-box-inner;
+  position: absolute;
+  height: 28px;
+  border-radius: 28px;
+  transition: margin-left 0.2s;
+}
