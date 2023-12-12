@@ -1,9 +1,45 @@
-html {
-  background-color: $color-bg-1;
+@use './variables.scss' as *;
+
+body {
+  --color-text: #{$color-txt--light};
+  --color-label: #{$color-lbl--light};
+  --color-bg: #{$color-bg--light};
+  --color-bg-dim: #{$color-bg-dim--light};
+  --color-bg-bright: #{$color-bg-bright--light};
+  --color-bg-inv: #{$color-bg-inv--light};
+  --color-shadow-dark: #{$color-shd-dim--light};
+  --color-shadow-light: #{$color-shd-bright--light};
+  --shadow-outer: #{$shd-outer--light};
+  --shadow-outer-s: #{$shd-outer-s--light};
+  --shadow-inner-s: #{$shd-inner-s--light};
+
+  &.dark-theme {
+    --color-text: #{$color-txt--dark};
+    --color-label: #{$color-lbl--dark};
+    --color-bg: #{$color-bg--dark};
+    --color-bg-dim: #{$color-bg-dim--dark};
+    --color-bg-bright: #{$color-bg-bright--dark};
+    --color-bg-inv: #{$color-bg-inv--dark};
+    --color-shadow-dark: #{$color-shd-dim--dark};
+    --color-shadow-light: #{$color-shd-bright--dark};
+    --shadow-outer: #{$shd-outer--dark};
+    --shadow-outer-s: #{$shd-outer-s--dark};
+    --shadow-inner-s: #{$shd-inner-s--dark};
+  }
+}
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: $tr-color, $tr-bg;
 }
 
 .container-720 {
   max-width: 720px;
   margin: 0 auto;
-  background-color: $color-bg-1;
+}
+
+.container-960 {
+  max-width: 1080px;
+  margin: 0 auto;
 }

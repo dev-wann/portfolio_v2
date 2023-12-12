@@ -1,29 +1,32 @@
+@use '/app/styles/variables.scss' as *;
+@use '/app/styles/mixins.scss';
+
 .switch {
   position: relative;
   display: inline-block;
+  flex-shrink: 0;
 
   span {
     position: absolute;
     top: 7px;
     pointer-events: none;
-    font-family: 'Helvetica', Arial, sans-serif;
     font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
     width: 50%;
     text-align: center;
-    transition: color 0.4s;
+    transition: $tr-color;
   }
   span.on {
     left: 0;
     padding-left: 2px;
-    color: $color-primary-dark;
+    color: var(--color-text);
   }
   span.off {
     right: 0;
     padding-right: 2px;
-    color: white;
+    color: var(--color-label);
   }
 }
 
@@ -33,16 +36,16 @@
   visibility: hidden;
 
   & ~ .off {
-    color: $color-primary-dark;
+    color: var(--color-text);
   }
   & ~ .on {
-    color: $color-bg-1;
+    color: var(--color-label);
   }
   &:checked ~ .off {
-    color: $color-primary-dark;
+    color: var(--color-text);
   }
   &:checked ~ .on {
-    color: $color-unselect;
+    color: var(--color-label);
   }
   &:checked + label:after {
     margin-left: 38px;
@@ -70,34 +73,34 @@
     content: '';
   }
   &::before {
+    @include mixins.neumorphic-box-inner-s;
     top: 0px;
     left: 0px;
     bottom: 0px;
     right: 0px;
-    background-color: $color-bg-3;
+    background-color: var(--color-bg-dim);
     border-radius: 40px;
+    transition: $tr-bg;
   }
   &::after {
+    @include mixins.neumorphic-box-outer-s;
     top: 4px;
     left: 4px;
     bottom: 4px;
     width: 38px;
-    background-color: $color-bg-1;
+    background-color: var(--color-bg-bright);
     border-radius: 38px;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-    -o-transition: all 0.2s;
-    transition: all 0.2s;
+    transition: $tr-margin-l, $tr-bg;
   }
 }
 
 // hide switch before loading
 .hidden > span {
-  color: $color-bg-2 !important;
+  color: var(--color-bg) !important;
   text-shadow: none !important;
 }
 .hidden > label:after {
-  background-color: $color-bg-2 !important;
+  background-color: var(--color-bg) !important;
   border: none !important;
   box-shadow: none !important;
 }
