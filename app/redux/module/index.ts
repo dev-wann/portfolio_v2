@@ -1,8 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import langSlice from './langSlice';
+import preferSlice from './preferSlice';
 
 const rootReducer = combineReducers({
-  lang: langSlice.reducer,
+  prefer: preferSlice.reducer,
 });
 
 export default rootReducer;

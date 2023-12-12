@@ -3,34 +3,34 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux';
-import langSlice, { LANG_ENUM } from '../redux/module/langSlice';
+import preferSlice, { LANG_ENUM } from '../redux/module/preferSlice';
 import styles from './LangButton.module.scss';
 
 export default function LangButton() {
   const langRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
-  const lang = useSelector((state: RootState) => state.lang.data);
+  const lang = useSelector((state: RootState) => state.prefer.lang);
 
+  // initial language setting
   useEffect(() => {
-    // find language to apply at the first time
     let defaultLang = localStorage.getItem('lang');
-    if (!defaultLang) defaultLang = navigator.language;
-    if (!defaultLang) defaultLang = LANG_ENUM.ENG;
-
-    // select language between english and korean
-    if (!langRef.current) return;
-    dispatch(langSlice.actions.changeLang(defaultLang));
+    if (!defaultLang) {
+      defaultLang =
+        navigator.language === LANG_ENUM.KOR ? LANG_ENUM.KOR : LANG_ENUM.ENG;
+    }
+    dispatch(preferSlice.actions.changeLang(defaultLang));
   }, []);
 
   // handle language change
   const onChangeHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const newLang = e.currentTarget.checked ? LANG_ENUM.KOR : LANG_ENUM.ENG;
-      dispatch(langSlice.actions.changeLang(newLang));
+      dispatch(preferSlice.actions.changeLang(newLang));
     },
     []
   );
 
+  // set input checked state
   if (langRef.current) {
     langRef.current.checked = lang === LANG_ENUM.KOR;
   }
@@ -44,10 +44,7 @@ export default function LangButton() {
         ref={langRef}
         onChange={onChangeHandler}
       />
-      <label
-        className={styles['switch-label']}
-        htmlFor="language-toggle"
-      ></label>
+      <label className={styles['switch-label']} htmlFor="language-toggle" />
       <span className={styles.on}>ENG</span>
       <span className={styles.off}>KOR</span>
     </div>

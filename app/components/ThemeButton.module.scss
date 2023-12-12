@@ -1,0 +1,83 @@
+@use '/app/styles/variables.scss' as *;
+@use '/app/styles/mixins.scss';
+
+.switch {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-left: 21px;
+  margin-right: 7px;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  &::after {
+    @include mixins.neumorphic-box-inner-s;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 2;
+    content: '';
+  }
+}
+
+.check-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+
+  &:checked ~ .icons {
+    transform: rotate(-180deg);
+    transform-origin: 50% 50%;
+  }
+}
+
+.switch-label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0px;
+  transition: $tr-tf;
+
+  svg {
+    z-index: 1;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 50%;
+    z-index: 0;
+  }
+  &::before {
+    top: 0px;
+    left: -50%;
+    background-color: $color-bg--light;
+  }
+  &::after {
+    top: 50%;
+    left: -50%;
+    background-color: $color-bg--dark;
+  }
+}

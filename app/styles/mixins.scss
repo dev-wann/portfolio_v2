@@ -1,0 +1,14 @@
+@mixin neumorphic-box-outer {
+  background-color: var(--color-bg-bright);
+  box-shadow: var(--shadow-outer);
+}
+
+@mixin neumorphic-box-outer-s {
+  @include neumorphic-box-outer;
+  box-shadow: var(--shadow-outer-s);
+}
+
+@mixin neumorphic-box-inner-s {
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-inner-s);
+}
