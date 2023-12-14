@@ -1,13 +1,13 @@
 /* variables for neumorphic design */
 // light mode
 $color-txt--light: #000000;
-$color-lbl--light: #757e95;
-$color-bg--light: #e0e5ec;
-$color-bg-dim--light: #bec8e4;
-$color-bg-bright--light: #e9eaf0;
+$color-lbl--light: #868290;
+$color-bg--light: #e7e4e5;
+$color-bg-dim--light: #cfc8ca;
+$color-bg-bright--light: #efeeee;
 $color-bg-inv--light: #24272c;
 $color-shd-dim--light: rgba(0, 0, 0, 0.5);
-$color-shd-bright--light: rgba(255, 255, 255, 0.5);
+$color-shd-bright--light: rgba(209, 205, 199, 0.5);
 $shd-outer--light: 6px 6px 12px $color-shd-dim--light,
   -6px -6px 12px $color-shd-bright--light;
 $shd-outer-s--light: 2px 2px 4px $color-shd-dim--light,
