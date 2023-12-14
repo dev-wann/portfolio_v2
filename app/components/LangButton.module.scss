@@ -96,11 +96,11 @@
 
 // hide switch before loading
 .hidden > span {
-  color: var(--color-bg) !important;
+  color: var(--color-bg-dim) !important;
   text-shadow: none !important;
 }
 .hidden > label:after {
-  background-color: var(--color-bg) !important;
+  background-color: var(--color-bg-dim) !important;
   border: none !important;
   box-shadow: none !important;
 }
