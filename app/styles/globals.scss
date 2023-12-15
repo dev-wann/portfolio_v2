@@ -11,7 +11,10 @@ body {
   --color-shadow-light: #{$color-shd-bright--light};
   --shadow-outer: #{$shd-outer--light};
   --shadow-outer-s: #{$shd-outer-s--light};
+  --shadow-outer-hover: #{$shd-outer-hover--light};
+  --shadow-inner: #{$shd-inner--light};
   --shadow-inner-s: #{$shd-inner-s--light};
+  --shadow-inner-hover: #{$shd-inner-hover--light};
 
   &.dark-theme {
     --color-text: #{$color-txt--dark};
@@ -24,7 +27,10 @@ body {
     --color-shadow-light: #{$color-shd-bright--dark};
     --shadow-outer: #{$shd-outer--dark};
     --shadow-outer-s: #{$shd-outer-s--dark};
+    --shadow-outer-hover: #{$shd-outer-hover--dark};
+    --shadow-inner: #{$shd-inner--dark};
     --shadow-inner-s: #{$shd-inner-s--dark};
+    --shadow-inner-hover: #{$shd-inner-hover--dark};
   }
 }
 
@@ -32,6 +38,11 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   transition: $tr-color, $tr-bg;
+}
+
+.container-400 {
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .container-720 {
@@ -42,4 +53,17 @@ body {
 .container-960 {
   max-width: 1080px;
   margin: 0 auto;
+}
+
+// scrollbar
+html {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.prevent-scroll {
+  overflow: hidden;
 }

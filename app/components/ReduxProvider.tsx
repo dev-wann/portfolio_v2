@@ -2,7 +2,7 @@
 
 import { Provider } from 'react-redux';
 import store from '../redux';
-import Navigation from './Navigation';
+import Navigation from './navigation/Navigation';
 
 export default function ReduxProvider({
   children,

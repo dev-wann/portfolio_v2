@@ -10,10 +10,16 @@ $color-shd-dim--light: rgba(0, 0, 0, 0.5);
 $color-shd-bright--light: rgba(209, 205, 199, 0.5);
 $shd-outer--light: 6px 6px 12px $color-shd-dim--light,
   -6px -6px 12px $color-shd-bright--light;
-$shd-outer-s--light: 2px 2px 4px $color-shd-dim--light,
-  -2px -2px 4px $color-shd-bright--light;
-$shd-inner-s--light: inset 2px 2px 4px $color-shd-dim--light,
-  inset -2px -2px 4px $color-shd-bright--light;
+$shd-outer-s--light: 3px 3px 6px $color-shd-dim--light,
+  -3px -3px 6px $color-shd-bright--light;
+$shd-outer-hover--light: 1px 1px 2px $color-shd-dim--light,
+  -1px -1px 2px $color-shd-bright--light;
+$shd-inner--light: inset 6px 6px 12px $color-shd-dim--light,
+  inset -6px -6px 12px $color-shd-bright--light;
+$shd-inner-s--light: inset 3px 3px 6px $color-shd-dim--light,
+  inset -3px -3px 6px $color-shd-bright--light;
+$shd-inner-hover--light: inset 1px 1px 2px $color-shd-dim--light,
+  inset -1px -1px 2px $color-shd-bright--light;
 
 // dark mode
 $color-txt--dark: #ffffff;
@@ -28,13 +34,21 @@ $shd-outer--dark: 6px 6px 12px $color-shd-dim--dark,
   -6px -6px 12px $color-shd-bright--dark;
 $shd-outer-s--dark: 2px 2px 4px $color-shd-dim--dark,
   -2px -2px 4px $color-shd-bright--dark;
+$shd-outer-hover--dark: 1px 1px 2px $color-shd-dim--dark,
+  -1px -1px 2px $color-shd-bright--dark;
+$shd-inner--dark: inset 6px 6px 12px $color-shd-dim--dark,
+  inset -6px -6px 12px $color-shd-bright--dark;
 $shd-inner-s--dark: inset 2px 2px 4px $color-shd-dim--dark,
   inset -2px -2px 4px $color-shd-bright--dark;
+$shd-inner-hover--dark: inset 1px 1px 2px $color-shd-dim--dark,
+  inset -1px -1px 2px $color-shd-bright--dark;
 
 /* transitions */
 $tr-color: color 0.3s;
 $tr-bold: font-weight 0.3s;
-$tr-margin-l: margin-left 0.3s;
+$tr-margin: margin 0.3s;
 $tr-bg: background-color 0.6s;
 $tr-shd: box-shadow 0.6s;
 $tr-tf: transform 0.6s;
+$tr-op: opacity 0.6s;
+$tr-vis: visibility 0.6s;
