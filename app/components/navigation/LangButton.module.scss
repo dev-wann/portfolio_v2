@@ -55,16 +55,13 @@
 .switch-label {
   display: block;
   position: relative;
-  cursor: pointer;
-  outline: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding: 2px;
   width: 80px;
   height: 24px;
-  border-radius: 60px;
+  padding: 2px;
+  border-radius: 24px;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
 
   &::before,
   &::after {
@@ -72,16 +69,18 @@
     position: absolute;
     content: '';
   }
+  // lang button background
   &::before {
     @include mixins.neumorphic-box-inner-s;
     top: 0px;
     left: 0px;
     bottom: 0px;
     right: 0px;
-    background-color: var(--color-bg-dim);
-    border-radius: 40px;
+    background-color: var(--color-bg);
+    border-radius: 24px;
     transition: $tr-bg;
   }
+  // lang button toggle switch
   &::after {
     @include mixins.neumorphic-box-outer-s;
     top: 4px;
@@ -89,18 +88,18 @@
     bottom: 4px;
     width: 38px;
     background-color: var(--color-bg-bright);
-    border-radius: 38px;
-    transition: $tr-margin-l, $tr-bg;
+    border-radius: 24px;
+    transition: $tr-margin, $tr-bg;
   }
 }
 
 // hide switch before loading
 .hidden > span {
-  color: var(--color-bg-dim) !important;
+  color: var(--color-bg) !important;
   text-shadow: none !important;
 }
 .hidden > label:after {
-  background-color: var(--color-bg-dim) !important;
+  background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }

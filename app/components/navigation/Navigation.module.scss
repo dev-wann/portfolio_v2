@@ -1,0 +1,261 @@
+@use '/app/styles/variables.scss' as *;
+@use '/app/styles/mixins.scss';
+
+.nav-wrapper {
+  position: sticky;
+  top: 0px;
+  padding: 2vh 2vw;
+  min-width: 275px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 5px;
+  width: 100%;
+  height: 40px;
+  border-radius: 24px;
+  backdrop-filter: blur(5px);
+
+  &::before {
+    @include mixins.neumorphic-box-outer;
+    opacity: 0.75;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    transition: $tr-op, $tr-bg;
+    content: '';
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.selected {
+  color: var(--color-text) !important;
+  font-weight: bolder;
+}
+
+.selected-bg-large {
+  @include mixins.neumorphic-box-inner-s;
+  position: absolute;
+  height: 28px;
+  border-radius: 28px;
+  transition: $tr-margin, $tr-bg;
+}
+
+.routes-large {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  width: 480px;
+  height: 100%;
+  font-size: 18px;
+
+  a {
+    position: relative;
+    box-sizing: border-box;
+    flex-basis: 100px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 0 5px;
+    text-align: center;
+    color: var(--color-label);
+    &:hover {
+      color: var(--color-text);
+    }
+    transition: $tr-color, $tr-bold;
+  }
+}
+
+.routes-small {
+  position: relative;
+  flex-grow: 1;
+  height: 28px;
+}
+
+/* menu hamburger button */
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 120px;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  /* Transform all the slices of hamburger into a crossmark */
+  .hamburger {
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    left: 25px;
+    background-color: var(--color-text);
+    border-radius: 3px;
+    transform-origin: 4px 0px;
+    transition: transform 0.3s, opacity 0.3s;
+    z-index: 1;
+  }
+  .hamburger:nth-child(2) {
+    top: 9px;
+    transform-origin: 0% 0%;
+  }
+  .hamburger:nth-child(3) {
+    top: 13px;
+  }
+  .hamburger:nth-child(4) {
+    top: 17px;
+    transform-origin: 0% 100%;
+  }
+  input:checked {
+    & ~ .hamburger:nth-child(2) {
+      opacity: 1;
+      transform: rotate(45deg) translate(1px, -3px);
+    }
+    & ~ .hamburger:nth-child(3) {
+      opacity: 0;
+      transform: rotate(0deg) scale(0.2, 0.2);
+    }
+    & ~ .hamburger:nth-child(4) {
+      transform: rotate(-45deg) translate(1px, 3px);
+    }
+  }
+
+  span {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    left: 47px;
+    transition: $tr-bold;
+    z-index: 1;
+  }
+  input:checked ~ span {
+    font-weight: bold;
+  }
+
+  // neumorphic button: change from outset to inset
+  .menu-bg {
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      transition: $tr-bg, $tr-shd, $tr-op;
+      content: '';
+    }
+    // outset when button is not pushed
+    &::before {
+      @include mixins.neumorphic-box-outer-s;
+      opacity: 1;
+    }
+    // inset when button is pushed
+    &::after {
+      @include mixins.neumorphic-box-inner-s;
+      opacity: 0;
+    }
+  }
+
+  input:checked {
+    & ~ .menu-bg {
+      &::before {
+        opacity: 0;
+      }
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:hover {
+    .menu-bg {
+      &::before {
+        @include mixins.neumorphic-box-outer-hover;
+      }
+      &::after {
+        @include mixins.neumorphic-box-inner-hover;
+      }
+    }
+  }
+}
+
+.menu-items {
+  @include mixins.neumorphic-box-outer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  z-index: -1;
+  transition: $tr-op, $tr-vis;
+
+  // menu closed by default
+  opacity: 0;
+  visibility: hidden;
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  a {
+    display: flex;
+    width: 90%;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    transition: $tr-color, $tr-bold;
+    z-index: 1;
+    color: var(--color-label);
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}
+
+.selected-bg-small {
+  @include mixins.neumorphic-box-inner-s;
+  position: absolute;
+  top: 0px;
+  width: 90%;
+  height: 30px;
+  border-radius: 40px;
+  transition: $tr-margin, $tr-bg;
+}
+
+.back-cover {
+  position: absolute;
+  left: -50vw;
+  top: -50vh;
+  width: 200vw;
+  height: 200vh;
+  background-color: var(--color-label);
+  opacity: 0;
+  visibility: hidden;
+  transition: $tr-op, $tr-vis;
+  z-index: -9999;
+  &.open {
+    opacity: 0.5;
+    visibility: visible;
+  }
+}

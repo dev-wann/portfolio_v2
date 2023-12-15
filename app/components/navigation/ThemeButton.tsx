@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux';
-import preferSlice, { THEME_ENUM } from '../redux/module/preferSlice';
+import { RootState } from '../../redux';
+import preferSlice, { THEME_ENUM } from '../../redux/module/preferSlice';
 import styles from './ThemeButton.module.scss';
 
 export default function ThemeButton() {
@@ -56,6 +56,7 @@ export default function ThemeButton() {
   );
 }
 
+// icons
 const sunIcon = (
   <svg
     enableBackground="new 0 0 512 512"

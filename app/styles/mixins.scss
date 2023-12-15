@@ -8,7 +8,22 @@
   box-shadow: var(--shadow-outer-s);
 }
 
-@mixin neumorphic-box-inner-s {
+@mixin neumorphic-box-outer-hover {
+  @include neumorphic-box-outer;
+  box-shadow: var(--shadow-outer-hover);
+}
+
+@mixin neumorphic-box-inner {
   background-color: var(--color-bg);
+  box-shadow: var(--shadow-inner);
+}
+
+@mixin neumorphic-box-inner-s {
+  @include neumorphic-box-inner;
   box-shadow: var(--shadow-inner-s);
+}
+
+@mixin neumorphic-box-inner-hover {
+  @include neumorphic-box-inner;
+  box-shadow: var(--shadow-inner-hover);
 }
