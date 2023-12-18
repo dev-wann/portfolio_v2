@@ -58,8 +58,9 @@
   top: 0px;
   transition: $tr-tf;
 
-  svg {
+  img {
     z-index: 1;
+    margin: 4px;
   }
 
   &::before,
