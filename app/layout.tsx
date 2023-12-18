@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import ReduxProvider from './components/ReduxProvider';
-import './styles/globals.scss';
-import './styles/reset.css';
+import ReduxProvider from './_components/ReduxProvider';
+import './_styles/globals.scss';
+import './_styles/reset.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
