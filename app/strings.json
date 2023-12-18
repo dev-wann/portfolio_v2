@@ -1,4 +1,12 @@
 {
-  "ko-KR": ["안녕하세요.", "Frontend 개발자, 조승완입니다."],
-  "en-US": ["Hello.", "I am Seungwan Cho, a frontend developer."]
+  "ko-KR": {
+    "greet-0": "안녕하세요",
+    "greet-1": "Front-end 개발자",
+    "greet-2": "조승완입니다."
+  },
+  "en-US": {
+    "greet-0": "Hello",
+    "greet-1": "This is Seungwan Cho",
+    "greet-2": "a front-end developer."
+  }
 }

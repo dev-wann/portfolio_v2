@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import useWindowWidth from '../../hooks/useWindowWidth';
+import useWindowWidth from '../../_hooks/useWindowWidth';
 import LangButton from './LangButton';
 import styles from './Navigation.module.scss';
 import ThemeButton from './ThemeButton';
@@ -22,19 +22,13 @@ export default function Navigation() {
             isSmall ? 'container-400' : 'container-720'
           }`}
         >
-          {!isLoaded ? (
-            <></>
+          {isSmall ? (
+            <RoutesSmall selectIdx={selectIdx} />
           ) : (
-            <>
-              {isSmall ? (
-                <RoutesSmall selectIdx={selectIdx} />
-              ) : (
-                <RoutesLarge selectIdx={selectIdx} />
-              )}
-              <ThemeButton />
-              <LangButton />
-            </>
+            <RoutesLarge selectIdx={selectIdx} />
           )}
+          <ThemeButton />
+          <LangButton />
         </div>
       </nav>
     </>

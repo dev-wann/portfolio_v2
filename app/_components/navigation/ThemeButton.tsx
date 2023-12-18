@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux';
-import preferSlice, { THEME_ENUM } from '../../redux/module/preferSlice';
+import { RootState } from '../../_redux';
+import preferSlice, { THEME_ENUM } from '../../_redux/module/preferSlice';
 import styles from './ThemeButton.module.scss';
 
 export default function ThemeButton() {
