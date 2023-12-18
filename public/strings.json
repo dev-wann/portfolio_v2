@@ -1,0 +1,18 @@
+{
+  "ko-KR": {
+    "home": {
+      "greet-0": "안녕하세요",
+      "greet-1": "Front-end 개발자",
+      "greet-2": "조승완입니다."
+    },
+    "about": {}
+  },
+  "en-US": {
+    "home": {
+      "greet-0": "Hello",
+      "greet-1": "This is Seungwan Cho",
+      "greet-2": "a front-end developer."
+    },
+    "about": {}
+  }
+}

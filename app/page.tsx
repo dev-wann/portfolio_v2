@@ -1,14 +1,10 @@
 'use client';
 
-import { useSelector } from 'react-redux';
-import { RootState } from './_redux';
-import strings from './strings.json';
+import useLangString from './_hooks/useLangString';
 
 export default function Home() {
-  const lang = useSelector((state: RootState) => state.prefer.lang);
-  if (!lang) return <></>;
-
-  const strs = strings[lang];
+  const strs = useLangString('home');
+  if (!strs) return <></>;
 
   return (
     <main className="container-720">
