@@ -15,8 +15,8 @@
     },
     "about": {
       "desc0": "I am a <b>developer</b> from South Korea. I started my career at 2019 and developed document editing softwares for desktop and web environment.",
-      "desc1": "My main interest is building an <b>easy-to-use</b> UIs with <b>simple design</b>. Now I am focusing on building React apps.",
-      "desc2": "Although my recent experiences are mostly related to front-end, I am trying to develop my back-end capabilities to be a full-stack engineer."
+      "desc1": "My main interest is building an <b>easy-to-use</b> UIs with <b>simple design</b>. These days, I am focusing on building React apps.",
+      "desc2": "My recent experiences are mostly related to front-end. However, I am trying to develop my back-end capabilities to be a full-stack engineer."
     }
   }
 }

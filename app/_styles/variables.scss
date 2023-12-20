@@ -1,28 +1,30 @@
 /* variables for neumorphic design */
 // light mode
-$color-txt--light: #000000;
+$color-txt--light: #434148;
+$color-txt-strong--light: #000000;
 $color-lbl--light: #868290;
-$color-bg--light: #e7e4e5;
+$color-bg--light: #ecebeb;
 $color-bg-dim--light: #cfc8ca;
 $color-bg-bright--light: #efeeee;
 $color-bg-inv--light: #24272c;
 $color-shd-dim--light: rgba(0, 0, 0, 0.5);
 $color-shd-bright--light: rgba(209, 205, 199, 0.5);
-$shd-outer--light: 6px 6px 12px $color-shd-dim--light,
-  -6px -6px 12px $color-shd-bright--light;
-$shd-outer-s--light: 3px 3px 6px $color-shd-dim--light,
-  -3px -3px 6px $color-shd-bright--light;
+$shd-outer--light: 4px 4px 8px $color-shd-dim--light,
+  -4px -4px 8px $color-shd-bright--light;
+$shd-outer-s--light: 2px 2px 4px $color-shd-dim--light,
+  -2px -2px 4px $color-shd-bright--light;
 $shd-outer-hover--light: 1px 1px 2px $color-shd-dim--light,
   -1px -1px 2px $color-shd-bright--light;
-$shd-inner--light: inset 6px 6px 12px $color-shd-dim--light,
-  inset -6px -6px 12px $color-shd-bright--light;
-$shd-inner-s--light: inset 3px 3px 6px $color-shd-dim--light,
-  inset -3px -3px 6px $color-shd-bright--light;
+$shd-inner--light: inset 4px 4px 8px $color-shd-dim--light,
+  inset -4px -4px 8px $color-shd-bright--light;
+$shd-inner-s--light: inset 2px 2px 4px $color-shd-dim--light,
+  inset -2px -2px 4px $color-shd-bright--light;
 $shd-inner-hover--light: inset 1px 1px 2px $color-shd-dim--light,
   inset -1px -1px 2px $color-shd-bright--light;
 
 // dark mode
-$color-txt--dark: #ffffff;
+$color-txt--dark: #bfc2c9;
+$color-txt-strong--dark: #ffffff;
 $color-lbl--dark: #7f8493;
 $color-bg--dark: #24272c;
 $color-bg-dim--dark: #101113;
@@ -30,14 +32,14 @@ $color-bg-bright--dark: #2b2f33;
 $color-bg-inv--dark: #e0e5ec;
 $color-shd-dim--dark: rgba(0, 0, 0, 0.5);
 $color-shd-bright--dark: rgba(128, 128, 128, 0.5);
-$shd-outer--dark: 6px 6px 12px $color-shd-dim--dark,
-  -6px -6px 12px $color-shd-bright--dark;
+$shd-outer--dark: 4px 4px 8px $color-shd-dim--dark,
+  -4px -4px 8px $color-shd-bright--dark;
 $shd-outer-s--dark: 2px 2px 4px $color-shd-dim--dark,
   -2px -2px 4px $color-shd-bright--dark;
 $shd-outer-hover--dark: 1px 1px 2px $color-shd-dim--dark,
   -1px -1px 2px $color-shd-bright--dark;
-$shd-inner--dark: inset 6px 6px 12px $color-shd-dim--dark,
-  inset -6px -6px 12px $color-shd-bright--dark;
+$shd-inner--dark: inset 4px 4px 8px $color-shd-dim--dark,
+  inset -4px -4px 8px $color-shd-bright--dark;
 $shd-inner-s--dark: inset 2px 2px 4px $color-shd-dim--dark,
   inset -2px -2px 4px $color-shd-bright--dark;
 $shd-inner-hover--dark: inset 1px 1px 2px $color-shd-dim--dark,
@@ -48,6 +50,7 @@ $tr-color: color 0.3s;
 $tr-bold: font-weight 0.3s;
 $tr-margin: margin 0.3s;
 $tr-bg: background-color 0.6s;
+$tr-bdr: border 0.6s;
 $tr-shd: box-shadow 0.6s;
 $tr-tf: transform 0.6s;
 $tr-op: opacity 0.6s;
