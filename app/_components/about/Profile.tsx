@@ -12,29 +12,30 @@ export default function Profile() {
   const strs = useLangString('about');
   const [showDetails, setShowDetails] = useState(false);
 
-  const showStr = (
-    <>
-      <p>
-        <span>Show Details</span>
-        <Arrows dir="down" />
-      </p>
-    </>
+  const showBtnContent = (
+    <div>
+      <span className={styles['btn-name']}>Show Details</span>
+      <Arrows dir="down" />
+    </div>
   );
-  const closeStr = (
-    <>
-      <p>
-        <span>Close Details</span>
-        <Arrows dir="up" />
-      </p>
-    </>
+  const closeBtnContent = (
+    <div>
+      <span className={styles['btn-name']}>Close Details</span>
+      <Arrows dir="up" />
+    </div>
   );
 
   if (!strs) return <></>;
 
   return (
-    <div className={gStyles.card}>
+    <div className={gStyles.section}>
       <div className={styles.grid}>
         <h1>About me</h1>
+        <div className={styles.desc}>
+          <p>{renderText(strs.desc0)}</p>
+          <p>{renderText(strs.desc1)}</p>
+          <p>{renderText(strs.desc2)}</p>
+        </div>
         <div className={styles.img}>
           <Image
             src="/images/about/me.jpg"
@@ -42,18 +43,14 @@ export default function Profile() {
             fill={true}
           />
         </div>
-        <div className={styles.desc}>
-          <p>{renderText(strs.desc0)}</p>
-          <p>{renderText(strs.desc1)}</p>
-          <p>{renderText(strs.desc2)}</p>
-        </div>
       </div>
+
       <div className={styles.buttons}>
         <button className={styles['animate-hover']}>
-          <p>
-            <span>Go to Resume</span>
+          <div>
+            <span className={styles['btn-name']}>Go to Resume</span>
             <Arrows dir="right" />
-          </p>
+          </div>
         </button>
         <button
           className={`${styles['animate-hover']} ${
@@ -61,8 +58,8 @@ export default function Profile() {
           }`}
           onClick={() => setShowDetails(!showDetails)}
         >
-          {showStr}
-          {closeStr}
+          {showBtnContent}
+          {closeBtnContent}
         </button>
       </div>
       <Details show={showDetails} />

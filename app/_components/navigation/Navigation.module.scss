@@ -39,7 +39,7 @@
 }
 
 .selected {
-  color: var(--color-text) !important;
+  color: var(--color-text-strong) !important;
   font-weight: bolder;
 }
 
@@ -157,7 +157,7 @@
       width: 100%;
       height: 100%;
       border-radius: 28px;
-      transition: $tr-bg, $tr-shd, $tr-op;
+      transition: $tr-bg, $tr-shd, $tr-op !important;
       content: '';
     }
     // outset when button is not pushed
@@ -208,7 +208,7 @@
   padding-bottom: 10px;
   border-radius: 20px;
   z-index: -1;
-  transition: $tr-op, $tr-vis;
+  transition: $tr-op, $tr-vis, $tr-bg, $tr-color;
 
   // menu closed by default
   opacity: 0;

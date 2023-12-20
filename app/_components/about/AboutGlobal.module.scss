@@ -1,21 +1,20 @@
 @use '/app/_styles/mixins.scss';
 
-.card {
-  @include mixins.neumorphic-box-outer;
+.section {
   max-width: 720px;
   max-height: 3000px;
   margin: auto;
   border-radius: 12px;
-  padding: 20px;
 
   &:not(:last-child) {
-    margin-bottom: 32px;
+    margin-bottom: 3rem;
   }
 
   & h1 {
+    color: var(--color-text-strong);
     margin: 6px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     text-decoration: underline;
-    text-underline-offset: 6px;
+    text-underline-offset: 8px;
   }
 }

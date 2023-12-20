@@ -4,22 +4,20 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 20px;
   align-items: center;
 
   & > *:first-child {
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 4;
   }
   & > *:nth-child(2) {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 3;
-  }
-  & > *:nth-child(3) {
     grid-column-start: 1;
     grid-column-end: 3;
+  }
+  & > *:nth-child(3) {
+    grid-column-start: 3;
+    grid-column-end: 4;
   }
 }
 
@@ -43,27 +41,42 @@
 .buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  padding-top: 20px;
+  gap: 16px;
+  margin-top: 28px;
 
   & > button {
-    @include mixins.neumorphic-box-outer;
     flex-grow: 1;
+    position: relative;
     width: 280px;
     height: 36px;
-    border: none;
-    border-radius: 18px;
-    transition: $tr-bg, $tr-shd;
 
     color: var(--color-text);
     font-size: large;
     font-weight: bold;
 
+    // neumorphic background
+    &::before,
+    &::after {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      transition: $tr-bg, $tr-shd, $tr-op !important;
+      z-index: -1;
+      content: '';
+    }
+    &::before {
+      @include mixins.neumorphic-box-outer;
+    }
     &:hover {
-      @include mixins.neumorphic-box-outer-hover;
+      &::before {
+        @include mixins.neumorphic-box-outer-hover;
+      }
     }
 
-    & > p > span {
+    & > div > span {
       display: inline-block;
       width: 125px;
     }
@@ -72,33 +85,50 @@
   // styles for details open & close
   & > button:last-child {
     position: relative;
-    & > p {
+    &::after {
+      @include mixins.neumorphic-box-inner;
+      opacity: 0;
+    }
+    &:hover::after {
+      @include mixins.neumorphic-box-inner-hover;
+      opacity: 0;
+    }
+
+    & > div {
       margin-bottom: 0 !important;
       transition: $tr-op;
     }
-    & > p:first-child {
+    & > div:first-child {
       position: absolute;
       left: 50%;
       transform: translate(-50%, 0);
     }
-    & > p:last-child {
+    & > div:last-child {
       opacity: 0;
     }
-    &.open {
-      @include mixins.neumorphic-box-inner;
 
-      & > p:first-child {
+    &.open {
+      &::before {
         opacity: 0;
       }
-      & > p:last-child {
+      &::after {
         opacity: 1;
       }
-
-      &:hover {
-        @include mixins.neumorphic-box-inner-hover;
+      & > div:first-child {
+        opacity: 0;
+      }
+      & > div:last-child {
+        opacity: 1;
       }
     }
   }
+}
+
+.btn-name {
+  transition: $tr-color;
+}
+.buttons > button:hover .btn-name {
+  color: var(--color-text-strong);
 }
 
 .arrows {
@@ -115,8 +145,8 @@
     left: 6px;
     width: 6px;
     height: 6px;
-    border-bottom: 2px solid white;
-    border-right: 2px solid white;
+    border-bottom: 2px solid var(--color-text);
+    border-right: 2px solid var(--color-text);
     transform: rotate(45deg);
   }
 }
