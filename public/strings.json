@@ -5,7 +5,7 @@
       "greet-1": "Front-end 개발자",
       "greet-2": "조승완입니다."
     },
-    "about": {}
+    "about": { "desc": "안녕하세요 프론트엔드 개발자 조승완입니다." }
   },
   "en-US": {
     "home": {
@@ -13,6 +13,10 @@
       "greet-1": "This is Seungwan Cho",
       "greet-2": "a front-end developer."
     },
-    "about": {}
+    "about": {
+      "desc0": "I am a <b>developer</b> from South Korea. I started my career at 2019 and developed document editing softwares for desktop and web environment.",
+      "desc1": "My main interest is building an <b>easy-to-use</b> UIs with <b>simple design</b>. Now I am focusing on building React apps.",
+      "desc2": "Although my recent experiences are mostly related to front-end, I am trying to develop my back-end capabilities to be a full-stack engineer."
+    }
   }
 }
