@@ -1,0 +1,145 @@
+@use '/app/_styles/mixins.scss';
+@use '/app/_styles/variables.scss' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  align-items: center;
+
+  & > *:first-child {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  & > *:nth-child(2) {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  & > *:nth-child(3) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}
+
+.img {
+  @include mixins.neumorphic-box-outer;
+  position: relative;
+  border: 10px solid var(--color-bg);
+  overflow: hidden;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  img {
+    object-fit: cover;
+  }
+}
+
+.desc {
+  text-indent: 2em;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 20px;
+
+  & > button {
+    @include mixins.neumorphic-box-outer;
+    flex-grow: 1;
+    width: 280px;
+    height: 36px;
+    border: none;
+    border-radius: 18px;
+    transition: $tr-bg, $tr-shd;
+
+    color: var(--color-text);
+    font-size: large;
+    font-weight: bold;
+
+    &:hover {
+      @include mixins.neumorphic-box-outer-hover;
+    }
+
+    & > p > span {
+      display: inline-block;
+      width: 125px;
+    }
+  }
+
+  // styles for details open & close
+  & > button:last-child {
+    position: relative;
+    & > p {
+      margin-bottom: 0 !important;
+      transition: $tr-op;
+    }
+    & > p:first-child {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    & > p:last-child {
+      opacity: 0;
+    }
+    &.open {
+      @include mixins.neumorphic-box-inner;
+
+      & > p:first-child {
+        opacity: 0;
+      }
+      & > p:last-child {
+        opacity: 1;
+      }
+
+      &:hover {
+        @include mixins.neumorphic-box-inner-hover;
+      }
+    }
+  }
+}
+
+.arrows {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: 3px;
+
+  span {
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    width: 6px;
+    height: 6px;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    transform: rotate(45deg);
+  }
+}
+
+.animate-hover:hover {
+  & .animate-target {
+    animation: animate 2s ease-in-out infinite;
+  }
+  & .animate-target:last-child {
+    animation-delay: -1s;
+  }
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-3px, -3px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(3px, 3px);
+  }
+}

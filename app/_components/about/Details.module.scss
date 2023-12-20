@@ -1,0 +1,23 @@
+@use '/app/_styles/mixins.scss';
+@use '/app/_styles/variables.scss' as *;
+
+.detailsWrapper {
+  position: relative;
+  height: 0px;
+  max-height: 2000px;
+  overflow: hidden;
+  transition: height 0.6s;
+  &.show {
+    height: 1000px;
+  }
+}
+
+.details {
+  @include mixins.neumorphic-box-inner;
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  padding: 20px;
+  width: calc(100% - 40px);
+  border-radius: 12px;
+}
