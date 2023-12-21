@@ -1,6 +1,7 @@
 'use client';
 
 import useLangString from '@/app/_hooks/useLangString';
+import useWindowWidth from '@/app/_hooks/useWindowWidth';
 import { renderText } from '@/app/_utils/utils';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -12,6 +13,8 @@ import styles from './Profile.module.scss';
 export default function Profile() {
   const strs = useLangString('about');
   const [showDetails, setShowDetails] = useState(false);
+  const windowWidth = useWindowWidth();
+  const isSmall = windowWidth && windowWidth < 600;
 
   const showBtnContent = (
     <div>
@@ -34,7 +37,7 @@ export default function Profile() {
       <NeuTitle text="About me" />
 
       {/* Section Description */}
-      <div className={styles.grid}>
+      <div className={`${styles.grid} ${isSmall ? styles.small : ''}`}>
         <div className={styles.desc}>
           <p>{renderText(strs.desc0)}</p>
           <p>{renderText(strs.desc1)}</p>
