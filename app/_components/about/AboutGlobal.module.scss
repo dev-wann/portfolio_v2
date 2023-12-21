@@ -1,20 +1,10 @@
 @use '/app/_styles/mixins.scss';
 
 .section {
+  box-sizing: border-box;
   max-width: 720px;
   max-height: 3000px;
   margin: auto;
+  padding-top: 5rem;
   border-radius: 12px;
-
-  &:not(:last-child) {
-    margin-bottom: 3rem;
-  }
-
-  & h1 {
-    color: var(--color-text-strong);
-    margin: 6px;
-    margin-bottom: 8px;
-    text-decoration: underline;
-    text-underline-offset: 8px;
-  }
 }

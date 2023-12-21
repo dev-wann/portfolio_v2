@@ -17,13 +17,9 @@ export default function Navigation() {
   return (
     <>
       <nav className={styles['nav-wrapper']}>
-        <div
-          className={`${styles.navigation} ${
-            isSmall ? 'container-400' : 'container-720'
-          }`}
-        >
+        <div className={`${styles.navigation} container-720`}>
           {isSmall ? (
-            <RoutesSmall selectIdx={selectIdx} />
+            <RoutesSmall selectIdx={selectIdx} windowWidth={windowWidth} />
           ) : (
             <RoutesLarge selectIdx={selectIdx} />
           )}
@@ -65,7 +61,13 @@ function RoutesLarge({ selectIdx }: { selectIdx: number }) {
   );
 }
 
-function RoutesSmall({ selectIdx }: { selectIdx: number }) {
+function RoutesSmall({
+  selectIdx,
+  windowWidth,
+}: {
+  selectIdx: number;
+  windowWidth: number | null;
+}) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isOpen, setOpen] = useState(false);
 
@@ -127,6 +129,16 @@ function RoutesSmall({ selectIdx }: { selectIdx: number }) {
           </Link>
         ))}
       </div>
+
+      {/* show page name when possible */}
+      <div className={styles['small-title']}>
+        {windowWidth && windowWidth < 400 ? (
+          <></>
+        ) : (
+          routes[selectIdx][0].toUpperCase()
+        )}
+      </div>
+
       {/* back-cover to make contents dim */}
       <div
         className={`${styles['back-cover']} ${isOpen ? styles.open : ''}`}

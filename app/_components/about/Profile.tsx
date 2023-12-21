@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import gStyles from './AboutGlobal.module.scss';
 import Details from './Details';
+import NeuTitle from './NeuTitle';
 import styles from './Profile.module.scss';
 
 export default function Profile() {
@@ -29,8 +30,11 @@ export default function Profile() {
 
   return (
     <div className={gStyles.section}>
+      {/* Section Title */}
+      <NeuTitle text="About me" />
+
+      {/* Section Description */}
       <div className={styles.grid}>
-        <h1>About me</h1>
         <div className={styles.desc}>
           <p>{renderText(strs.desc0)}</p>
           <p>{renderText(strs.desc1)}</p>
@@ -45,6 +49,7 @@ export default function Profile() {
         </div>
       </div>
 
+      {/* Buttons below */}
       <div className={styles.buttons}>
         <button className={styles['animate-hover']}>
           <div>
