@@ -1,8 +1,9 @@
 @use './variables.scss' as *;
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css');
 
 html {
   // define rem
-  font-size: 18px;
+  font-size: 20px;
 }
 
 body {
@@ -46,6 +47,10 @@ body {
 }
 
 body {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, Bazier Square,
+    Noto Sans KR, Segoe UI, Apple SD Gothic Neo, Roboto, Helvetica Neue, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
   color: var(--color-text);
   background: var(--color-bg);
   transition: $tr-color, $tr-bg;
@@ -57,7 +62,7 @@ h1 {
 }
 
 b {
-  color: var(--color-text-strong) !important;
+  // color: var(--color-text-strong) !important;
   font-weight: bold !important;
 }
 

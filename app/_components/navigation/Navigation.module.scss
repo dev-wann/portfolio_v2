@@ -2,9 +2,11 @@
 @use '/app/_styles/mixins.scss';
 
 .nav-wrapper {
-  position: sticky;
-  top: 0px;
-  padding: 2vh 2vw;
+  position: fixed;
+  top: 1rem;
+  left: 0px;
+  right: 0px;
+  padding: 1vh 1vw;
   min-width: 275px;
   z-index: 9999;
 }
@@ -79,7 +81,6 @@
 
 .routes-small {
   position: relative;
-  flex-grow: 1;
   height: 28px;
 }
 
@@ -242,6 +243,16 @@
   height: 30px;
   border-radius: 40px;
   transition: $tr-margin, $tr-bg;
+}
+
+.small-title {
+  flex-grow: 1;
+  color: var(--color-text-strong);
+  z-index: 1;
+  margin-left: 21px;
+
+  color: var(--color-label);
+  text-align: center;
 }
 
 .back-cover {
