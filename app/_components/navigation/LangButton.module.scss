@@ -76,7 +76,7 @@
     left: 0px;
     bottom: 0px;
     right: 0px;
-    background-color: var(--color-bg);
+    background: var(--color-bg);
     border-radius: 24px;
     transition: $tr-bg;
   }
@@ -87,7 +87,7 @@
     left: 4px;
     bottom: 4px;
     width: 38px;
-    background-color: var(--color-bg-bright);
+    background: var(--color-bg-box);
     border-radius: 24px;
     transition: $tr-margin, $tr-bg;
   }
@@ -99,7 +99,7 @@
   text-shadow: none !important;
 }
 .hidden > label:after {
-  background-color: transparent !important;
+  background: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }

@@ -11,6 +11,7 @@ export const THEME_ENUM = {
 };
 
 // Slice
+let timeoutId: NodeJS.Timeout | null = null;
 const initialState = { lang: null, theme: null };
 const preferSlice = createSlice({
   name: 'prefer',
@@ -23,10 +24,21 @@ const preferSlice = createSlice({
     changeTheme(state, action) {
       state.theme = action.payload;
       localStorage.setItem('theme', action.payload);
+      if (timeoutId) clearTimeout(timeoutId);
       if (action.payload === THEME_ENUM.LIGHT) {
         document.body.classList.remove('dark-theme');
+        document.body.classList.add('change-theme');
+        timeoutId = setTimeout(
+          () => document.body.classList.remove('change-theme'),
+          600
+        );
       } else {
         document.body.classList.add('dark-theme');
+        document.body.classList.add('change-theme');
+        timeoutId = setTimeout(
+          () => document.body.classList.remove('change-theme'),
+          600
+        );
       }
     },
   },
