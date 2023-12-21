@@ -17,7 +17,7 @@ export default function Navigation() {
   return (
     <>
       <nav className={styles['nav-wrapper']}>
-        <div className={`${styles.navigation} container-720`}>
+        <div className={`${styles.navigation} container-800`}>
           {isSmall ? (
             <RoutesSmall selectIdx={selectIdx} windowWidth={windowWidth} />
           ) : (
