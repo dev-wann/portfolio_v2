@@ -104,7 +104,7 @@
     width: 16px;
     height: 2px;
     left: 25px;
-    background-color: var(--color-text);
+    background: var(--color-text);
     border-radius: 3px;
     transform-origin: 4px 0px;
     transition: transform 0.3s, opacity 0.3s;
@@ -250,7 +250,7 @@
   top: -50vh;
   width: 200vw;
   height: 200vh;
-  background-color: var(--color-label);
+  background: var(--color-label);
   opacity: 0;
   visibility: hidden;
   transition: $tr-op, $tr-vis;

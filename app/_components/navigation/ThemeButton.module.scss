@@ -19,7 +19,7 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background-color: transparent;
+    background: transparent;
     z-index: 2;
     content: '';
   }
@@ -74,11 +74,11 @@
   &::before {
     top: 0px;
     left: -50%;
-    background-color: $color-bg--light;
+    background: $color-bg--light;
   }
   &::after {
     top: 50%;
     left: -50%;
-    background-color: $color-bg--dark;
+    background: $color-bg--dark;
   }
 }

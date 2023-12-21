@@ -1,7 +1,8 @@
 @use './variables.scss' as *;
 
 @mixin neumorphic-box-outer {
-  background-color: var(--color-bg-bright);
+  background: var(--color-bg-box);
+  background-color: var(--color-bg-change);
   box-shadow: var(--shadow-outer);
   transition: $tr-shd, $tr-bg, $tr-bdr;
 }
@@ -18,7 +19,7 @@
 }
 
 @mixin neumorphic-box-inner {
-  background-color: var(--color-bg);
+  background: var(--color-bg);
   box-shadow: var(--shadow-inner);
   transition: $tr-shd, $tr-bg, $tr-bdr;
 }

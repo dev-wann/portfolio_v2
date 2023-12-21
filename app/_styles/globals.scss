@@ -11,8 +11,8 @@ body {
   --color-label: #{$color-lbl--light};
   --color-bg: #{$color-bg--light};
   --color-bg-dim: #{$color-bg-dim--light};
-  --color-bg-bright: #{$color-bg-bright--light};
-  --color-bg-inv: #{$color-bg-inv--light};
+  --color-bg-box: #{$color-bg-box--light};
+  --color-bg-change: #{$color-bg-change--light};
   --color-shadow-dark: #{$color-shd-dim--light};
   --color-shadow-light: #{$color-shd-bright--light};
   --shadow-outer: #{$shd-outer--light};
@@ -28,8 +28,8 @@ body {
     --color-label: #{$color-lbl--dark};
     --color-bg: #{$color-bg--dark};
     --color-bg-dim: #{$color-bg-dim--dark};
-    --color-bg-bright: #{$color-bg-bright--dark};
-    --color-bg-inv: #{$color-bg-inv--dark};
+    --color-bg-box: #{$color-bg-box--dark};
+    --color-bg-change: #{$color-bg-change--dark};
     --color-shadow-dark: #{$color-shd-dim--dark};
     --color-shadow-light: #{$color-shd-bright--dark};
     --shadow-outer: #{$shd-outer--dark};
@@ -39,11 +39,15 @@ body {
     --shadow-inner-s: #{$shd-inner-s--dark};
     --shadow-inner-hover: #{$shd-inner-hover--dark};
   }
+
+  &.change-theme {
+    --color-bg-box: none !important;
+  }
 }
 
 body {
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background: var(--color-bg);
   transition: $tr-color, $tr-bg;
 }
 
