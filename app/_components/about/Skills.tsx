@@ -40,8 +40,8 @@ export default function Skill() {
     { name: 'React', src: '/images/about/react.svg' },
     { name: 'Next.js', src: '/images/about/next-js.svg' },
     { name: 'TypeScript', src: '/images/about/ts.svg' },
-    { name: 'SCSS', src: '/images/about/scss.svg' },
     { name: 'HTML', src: '/images/about/html.svg' },
+    { name: 'SCSS', src: '/images/about/scss.svg' },
     { name: 'JavaScript', src: 'images/about/js.svg' },
   ];
   const state = [
@@ -63,22 +63,22 @@ export default function Skill() {
       <NeuTitle text="Skills" />
       <div className={styles.grid}>
         <GlowOnHoverBox className={styles['grid-item']}>
-          <p>Front-end</p>
+          <h2>Front-end</h2>
           <p>description</p>
           {createSkillItems(frontend)}
         </GlowOnHoverBox>
         <GlowOnHoverBox className={styles['grid-item']}>
-          <p>State Management</p>
+          <h3>State Management</h3>
           <p>description</p>
           {createSkillItems(state)}
         </GlowOnHoverBox>
         <GlowOnHoverBox className={styles['grid-item']}>
-          <p>Back-end</p>
+          <h2>Back-end</h2>
           <p>description</p>
           {createSkillItems(backend)}
         </GlowOnHoverBox>
         <GlowOnHoverBox className={styles['grid-item']}>
-          <p>Others</p>
+          <h2>Others</h2>
           <p>description</p>
           {createSkillItems(others)}
         </GlowOnHoverBox>

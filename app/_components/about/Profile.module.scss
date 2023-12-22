@@ -58,7 +58,6 @@
     height: 36px;
 
     color: var(--color-text);
-    font-size: large;
     font-weight: bold;
 
     // neumorphic background
@@ -99,7 +98,7 @@
     & > div {
       position: absolute;
       left: 50%;
-      width: 150px;
+      width: 100%;
       margin-bottom: 0 !important;
       transform: translate(-50%, -50%);
       transition: $tr-op;
@@ -127,7 +126,7 @@
 
 .btn-name {
   display: inline-block;
-  width: 125px;
+  width: 140px;
   transition: $tr-color;
 }
 .buttons > button:hover .btn-name {

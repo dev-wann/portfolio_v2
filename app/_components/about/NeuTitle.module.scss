@@ -1,10 +1,8 @@
+@use '/app/_styles/variables.scss' as *;
 @use '/app/_styles/mixins.scss';
 
 .text {
-  display: inline-block;
-  font-size: 3rem;
   font-style: italic;
-  font-weight: 800;
   margin: 8px;
 }
 

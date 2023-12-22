@@ -59,26 +59,35 @@ body {
 }
 
 h1 {
-  font-size: 1.8rem !important;
+  font-size: $font-size-section-title !important;
+  font-weight: 900 !important;
+}
+h2 {
+  font-size: $font-size-subtitle !important;
   font-weight: bold !important;
 }
-
+h3 {
+  font-size: $font-size-subtitle-s !important;
+  font-weight: bold !important;
+}
 p {
   line-height: 1.4rem !important;
   &:not(:last-child) {
     margin-bottom: 0.7rem !important;
   }
 }
-
 b {
-  // color: var(--color-text-strong) !important;
   font-weight: bold !important;
 }
-
 h1,
+h2,
+h3,
 p,
-b {
+span {
   transition: $tr-color;
+}
+button {
+  font-size: $font-size-button;
 }
 
 // disable scrollbar
