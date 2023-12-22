@@ -1,0 +1,149 @@
+@use '/app/_styles/mixins.scss';
+
+.grid {
+  margin-top: 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+
+  & > *:nth-child(1) {
+    // front-end
+    grid-area: 1 / 1 / 4 / 4;
+  }
+  & > *:nth-child(2) {
+    // state management
+    grid-area: 2 / 4 / 4 / 6;
+  }
+  & > *:nth-child(3) {
+    // back-end
+    grid-area: 4 / 1 / 6 / 3;
+  }
+  & > *:nth-child(4) {
+    // others
+    grid-area: 4 / 3 / 6 / 6;
+  }
+  & > *:nth-child(5) {
+    // placeholder
+    grid-area: 1 / 4 / 2 / 6;
+  }
+}
+
+.grid-item {
+  @include mixins.neumorphic-box-outer;
+  border-radius: 12px;
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+
+  & > p:first-child {
+    font-weight: bold;
+  }
+  & > *:nth-child(2) {
+    flex-grow: 1;
+  }
+}
+
+// highlight hovered grid item and dehighlight others
+.grid {
+  & img {
+    transition: filter 0.3s;
+  }
+  &:has(.select) {
+    .select p:first-child {
+      color: var(--color-text-strong);
+    }
+    .glow-box:not(.select) img {
+      filter: grayscale(1);
+    }
+  }
+}
+.placeholder {
+  div {
+    transition: color 1s;
+    background: linear-gradient(90deg, #f35626, #feab3a);
+    background-clip: text;
+    animation: hue 4s infinite linear;
+  }
+  &.select div {
+    color: transparent;
+  }
+}
+@keyframes hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(-360deg);
+  }
+}
+
+.category {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  position: relative;
+  width: 100%;
+}
+
+.skill {
+  width: 30%;
+  height: 80px;
+  border-radius: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+.placeholder {
+  position: relative;
+  height: 0;
+  padding: 0;
+  padding: 56.25% 0 0; // 16 : 9 ratio
+
+  & > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -53%;
+
+    font-size: 5rem;
+    font-weight: 900;
+  }
+}
+
+.glow-box {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    background: radial-gradient(
+      800px circle at var(--x) var(--y),
+      var(--color-text-strong),
+      transparent 40%
+    );
+
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  &:hover::before {
+    opacity: 0.1;
+  }
+}
