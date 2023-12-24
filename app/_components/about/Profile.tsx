@@ -32,7 +32,7 @@ export default function Profile() {
   if (!strs) return <></>;
 
   return (
-    <div className={gStyles.section}>
+    <section className={gStyles.section}>
       {/* Section Title */}
       <NeuTitle text="About me" />
 
@@ -71,7 +71,7 @@ export default function Profile() {
         </button>
       </div>
       <Details show={showDetails} />
-    </div>
+    </section>
   );
 }
 
