@@ -11,7 +11,7 @@ import NeuTitle from './NeuTitle';
 import styles from './Profile.module.scss';
 
 export default function Profile() {
-  const strs = useLangString('about');
+  const strs = useLangString('about', 'profile');
   const [showDetails, setShowDetails] = useState(false);
   const windowWidth = useWindowWidth();
   const isSmall = windowWidth && windowWidth < 600;
@@ -37,13 +37,17 @@ export default function Profile() {
       <NeuTitle text="About me" />
 
       {/* Section Description */}
-      <div className={`${styles.grid} ${isSmall ? styles.small : ''}`}>
+      <div
+        className={` ${gStyles.content} ${styles.grid} ${
+          isSmall ? styles.small : ''
+        }`}
+      >
         <div className={styles.desc}>
           <p>{renderText(strs.desc0)}</p>
           <p>{renderText(strs.desc1)}</p>
           <p>{renderText(strs.desc2)}</p>
         </div>
-        <div className={styles.img}>
+        <div className={gStyles['round-img']}>
           <Image
             src="/images/about/me.jpg"
             alt="picutre of seungwan cho"

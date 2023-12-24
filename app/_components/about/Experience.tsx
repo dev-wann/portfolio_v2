@@ -6,7 +6,7 @@ export default function Experience() {
   return (
     <section className={gStyles.section}>
       <NeuTitle text="Experience" />
-      <div className={styles.wrapper}>
+      <div className={gStyles.content} style={{ marginBottom: 0 }}>
         <div className={styles.role}>
           <h2>Software Engineer&ensp;</h2>
           <h3>
@@ -29,7 +29,7 @@ export default function Experience() {
             <li>aaaa</li>
           </ul>
         </div>
-        <div className={styles.project}>
+        <div className={styles.project} style={{ marginBottom: 0 }}>
           <h3>ToOffice Projcet</h3>
           <p className={styles['sub-desc']}>2019.08 ~ 2021.10</p>
           <p>A desktop document editing software for Windows / Linux OS</p>

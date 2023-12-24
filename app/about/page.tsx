@@ -1,3 +1,4 @@
+import { Education } from '../_components/about/Education';
 import Experience from '../_components/about/Experience';
 import Profile from '../_components/about/Profile';
 import Skills from '../_components/about/Skills';
@@ -9,6 +10,7 @@ export default function About() {
       <Profile />
       <Skills />
       <Experience />
+      <Education />
     </main>
   );
 }

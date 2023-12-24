@@ -1,11 +1,6 @@
 @use '/app/_styles/variables.scss' as *;
 @use '/app/_styles/mixins.scss';
 
-.wrapper {
-  margin: 1rem 0;
-  padding: 0 0.4rem;
-}
-
 .role {
   display: flex;
   align-items: baseline;
