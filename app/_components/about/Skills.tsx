@@ -59,7 +59,7 @@ export default function Skill() {
   ];
 
   return (
-    <div className={gStyles.section}>
+    <section className={gStyles.section}>
       <NeuTitle text="Skills" />
       <div className={styles.grid}>
         <GlowOnHoverBox className={styles['grid-item']}>
@@ -88,7 +88,7 @@ export default function Skill() {
           <div>&lt;/&gt;</div>
         </GlowOnHoverBox>
       </div>
-    </div>
+    </section>
   );
 }
 

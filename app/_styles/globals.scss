@@ -68,13 +68,7 @@ h2 {
 }
 h3 {
   font-size: $font-size-subtitle-s !important;
-  font-weight: bold !important;
-}
-p {
-  line-height: 1.4rem !important;
-  &:not(:last-child) {
-    margin-bottom: 0.7rem !important;
-  }
+  font-weight: 600 !important;
 }
 b {
   font-weight: bold !important;
@@ -86,8 +80,14 @@ p,
 span {
   transition: $tr-color;
 }
+
 button {
   font-size: $font-size-button;
+}
+
+ul {
+  list-style: disc !important;
+  padding-left: 1.4rem !important;
 }
 
 // disable scrollbar
