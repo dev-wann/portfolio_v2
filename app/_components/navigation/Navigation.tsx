@@ -41,8 +41,8 @@ const routes = [
 
 function RoutesLarge({ selectIdx }: { selectIdx: number }) {
   const selectedBg: React.CSSProperties = {
-    marginLeft: `${(100 * selectIdx) / routes.length}%`,
-    width: `${100 / routes.length}%`,
+    marginLeft: `${Math.max(100 * selectIdx, 0) / routes.length}%`,
+    width: selectIdx < 0 ? 0 : `${100 / routes.length}%`,
   };
 
   return (

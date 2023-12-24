@@ -4,6 +4,7 @@ import useLangString from '@/app/_hooks/useLangString';
 import useWindowWidth from '@/app/_hooks/useWindowWidth';
 import { renderText } from '@/app/_utils/utils';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import gStyles from './AboutGlobal.module.scss';
 import Details from './Details';
@@ -15,6 +16,11 @@ export default function Profile() {
   const [showDetails, setShowDetails] = useState(false);
   const windowWidth = useWindowWidth();
   const isSmall = windowWidth && windowWidth < 600;
+
+  const router = useRouter();
+  const toResume = () => {
+    router.push('/resume');
+  };
 
   const showBtnContent = (
     <div>
@@ -58,11 +64,9 @@ export default function Profile() {
 
       {/* Buttons below */}
       <div className={styles.buttons}>
-        <button className={styles['animate-hover']}>
-          <div>
-            <span className={styles['btn-name']}>Go to Resume</span>
-            <Arrows dir="right" />
-          </div>
+        <button className={styles['animate-hover']} onClick={toResume}>
+          <span className={styles['btn-name']}>Go to Resume</span>
+          <Arrows dir="right" />
         </button>
         <button
           className={`${styles['animate-hover']} ${
