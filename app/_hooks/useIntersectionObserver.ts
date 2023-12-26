@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect } from 'react';
 
 enum AnimateType {
@@ -10,8 +8,10 @@ enum AnimateType {
 
 type AnimateData = { elem: Element; type: AnimateType };
 
-let targets: Element[] = [];
 const animateQueue: AnimateData[] = [];
+let targets: Element[] = [];
+let timeoutId: NodeJS.Timeout;
+let isAnimating = false;
 
 export default function useIntersectionObserver() {
   useEffect(() => {
@@ -31,10 +31,16 @@ export default function useIntersectionObserver() {
 }
 
 export async function clearPage() {
+  clearTimeout(timeoutId);
+  // hide contents
   targets.forEach((target) => {
     target.classList.add('fade-out', 'hide-box', 'hide-text');
   });
-  await delay(600);
+  // hide nav selection
+  const navSelect = document.body.querySelector('#nav-select');
+  if (navSelect) navSelect.classList.add('fade-out', 'hide-box');
+  await delay(500);
+  if (navSelect) navSelect.classList.remove('fade-out', 'hide-box');
 }
 
 // observer callback
@@ -63,11 +69,11 @@ function callback(
 function cleanUp(observer: IntersectionObserver) {
   observer.disconnect();
   animateQueue.splice(0, animateQueue.length);
+  isAnimating = false;
   targets.splice(0, targets.length);
 }
 
 // animaitng functions
-let isAnimating = false;
 async function animate(queue: AnimateData[], observer: IntersectionObserver) {
   if (isAnimating) return;
 
@@ -78,9 +84,9 @@ async function animate(queue: AnimateData[], observer: IntersectionObserver) {
     isAnimating = false;
     animate(queue, observer);
   } else {
-    setTimeout(() => {
+    timeoutId = setTimeout(() => {
       animate(queue, observer);
-    }, 300);
+    }, 200);
   }
 }
 
@@ -98,5 +104,5 @@ async function show({ elem, type }: AnimateData) {
 }
 
 function delay(ms: number) {
-  return new Promise((res) => setTimeout(res, ms));
+  return new Promise((res) => (timeoutId = setTimeout(res, ms)));
 }
