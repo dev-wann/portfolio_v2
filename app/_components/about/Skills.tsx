@@ -4,8 +4,8 @@ import useWindowWidth from '@/app/_hooks/useWindowWidth';
 import { RootState } from '@/app/_redux';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
+import NeuTitle from '../common/NeuTitle';
 import gStyles from './AboutGlobal.module.scss';
-import NeuTitle from './NeuTitle';
 import styles from './Skills.module.scss';
 
 export default function Skill() {
@@ -60,31 +60,29 @@ export default function Skill() {
 
   return (
     <section className={gStyles.section}>
-      <NeuTitle text="Skills" />
+      <NeuTitle text="Skills" className="observe" />
       <div className={styles.grid}>
-        <GlowOnHoverBox className={styles['grid-item']}>
+        <GlowOnHoverBox>
           <h2>Front-end</h2>
           <p>description</p>
           {createSkillItems(frontend)}
         </GlowOnHoverBox>
-        <GlowOnHoverBox className={styles['grid-item']}>
+        <GlowOnHoverBox>
           <h3>State Management</h3>
           <p>description</p>
           {createSkillItems(state)}
         </GlowOnHoverBox>
-        <GlowOnHoverBox className={styles['grid-item']}>
+        <GlowOnHoverBox>
           <h2>Back-end</h2>
           <p>description</p>
           {createSkillItems(backend)}
         </GlowOnHoverBox>
-        <GlowOnHoverBox className={styles['grid-item']}>
+        <GlowOnHoverBox>
           <h2>Others</h2>
           <p>description</p>
           {createSkillItems(others)}
         </GlowOnHoverBox>
-        <GlowOnHoverBox
-          className={`${styles['grid-item']} ${styles.placeholder}`}
-        >
+        <GlowOnHoverBox className={styles.placeholder}>
           <div>&lt;/&gt;</div>
         </GlowOnHoverBox>
       </div>
@@ -97,7 +95,7 @@ function GlowOnHoverBox({
   className,
 }: {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }) {
   // update cursor position
   const chaseCursor = (e: React.MouseEvent) => {
@@ -115,9 +113,11 @@ function GlowOnHoverBox({
     (e.currentTarget as HTMLElement).classList.remove(styles.select);
   };
 
+  const computedClassName = `${styles['glow-box']} ${styles['grid-item']} ${className} observe`;
+
   return (
     <div
-      className={`${styles['glow-box']} ${className}`}
+      className={computedClassName}
       onMouseMove={chaseCursor}
       onMouseEnter={addSelect}
       onMouseLeave={removeSelect}
