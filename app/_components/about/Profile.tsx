@@ -1,27 +1,28 @@
 'use client';
 
+import useCustomRouter from '@/app/_hooks/useCustomRouter';
 import useLangString from '@/app/_hooks/useLangString';
 import useWindowWidth from '@/app/_hooks/useWindowWidth';
-import { renderText } from '@/app/_utils/utils';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { renderText } from '@/app/_utils/textUtil';
 import { useState } from 'react';
+import NeuTitle from '../common/NeuTitle';
+import RoundImage from '../common/RoundImage';
 import gStyles from './AboutGlobal.module.scss';
 import Details from './Details';
-import NeuTitle from './NeuTitle';
 import styles from './Profile.module.scss';
 
 export default function Profile() {
   const strs = useLangString('about', 'profile');
-  const [showDetails, setShowDetails] = useState(false);
   const windowWidth = useWindowWidth();
+  const router = useCustomRouter();
+
+  const [showDetails, setShowDetails] = useState(false);
   const isSmall = windowWidth && windowWidth < 600;
 
-  const router = useRouter();
+  // event listeners
   const toResume = () => {
     router.push('/resume');
   };
-
   const showBtnContent = (
     <div>
       <span className={styles['btn-name']}>Show Details</span>
@@ -35,12 +36,11 @@ export default function Profile() {
     </div>
   );
 
-  if (!strs) return <></>;
-
+  // render
   return (
     <section className={gStyles.section}>
       {/* Section Title */}
-      <NeuTitle text="About me" />
+      <NeuTitle text="About me" className="observe" />
 
       {/* Section Description */}
       <div
@@ -48,32 +48,33 @@ export default function Profile() {
           isSmall ? styles.small : ''
         }`}
       >
-        <div className={styles.desc}>
-          <p>{renderText(strs.desc0)}</p>
-          <p>{renderText(strs.desc1)}</p>
-          <p>{renderText(strs.desc2)}</p>
+        <div className={`${styles.desc} observe text`}>
+          <p>{renderText(strs?.desc0)}</p>
+          <p>{renderText(strs?.desc1)}</p>
+          <p>{renderText(strs?.desc2)}</p>
         </div>
-        <div className={gStyles['round-img']}>
-          <Image
-            src="/images/about/me.jpg"
-            alt="picutre of seungwan cho"
-            fill={true}
-          />
-        </div>
+        <RoundImage
+          src="/images/about/me.jpg"
+          alt="picutre of seungwan cho"
+          width={250}
+          height={250}
+          className="observe"
+        />
       </div>
 
       {/* Buttons below */}
-      <div className={styles.buttons}>
-        <button className={styles['animate-hover']} onClick={toResume}>
+      <div className={styles['button-wrapper']}>
+        <button className={`${styles.btn} observe`} onClick={toResume}>
+          <div className={styles['btn-outer-bg']} />
           <span className={styles['btn-name']}>Go to Resume</span>
           <Arrows dir="right" />
         </button>
         <button
-          className={`${styles['animate-hover']} ${
-            showDetails ? styles.open : ''
-          }`}
+          className={`${styles.btn} ${showDetails ? styles.open : ''} observe`}
           onClick={() => setShowDetails(!showDetails)}
         >
+          <div className={styles['btn-outer-bg']} />
+          <div className={styles['btn-inner-bg']} />
           {showBtnContent}
           {closeBtnContent}
         </button>

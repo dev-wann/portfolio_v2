@@ -80,6 +80,9 @@ p,
 span {
   transition: $tr-color;
 }
+img {
+  transition: $tr-op;
+}
 
 button {
   font-size: $font-size-button;
@@ -107,4 +110,37 @@ html {
 .container-800 {
   max-width: 800px;
   margin: 0 auto;
+}
+
+// intersection observer related classes
+.observe {
+  visibility: hidden;
+}
+
+.hide-box {
+  &,
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+}
+
+.hide-text {
+  &,
+  * {
+    color: transparent !important;
+    border: none !important;
+  }
+  img {
+    opacity: 0 !important;
+  }
+
+  &:not(.fade-out) {
+    &,
+    * {
+      transition: $tr-shd cubic-bezier(0.47, 2, 0.41, 0.75) !important;
+    }
+  }
 }
