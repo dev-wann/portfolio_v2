@@ -1,3 +1,4 @@
+import useCustomRouter from '@/app/_hooks/useCustomRouter';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -40,6 +41,14 @@ const routes = [
 ];
 
 function RoutesLarge({ selectIdx }: { selectIdx: number }) {
+  // custom router
+  const router = useCustomRouter();
+  const routeTo = (e: React.MouseEvent, path: string) => {
+    router.push(path);
+    e.preventDefault();
+  };
+
+  // select control
   const selectedBg: React.CSSProperties = {
     marginLeft: `${Math.max(100 * selectIdx, 0) / routes.length}%`,
     width: selectIdx < 0 ? 0 : `${100 / routes.length}%`,
@@ -47,12 +56,17 @@ function RoutesLarge({ selectIdx }: { selectIdx: number }) {
 
   return (
     <div className={styles['routes-large']}>
-      <div className={styles['selected-bg-large']} style={selectedBg} />
+      <div
+        className={styles['selected-bg-large']}
+        style={selectedBg}
+        id="nav-select"
+      />
       {routes.map(([name, path], idx) => (
         <Link
           className={idx === selectIdx ? styles.selected : ''}
           href={path}
           key={name}
+          onClick={(e) => routeTo(e, path)}
         >
           {name.toUpperCase()}
         </Link>
@@ -118,7 +132,11 @@ function RoutesSmall({
       </div>
       {/* menu items */}
       <div className={`${styles['menu-items']} ${isOpen ? styles.open : ''}`}>
-        <div className={styles['selected-bg-small']} style={selectedBg} />
+        <div
+          className={styles['selected-bg-small']}
+          style={selectedBg}
+          id="nav-select"
+        />
         {routes.map(([name, path], idx) => (
           <Link
             className={idx === selectIdx ? styles.selected : ''}

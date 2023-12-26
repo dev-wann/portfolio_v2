@@ -144,3 +144,8 @@ html {
     }
   }
 }
+
+.fade-out#nav-select ~ a:not(:hover) {
+  color: var(--color-label) !important;
+  font-weight: normal !important;
+}
