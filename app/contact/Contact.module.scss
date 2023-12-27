@@ -1,0 +1,41 @@
+@use '/app/_styles/mixins.scss';
+
+.wrapper {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  padding: 5rem 0.4rem;
+
+  display: flex;
+  flex-direction: column;
+  > *:last-child {
+    flex-grow: 1;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+
+  > * {
+    margin: 1rem 0;
+  }
+}
+
+.divide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > div {
+    @include mixins.neumorphic-box-outer-s;
+    flex-grow: 1;
+    width: 4px;
+    border-radius: 4px;
+  }
+
+  & > span {
+    padding: 10px 0 12px 0;
+    color: var(--color-label);
+  }
+}
