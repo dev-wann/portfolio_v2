@@ -10,7 +10,7 @@ export default function Links() {
   const theme = useSelector((state: RootState) => state.prefer.theme);
   const windowWidth = useWindowWidth();
 
-  const mainSize = windowWidth && windowWidth < 740 ? 80 : 100;
+  const mainSize = windowWidth && windowWidth <= 700 ? 80 : 100;
   const subSize = 40;
 
   // functions to generate images
