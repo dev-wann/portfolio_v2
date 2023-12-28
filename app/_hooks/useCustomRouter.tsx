@@ -8,6 +8,7 @@ class CustomRouter {
   }
   router: AppRouterInstance;
   async push(url: string) {
+    if (url === window.location.pathname) return;
     await clearPage();
     this.router.push(url);
   }
