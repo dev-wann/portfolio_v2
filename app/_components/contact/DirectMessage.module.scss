@@ -45,6 +45,9 @@
     &:focus {
       box-shadow: var(--shadow-outer);
       outline: none;
+      &::placeholder {
+        color: transparent;
+      }
     }
 
     &.valid {

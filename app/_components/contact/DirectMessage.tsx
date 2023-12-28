@@ -62,6 +62,8 @@ Would you like to start a project with me?`;
           type="text"
           id="email"
           placeholder="email@domain.com"
+          autoComplete="off"
+          spellCheck="false"
           onChange={updateEmail}
           className={`${styles[emailStatus]} observe`}
         />
@@ -71,6 +73,7 @@ Would you like to start a project with me?`;
         <textarea
           id="message"
           placeholder={textareaPlaceholder}
+          spellCheck="false"
           onChange={updateMessage}
           className={`${styles[messageStatus]} observe`}
         />
