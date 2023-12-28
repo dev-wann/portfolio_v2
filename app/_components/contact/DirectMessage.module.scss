@@ -50,11 +50,11 @@
       }
     }
 
-    &.valid {
-      border-color: #52d452;
+    &.VALID {
+      border-color: $color-success;
     }
-    &.invalid {
-      border-color: #ff6961;
+    &.INVALID {
+      border-color: $color-fail;
     }
   }
 
@@ -66,14 +66,16 @@
     @include mixins.neumorphic-box-outer-s;
     padding: 0.4rem;
     margin-top: 0.4rem;
+    border: 2px solid var(--color-bg);
     border-radius: 12px;
     position: relative;
+    overflow: hidden;
 
     color: var(--color-label);
     font-size: 1.2rem;
     font-weight: 500;
 
-    &.valid {
+    &.VALID {
       color: var(--color-text);
       box-shadow: var(--shadow-outer);
 
@@ -94,7 +96,6 @@
       width: 100%;
       height: 100%;
       background-color: var(--color-bg);
-      border-radius: 12px;
       filter: invert(100%);
 
       display: flex;
@@ -106,8 +107,28 @@
       opacity: 0;
       transition: $tr-op;
     }
-    &.invalid:hover span:last-child {
-      opacity: 0.75;
-    }
   }
+}
+
+.INVALID:hover,
+.FAIL:hover {
+  span:last-child {
+    opacity: 0.9;
+  }
+}
+
+.PENDING,
+.SUCCESS,
+.FAIL {
+  box-shadow: none !important;
+}
+
+button.PENDING {
+  border-color: $color-pending;
+}
+button.SUCCESS {
+  border-color: $color-success;
+}
+button.FAIL {
+  border-color: $color-fail;
 }
