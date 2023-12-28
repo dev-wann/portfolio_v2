@@ -45,8 +45,8 @@ export default function Links() {
 
   // event listeners
   let timeoutId: NodeJS.Timeout;
-  const copyMail = () => {
-    const elem = document.querySelector('#mail-copy');
+  const copyEmail = () => {
+    const elem = document.querySelector('#email-copy');
     if (!elem) return;
     navigator.clipboard.writeText('swcho8220@gmail.com');
 
@@ -60,7 +60,7 @@ export default function Links() {
       );
     });
   };
-  const toMail = () => {
+  const toEmail = () => {
     window.open('mailto:swcho8220@gmail.com');
   };
   const toLinkedIn = () => {
@@ -85,11 +85,11 @@ export default function Links() {
       <h2>One of these ways</h2>
       <div className={styles.grid}>
         <div className={styles.item}>
-          {genMainImg('mail')}
+          {genMainImg('email')}
           <p>Mail</p>
           <div className={styles.hover}>
-            {genSubImg('mail', 'copy', copyMail)}
-            {genSubImg('mail', 'link', toMail)}
+            {genSubImg('email', 'copy', copyEmail)}
+            {genSubImg('email', 'link', toEmail)}
           </div>
         </div>
         <div className={styles.item}>
