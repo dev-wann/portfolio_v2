@@ -134,12 +134,12 @@ textarea {
 
 .hide-box {
   &,
-  *,
-  *::before,
-  *::after {
+  * {
     box-shadow: none !important;
     background: transparent !important;
-    translate: 0 4px;
+    &:not(#nav-select) {
+      translate: 0 4px;
+    }
   }
 }
 
