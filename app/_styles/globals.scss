@@ -78,7 +78,8 @@ h1,
 h2,
 h3,
 p,
-span {
+span,
+label {
   transition: $tr-color;
 }
 img {
@@ -95,8 +96,15 @@ ul {
   padding-left: 1.4rem !important;
 }
 
+input,
+textarea {
+  font-family: 'Pretendard';
+  font-size: 1rem;
+}
+
 // disable scrollbar
-html {
+html,
+textarea {
   &::-webkit-scrollbar {
     display: none;
   }
