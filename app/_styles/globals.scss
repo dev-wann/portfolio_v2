@@ -125,6 +125,15 @@ textarea {
 // intersection observer related classes
 .observe {
   visibility: hidden;
+
+  &,
+  * {
+    transition: $tr-shd cubic-bezier(0.47, 2, 0.41, 0.75),
+      0.6s translate cubic-bezier(0.47, 2, 0.41, 0.75) !important;
+    &::placeholder {
+      color: transparent;
+    }
+  }
 }
 
 .hide-box {
@@ -134,6 +143,7 @@ textarea {
   *::after {
     box-shadow: none !important;
     background: transparent !important;
+    translate: 0 4px;
   }
 }
 
@@ -141,17 +151,10 @@ textarea {
   &,
   * {
     color: transparent !important;
-    border: none !important;
+    border-color: transparent !important;
   }
   img {
     opacity: 0 !important;
-  }
-
-  &:not(.fade-out) {
-    &,
-    * {
-      transition: $tr-shd cubic-bezier(0.47, 2, 0.41, 0.75) !important;
-    }
   }
 }
 

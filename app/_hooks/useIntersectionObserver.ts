@@ -18,7 +18,13 @@ export default function useIntersectionObserver() {
     targets = Array.from(document.body.getElementsByClassName('observe'));
     const observer = new IntersectionObserver(callback, { threshold: 0.4 });
     targets.forEach((target) => {
-      target.classList.add('hide-box', 'hide-text');
+      if (target.classList.contains('text')) {
+        target.classList.add('hide-text');
+      } else if (target.classList.contains('box')) {
+        target.classList.add('hide-box');
+      } else {
+        target.classList.add('hide-box', 'hide-text');
+      }
       observer.observe(target);
     });
 
@@ -34,7 +40,7 @@ export async function clearPage() {
   clearTimeout(timeoutId);
   // hide contents
   targets.forEach((target) => {
-    target.classList.add('fade-out', 'hide-box', 'hide-text');
+    target.classList.add('observe', 'fade-out', 'hide-box', 'hide-text');
   });
   // hide nav selection
   const navSelect = document.body.querySelector('#nav-select');
@@ -99,6 +105,7 @@ async function show({ elem, type }: AnimateData) {
   if (type === AnimateType.both || type === AnimateType.text) {
     elem?.classList?.remove('hide-text');
   }
+  elem?.classList?.remove('observe');
   if (type !== AnimateType.both) await delay(200);
   await delay(200);
 }

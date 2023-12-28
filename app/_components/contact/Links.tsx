@@ -82,9 +82,9 @@ export default function Links() {
   // render
   return (
     <div className={styles.wrapper}>
-      <h2>One of these ways</h2>
+      <h2 className="observe text">One of these ways</h2>
       <div className={styles.grid}>
-        <div className={styles.item}>
+        <div className={`${styles.item} observe`}>
           {genMainImg('email')}
           <p>Mail</p>
           <div className={styles.hover}>
@@ -92,28 +92,28 @@ export default function Links() {
             {genSubImg('email', 'link', toEmail)}
           </div>
         </div>
-        <div className={styles.item}>
+        <div className={`${styles.item} observe`}>
           {genMainImg('linked-in')}
           <p>LinkedIn</p>
           <div className={styles.hover}>
             {genSubImg('linked-in', 'link', toLinkedIn)}
           </div>
         </div>
-        <div className={styles.item}>
+        <div className={`${styles.item} observe`}>
           {genMainImg('github')}
           <p>GitHub</p>
           <div className={styles.hover}>
             {genSubImg('github', 'link', toGithub)}
           </div>
         </div>
-        <div className={styles.item}>
+        <div className={`${styles.item} observe`}>
           {genMainImg('blog')}
           <p>Blog</p>
           <div className={styles.hover}>
             {genSubImg('blog', 'link', toBlog)}
           </div>
         </div>{' '}
-        <div className={styles.item}>
+        <div className={`${styles.item} observe`}>
           {genMainImg('instagram')}
           <p>IG</p>
           <div className={styles.hover}>

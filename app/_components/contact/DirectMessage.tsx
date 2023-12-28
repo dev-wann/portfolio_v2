@@ -50,24 +50,28 @@ export default function DirectMessage() {
   // render
   return (
     <div className={styles.wrapper}>
-      <h2>Direct message</h2>
+      <h2 className="observe text">Direct message</h2>
       <form className={styles.form} onSubmit={sendMessage}>
-        <label htmlFor="email">Email address</label>
+        <label htmlFor="email" className="observe text">
+          Email address
+        </label>
         <input
           type="text"
           id="email"
           placeholder="email@domain.com"
           onChange={updateEmail}
-          className={styles[emailStatus]}
+          className={`${styles[emailStatus]} observe`}
         />
-        <label htmlFor="message">Message</label>
+        <label htmlFor="message" className="observe text">
+          Message
+        </label>
         <textarea
           id="message"
           placeholder="Hello there!  What's up?"
           onChange={updateMessage}
-          className={styles[messageStatus]}
+          className={`${styles[messageStatus]} observe`}
         />
-        <button type="submit" className={styles[btnStatus]}>
+        <button type="submit" className={`${styles[btnStatus]} observe`}>
           <span>Send Message</span>
           <span>{btnHoverMsg}</span>
         </button>
