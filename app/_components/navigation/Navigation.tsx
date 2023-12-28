@@ -1,4 +1,5 @@
 import useCustomRouter from '@/app/_hooks/useCustomRouter';
+import { showNavSelect } from '@/app/_hooks/useIntersectionObserver';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -14,6 +15,8 @@ export default function Navigation() {
   const windowWidth = useWindowWidth(); // returns null when page is not loaded
   const isLoaded = windowWidth !== null;
   const isSmall = windowWidth ? windowWidth < 600 : false;
+
+  useEffect(showNavSelect, [pathname]);
 
   return (
     <>

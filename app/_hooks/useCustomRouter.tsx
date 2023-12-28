@@ -1,6 +1,6 @@
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useRouter } from 'next/navigation';
-import { clearPage } from './useIntersectionObserver';
+import { clearPage, hideNavSelect } from './useIntersectionObserver';
 
 class CustomRouter {
   constructor(router: AppRouterInstance) {
@@ -9,6 +9,7 @@ class CustomRouter {
   router: AppRouterInstance;
   async push(url: string) {
     if (url === window.location.pathname) return;
+    hideNavSelect();
     await clearPage();
     this.router.push(url);
   }

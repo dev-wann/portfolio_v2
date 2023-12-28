@@ -42,10 +42,16 @@ export async function clearPage() {
   targets.forEach((target) => {
     target.classList.add('observe', 'fade-out', 'hide-box', 'hide-text');
   });
-  // hide nav selection
+  await delay(400);
+}
+
+export function hideNavSelect() {
   const navSelect = document.body.querySelector('#nav-select');
   if (navSelect) navSelect.classList.add('fade-out', 'hide-box');
-  await delay(500);
+}
+
+export function showNavSelect() {
+  const navSelect = document.body.querySelector('#nav-select');
   if (navSelect) navSelect.classList.remove('fade-out', 'hide-box');
 }
 
