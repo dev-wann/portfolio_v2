@@ -47,6 +47,9 @@ export default function DirectMessage() {
     if (messageStatus !== 'valid') btnHoverMsg += ' message';
   }
 
+  const textareaPlaceholder = `Hello there!
+Would you like to start a project with me?`;
+
   // render
   return (
     <div className={styles.wrapper}>
@@ -67,7 +70,7 @@ export default function DirectMessage() {
         </label>
         <textarea
           id="message"
-          placeholder="Hello there!  What's up?"
+          placeholder={textareaPlaceholder}
           onChange={updateMessage}
           className={`${styles[messageStatus]} observe`}
         />
