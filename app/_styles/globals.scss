@@ -60,6 +60,7 @@ body {
     Noto Color Emoji;
   color: var(--color-text);
   background: var(--color-bg);
+  padding: 0 1vw;
   transition: $tr-color, $tr-bg;
   user-select: none;
 }
