@@ -15,12 +15,12 @@
 }
 
 .sidebar {
-  background-color: var(--color-bg);
   position: absolute;
   top: 50vh;
-  right: -0.4rem;
+  right: 0;
   translate: 0 -50%;
-  padding: 0.4rem 0.8rem 0.4rem 0.4rem;
+  padding: 0.2rem;
+  border-radius: 0.6rem 0 0 0.6rem;
 
   display: flex;
   flex-direction: column;
