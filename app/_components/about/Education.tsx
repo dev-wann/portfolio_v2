@@ -22,8 +22,7 @@ export function Education() {
       >
         <RoundImage
           src="/images/about/yonsei.jpg"
-          width={150}
-          height={150}
+          size={150}
           alt="symbol of yonsei university"
           className="observe"
         />

@@ -1,5 +1,5 @@
-import { Interweave } from 'interweave';
+import { Markup } from 'interweave';
 
 export function renderText(str: string | undefined) {
-  return <Interweave content={str} />;
+  return <Markup content={str} noWrap={true} />;
 }
