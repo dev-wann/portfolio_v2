@@ -56,8 +56,7 @@ export default function Profile() {
         <RoundImage
           src="/images/about/me.jpg"
           alt="picutre of seungwan cho"
-          width={250}
-          height={250}
+          size={250}
           className="observe"
         />
       </div>

@@ -4,22 +4,18 @@ import styles from './RoundImage.module.scss';
 type Props = {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  size: number;
   className?: string;
 };
 
-export default function RoundImage({
-  src,
-  alt,
-  width,
-  height,
-  className,
-}: Props) {
+export default function RoundImage({ src, alt, size, className }: Props) {
   return (
-    <div className={`${styles.outer} ${className}`} style={{ width, height }}>
+    <div
+      className={`${styles.outer} ${className}`}
+      style={{ width: size, height: size }}
+    >
       <div className={styles.inner}>
-        <Image src={src} alt={alt} width={width} height={height} />
+        <Image src={src} alt={alt} width={size} height={size} />
       </div>
     </div>
   );
