@@ -25,6 +25,24 @@
         "ms": "M.S. in Electrical and Electornic Engineering",
         "bs": "B.S. in Electrical and Electornic Engineering"
       }
+    },
+    "project": {
+      "personal": "Personal Project",
+      "CS-desc0": "Now Working on a New Project",
+      "CS-desc1": "Please look forward to it!",
+      "SO-info": "<p>A <b>web</b> / <b>Electron</b> based document editing application suite. Supports <b>editing with other users in real-time</b>. Similar to Google docs.</p><p>Used by 'Seoul Metropolitan Office of Education' & 'Republic of Korea Army.'</p>",
+      "SO-desc0": "Participated all the way from the <b>architecture design</b> to the <b>deployment</b>.",
+      "SO-desc1": "Developed <b>client-side document data managing</b> architecture and <b>document co-editing</b> features.",
+      "SO-desc2": "Responsible for developing <b>'table'-related common components and features</b>, which were used for word processor and presentation apps.",
+      "SO-desc3": "Developed <b>20+ UI features</b> related to table manipulation.",
+      "SO-desc4": "Achieved a <b>70% rendering speed increase</b> with the optimization of JS logic and MobX.",
+      "SO-desc5": "Developed a <b>custom pagination layout algorithm</b> that will be used in the Blink, an Electron(or Chromium) rendering engine.",
+      "TO-info": "<p>A document editing software suite for Linux and Windows OS. Similar to Microsoft Office.</p><p>Used by 'Korean Intellectual Property Office' & 'Korea Education and Research Information Service.'</p>",
+      "TO-desc0": "Responsible for the development of <b>'table'-related UI features and layout algorithms</b>, used for word processor, presentation, and spreadsheet software.",
+      "TO-desc1": "Developed <b>10+ UI features</b> related to table manipulation.",
+      "TO-desc2": "Developed <b>complex layout algorithms</b> including nested tables and text wrapping.",
+      "TO-desc3": "Achieved <b>30% rendering speed increase</b> with the layout state management",
+      "TO-desc4": "Developed parsers and writers for various extensions including doc, docx, doch, pptx, hwp."
     }
   }
 }
