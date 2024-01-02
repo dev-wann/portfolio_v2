@@ -13,6 +13,7 @@ export default function ReduxProvider({
     <Provider store={store}>
       <Navigation />
       {children}
+      {/* <Footer /> */}
     </Provider>
   );
 }
