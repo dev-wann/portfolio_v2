@@ -1,16 +1,21 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../_redux';
-import preferSlice, { THEME_ENUM } from '../../_redux/module/preferSlice';
+import { AppDispatch, RootState } from '../../_redux';
+import preferSlice, {
+  THEME_ENUM,
+  changeThemeDelayed,
+} from '../../_redux/module/preferSlice';
 import styles from './ThemeButton.module.scss';
 
 export default function ThemeButton() {
-  const themeRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const theme = useSelector((state: RootState) => state.prefer.theme);
+  const themeRef = useRef<HTMLInputElement>(null);
+  const path = usePathname();
 
   // initial theme setting
   useEffect(() => {
@@ -24,15 +29,16 @@ export default function ThemeButton() {
   }, []);
 
   //handle theme change
-  const onChangeHandler = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newTheme = e.currentTarget.checked
-        ? THEME_ENUM.DARK
-        : THEME_ENUM.LIGHT;
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTheme = e.currentTarget.checked
+      ? THEME_ENUM.DARK
+      : THEME_ENUM.LIGHT;
+    if (path === '/') {
+      dispatch(changeThemeDelayed({ newTheme, time: 1600 }));
+    } else {
       dispatch(preferSlice.actions.changeTheme(newTheme));
-    },
-    []
-  );
+    }
+  };
 
   // set input checked state
   if (themeRef.current) {

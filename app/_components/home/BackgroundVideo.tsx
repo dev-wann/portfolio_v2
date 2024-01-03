@@ -14,35 +14,43 @@ import styles from './BackgroundVideo.module.scss';
 type Props = {};
 
 export default function BackgroundVideo({}: Props) {
-  const [stage, setStage] = useState<keyof VideoImageType | 'ready' | 'finish'>(
-    'finish'
-  );
   const theme = useSelector((state: RootState) => state.prefer.theme);
+  const isClosing = useSelector(
+    (state: RootState) => state.prefer.isHomeClosing
+  );
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // id to interrupt video playing promise
+  // stage order: ready -> opening -> main -> pending -> closing
+  const [stage, setStage] = useState<
+    keyof VideoImageType | 'ready' | 'pending'
+  >('ready');
+
+  // id to interrupt promise while playing video
   const stopId = useRef<string | null>(null);
   const stopRequest = useRef<string[]>([]);
+  const stopPlaying = () => {
+    if (stopId.current) stopRequest.current.push(stopId.current);
+    stopVideo();
+  };
 
   // resetart when theme changed
   useEffect(() => {
-    stopVideo();
-    if (stopId.current) stopRequest.current.push(stopId.current);
-    if (theme) setStage('ready');
+    if (theme) setStage('opening');
+    return stopPlaying;
   }, [theme]);
 
-  // play closing before path or theme changes
+  // force closing stage
   useEffect(() => {
-    //TODO
-  });
+    if (!isClosing) return;
+    stopPlaying();
+    setStage('closing');
+  }, [isClosing]);
 
   // play video in order
   useEffect(() => {
-    if (theme === null || stage === 'finish') return;
-    if (stage === 'ready') {
-      setStage('opening');
-      return;
-    }
+    if (theme === null || stage === 'ready' || stage === 'pending') return;
+
+    // play video
     getVideoImages(theme).then(async (res) => {
       if (!canvasRef.current) return;
       const newId = window.crypto.randomUUID();
@@ -57,17 +65,10 @@ export default function BackgroundVideo({}: Props) {
       }
 
       // set next stage
-      switch (stage) {
-        case 'opening':
-          setStage('main');
-          break;
-        case 'main':
-          setStage('closing');
-          break;
-        case 'closing':
-          setStage('finish');
-        default:
-          break;
+      if (stage === 'opening') {
+        setStage('main');
+      } else if (stage === 'main') {
+        setStage('pending');
       }
     });
   }, [stage]);

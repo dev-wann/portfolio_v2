@@ -1,4 +1,4 @@
-import { THEME_ENUM } from '../_redux/module/preferSlice';
+import { THEME_ENUM, ThemeValueType } from '../_redux/module/preferSlice';
 
 export type VideoImageType = {
   opening: HTMLImageElement[];
@@ -10,7 +10,7 @@ export type VideoImageType = {
 const cache: Record<string, VideoImageType> = {};
 
 // get video image data
-export async function getVideoImages(theme: keyof typeof THEME_ENUM) {
+export async function getVideoImages(theme: ThemeValueType) {
   if (!cache[theme]) {
     await fetchVideoImages(theme).then((res) => {
       cache[theme] = res;
@@ -20,6 +20,7 @@ export async function getVideoImages(theme: keyof typeof THEME_ENUM) {
 }
 
 let cancelId: number | null;
+let curVideo: HTMLVideoElement | null;
 // play video
 export function playVideo(
   canvas: HTMLCanvasElement,
@@ -27,25 +28,29 @@ export function playVideo(
 ) {
   const context = canvas.getContext('2d');
 
-  // play video
+  // play video element
   if (data instanceof HTMLVideoElement) {
+    curVideo = data;
     return new Promise((resolve) => {
       let isPlaying = true;
       data.addEventListener('ended', () => {
         isPlaying = false;
+        curVideo = null;
         resolve('');
       });
-      data.play();
       const play = () => {
-        context?.clearRect(0, 0, canvas.width, canvas.height);
+        if (!isPlaying) return;
         context?.drawImage(data, 0, 0);
-        if (isPlaying) cancelId = requestAnimationFrame(play);
+        cancelId = requestAnimationFrame(play);
       };
-      play();
+      data.addEventListener('play', () => {
+        play();
+      });
+      data.play();
     });
   }
 
-  // play images
+  // play image elements
   return new Promise((resolve) => {
     let idx = 0;
     const play = () => {
@@ -65,10 +70,11 @@ export function playVideo(
 // stop video
 export function stopVideo() {
   if (cancelId) cancelAnimationFrame(cancelId);
+  if (curVideo) curVideo.load();
   cancelId = null;
 }
 
-async function fetchVideoImages(theme: keyof typeof THEME_ENUM) {
+async function fetchVideoImages(theme: ThemeValueType) {
   const data: VideoImageType = {
     opening: [],
     main: document.createElement('video'),
@@ -106,7 +112,8 @@ async function fetchVideoImages(theme: keyof typeof THEME_ENUM) {
   load('main');
   if (theme === THEME_ENUM.DARK) {
     for (let i = 1; i <= 275; i++) load('opening', i);
-    for (let i = 1100; i <= 1250; i++) load('closing', i);
+    // speed up the video to sync with light mode
+    for (let i = 1100; i <= 1250; i += 1.5) load('closing', Math.floor(i));
   } else {
     for (let i = 1; i <= 280; i++) load('opening', i);
     for (let i = 1111; i <= 1215; i++) load('closing', i);
