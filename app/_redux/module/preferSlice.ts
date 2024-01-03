@@ -14,7 +14,7 @@ type valueOf<T> = T[keyof T];
 type LangValueType = valueOf<typeof LANG_ENUM>;
 export type ThemeValueType = valueOf<typeof THEME_ENUM>;
 
-// thunk
+// thunk for delayed theme change
 type DelayedThemeType = { newTheme: ThemeValueType; time: number };
 export const changeThemeDelayed = createAsyncThunk<
   void,

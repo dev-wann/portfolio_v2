@@ -3,7 +3,7 @@
 import useCustomRouter from '@/app/_hooks/useCustomRouter';
 import useLangString from '@/app/_hooks/useLangString';
 import useWindowWidth from '@/app/_hooks/useWindowWidth';
-import { renderText } from '@/app/_utils/textUtil';
+import { renderText } from '@/app/_utils';
 import { useState } from 'react';
 import NeuTitle from '../common/NeuTitle';
 import RoundImage from '../common/RoundImage';

@@ -1,7 +1,7 @@
 'use client';
 
 import useWindowWidth from '@/app/_hooks/useWindowWidth';
-import { renderText } from '@/app/_utils/textUtil';
+import { renderText } from '@/app/_utils';
 import { ItemType } from '@/app/project/page';
 import Image from 'next/image';
 import { ForwardedRef, forwardRef } from 'react';

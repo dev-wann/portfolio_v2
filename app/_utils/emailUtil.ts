@@ -1,3 +1,5 @@
+import { delay } from '.';
+
 // enums
 export enum SendStatus {
   IDLE,
@@ -90,8 +92,4 @@ export function makeSendBtnHoverMsg(
     if (messageStatus !== ValidStatus.VALID) msg += ' message';
   }
   return msg;
-}
-
-function delay(ms: number) {
-  return new Promise((res) => setTimeout(res, ms));
 }
