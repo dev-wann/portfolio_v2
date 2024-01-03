@@ -1,8 +1,11 @@
 import useCustomRouter from '@/app/_hooks/useCustomRouter';
 import { showNavSelect } from '@/app/_hooks/useIntersectionObserver';
+import preferSlice from '@/app/_redux/module/preferSlice';
+import { delay } from '@/app/_utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import useWindowWidth from '../../_hooks/useWindowWidth';
 import LangButton from './LangButton';
 import styles from './Navigation.module.scss';
@@ -11,15 +14,25 @@ import ThemeButton from './ThemeButton';
 type RouteToType = (e: React.MouseEvent, path: string) => void;
 
 export default function Navigation() {
+  const dispatch = useDispatch();
+  const pathname = usePathname();
+
   // custom router
   const router = useCustomRouter();
   const routeTo = (e: React.MouseEvent, path: string) => {
-    router.push(path);
     e.preventDefault();
+    (async () => {
+      if (pathname === '/') {
+        // at home page, wait until closing sequence ends
+        dispatch(preferSlice.actions.setHomeClosing(true));
+        await delay(1600);
+        dispatch(preferSlice.actions.setHomeClosing(false));
+      }
+      router.push(path);
+    })();
   };
 
   // find selected page
-  const pathname = usePathname();
   const selectIdx = routes.findIndex((elem) => elem[1] === pathname);
 
   const windowWidth = useWindowWidth(); // returns null when page is not loaded

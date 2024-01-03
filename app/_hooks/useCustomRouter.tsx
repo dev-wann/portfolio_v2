@@ -7,12 +7,14 @@ class CustomRouter {
     this.router = router;
   }
   router: AppRouterInstance;
-  async push(url: string) {
+  async push(newPath: string) {
+    const curPath = window.location.pathname;
     // ignore transition to same page
-    if (url === window.location.pathname) return;
+    if (newPath === curPath) return;
+
     hideNavSelect();
     await clearPage();
-    this.router.push(url);
+    this.router.push(newPath);
   }
 }
 
