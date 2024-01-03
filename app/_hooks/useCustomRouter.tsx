@@ -8,6 +8,7 @@ class CustomRouter {
   }
   router: AppRouterInstance;
   async push(url: string) {
+    // ignore transition to same page
     if (url === window.location.pathname) return;
     hideNavSelect();
     await clearPage();

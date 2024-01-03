@@ -8,7 +8,17 @@ import LangButton from './LangButton';
 import styles from './Navigation.module.scss';
 import ThemeButton from './ThemeButton';
 
+type RouteToType = (e: React.MouseEvent, path: string) => void;
+
 export default function Navigation() {
+  // custom router
+  const router = useCustomRouter();
+  const routeTo = (e: React.MouseEvent, path: string) => {
+    router.push(path);
+    e.preventDefault();
+  };
+
+  // find selected page
   const pathname = usePathname();
   const selectIdx = routes.findIndex((elem) => elem[1] === pathname);
 
@@ -23,9 +33,13 @@ export default function Navigation() {
       <nav className={styles['nav-wrapper']}>
         <div className={`${styles.navigation} container-800`}>
           {isSmall ? (
-            <RoutesSmall selectIdx={selectIdx} windowWidth={windowWidth} />
+            <RoutesSmall
+              selectIdx={selectIdx}
+              windowWidth={windowWidth}
+              routeTo={routeTo}
+            />
           ) : (
-            <RoutesLarge selectIdx={selectIdx} />
+            <RoutesLarge selectIdx={selectIdx} routeTo={routeTo} />
           )}
           <ThemeButton />
           <LangButton />
@@ -43,15 +57,14 @@ const routes = [
   ['contact', '/contact'],
 ];
 
-function RoutesLarge({ selectIdx }: { selectIdx: number }) {
-  // custom router
-  const router = useCustomRouter();
-  const routeTo = (e: React.MouseEvent, path: string) => {
-    router.push(path);
-    e.preventDefault();
-  };
-
-  // select control
+function RoutesLarge({
+  selectIdx,
+  routeTo,
+}: {
+  selectIdx: number;
+  routeTo: RouteToType;
+}) {
+  // compute style for selected background (inset box)
   const selectedBg: React.CSSProperties = {
     marginLeft: `${Math.max(100 * selectIdx, 0) / routes.length}%`,
     width: selectIdx < 0 ? 0 : `${100 / routes.length}%`,
@@ -81,13 +94,16 @@ function RoutesLarge({ selectIdx }: { selectIdx: number }) {
 function RoutesSmall({
   selectIdx,
   windowWidth,
+  routeTo,
 }: {
   selectIdx: number;
   windowWidth: number | null;
+  routeTo: RouteToType;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isOpen, setOpen] = useState(false);
 
+  // compute style for selected background (inset box)
   const selectedBg: React.CSSProperties = {
     marginTop: `${50 + 30 * selectIdx}px`,
   };
@@ -145,6 +161,7 @@ function RoutesSmall({
             className={idx === selectIdx ? styles.selected : ''}
             href={path}
             key={name}
+            onClick={(e) => routeTo(e, path)}
           >
             {name.toUpperCase()}
           </Link>
