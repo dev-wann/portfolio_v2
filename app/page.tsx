@@ -20,17 +20,18 @@ export default function Home() {
 
   // redux
   const theme = useSelector((state: RootState) => state.prefer.theme);
+  const lang = useSelector((state: RootState) => state.prefer.lang);
   const isClosing = useSelector(
     (state: RootState) => state.prefer.isHomeClosing
   );
 
-  // resetart when theme changed
+  // resetart when theme/lang changed
   useEffect(() => {
-    if (theme) setStage('ready');
+    if (theme && lang) setStage('ready');
     return () => {
       setStop();
     };
-  }, [theme]);
+  }, [theme, lang]);
 
   // force closing stage
   useEffect(() => {

@@ -1,17 +1,23 @@
 {
   "ko-KR": {
     "home": {
-      "greet-0": "안녕하세요",
-      "greet-1": "Front-end 개발자",
-      "greet-2": "조승완입니다."
+      "hello": "안녕하세요!",
+      "iAm": "",
+      "webDev": "프론트엔드 개발자",
+      "softEng": "소프트웨어 엔지니어",
+      "swcho": "조승완",
+      "ipnida": "입니다."
     },
     "about": { "desc": "안녕하세요 프론트엔드 개발자 조승완입니다." }
   },
   "en-US": {
     "home": {
-      "greet-0": "Hello",
-      "greet-1": "This is Seungwan Cho",
-      "greet-2": "a front-end developer."
+      "hello": "Hello!&ensp;",
+      "iAm": "I'm",
+      "webDev": "A Web Developer",
+      "softEng": "A Software Engineer",
+      "swcho": "Seungwan Cho",
+      "ipnida": ""
     },
     "about": {
       "profile": {
