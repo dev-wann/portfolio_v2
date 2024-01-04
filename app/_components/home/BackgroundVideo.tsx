@@ -1,54 +1,38 @@
 'use client';
 
 import { RootState } from '@/app/_redux';
-import {
-  VideoImageType,
-  getVideoImages,
-  playVideo,
-  stopVideo,
-} from '@/app/_utils/videoUtil';
-import { useEffect, useRef, useState } from 'react';
+import { getVideoImages, playVideo, stopVideo } from '@/app/_utils/videoUtil';
+import { StageType } from '@/app/page';
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './BackgroundVideo.module.scss';
 
-type Props = {};
+type Props = {
+  stage: StageType;
+  setStage: (state: StageType) => void;
+  stopFlag: number;
+};
 
-export default function BackgroundVideo({}: Props) {
+export default function BackgroundVideo({ stage, setStage, stopFlag }: Props) {
   const theme = useSelector((state: RootState) => state.prefer.theme);
-  const isClosing = useSelector(
-    (state: RootState) => state.prefer.isHomeClosing
-  );
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  // stage order: ready -> opening -> main -> pending -> closing
-  const [stage, setStage] = useState<
-    keyof VideoImageType | 'ready' | 'pending'
-  >('ready');
 
   // id to interrupt promise while playing video
   const stopId = useRef<string | null>(null);
   const stopRequest = useRef<string[]>([]);
-  const stopPlaying = () => {
+
+  useEffect(() => {
     if (stopId.current) stopRequest.current.push(stopId.current);
     stopVideo();
-  };
-
-  // resetart when theme changed
-  useEffect(() => {
-    if (theme) setStage('opening');
-    return stopPlaying;
-  }, [theme]);
-
-  // force closing stage
-  useEffect(() => {
-    if (!isClosing) return;
-    stopPlaying();
-    setStage('closing');
-  }, [isClosing]);
+  }, [stopFlag]);
 
   // play video in order
   useEffect(() => {
-    if (theme === null || stage === 'ready' || stage === 'pending') return;
+    if (theme === null || stage === 'idle' || stage === 'pending') return;
+    if (stage === 'ready') {
+      setStage('opening');
+      return;
+    }
 
     // play video
     getVideoImages(theme).then(async (res) => {
