@@ -1,15 +1,21 @@
-import strings from '@/public/strings.json';
+import data from '@/public/strings.json';
 import { useSelector } from 'react-redux';
 import { RootState } from '../_redux';
+import { LangValueType } from '../_redux/module/preferSlice';
 
-export default function useLangString(
-  ...pathArgs: string[]
-): { [key: string]: string } | null {
-  const lang = useSelector((state: RootState) => state.prefer.lang);
+type DataType = string | { [K: string]: DataType } | undefined;
+export type StrsType = { [K: string]: string };
+
+export default function useLangString(...pathArgs: string[]): StrsType | null {
+  const lang: LangValueType | null = useSelector(
+    (state: RootState) => state.prefer.lang
+  );
   if (!lang) return null;
 
-  let target: any = strings[lang];
-  for (let i = 0; i < pathArgs.length && target; i++) {
+  let target: DataType = data[lang];
+  for (let i = 0; i < pathArgs.length; i++) {
+    if (!target) break;
+    if (typeof target === 'string') break;
     target = target[pathArgs[i]];
   }
 
@@ -20,7 +26,8 @@ export default function useLangString(
       language: ${lang}, pathArgs: ${pathArgs}`
     );
   }
-  return target;
+
+  return target as StrsType;
 }
 
 function isStrObj(obj: any) {

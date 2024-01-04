@@ -1,8 +1,19 @@
 'use client';
 
+import useLangString, { StrsType } from '@/app/_hooks/useLangString';
 import useWindowWidth from '@/app/_hooks/useWindowWidth';
 import { RootState } from '@/app/_redux';
-import { ThemeValueType } from '@/app/_redux/module/preferSlice';
+import {
+  LANG_ENUM,
+  LangValueType,
+  ThemeValueType,
+} from '@/app/_redux/module/preferSlice';
+import { renderText } from '@/app/_utils';
+import {
+  generateSequence,
+  generateSpeed,
+  hideCursor,
+} from '@/app/_utils/sequenceGenerator';
 import { StageType } from '@/app/page';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
@@ -16,12 +27,15 @@ type Props = {
 export default function Typing({ stage }: Props) {
   const prevRef = useRef<React.JSX.Element | null>(null);
   const theme = useSelector((state: RootState) => state.prefer.theme);
+  const lang = useSelector((state: RootState) => state.prefer.lang);
+  const strs = useLangString('home');
 
   const windowWidth = useWindowWidth();
   let size = '';
   if (windowWidth && windowWidth < 510) size = styles.small;
   if (windowWidth && windowWidth < 355) size = styles.xsmall;
 
+  if (!theme || !lang || !strs) return <></>;
   let content: React.JSX.Element;
   switch (stage) {
     case 'idle':
@@ -29,10 +43,10 @@ export default function Typing({ stage }: Props) {
       content = <></>;
       break;
     case 'opening':
-      content = Opening(theme);
+      content = Opening(theme, lang);
       break;
     case 'main':
-      content = Main(theme);
+      content = Main(theme, lang, strs);
       break;
     case 'closing':
       if (prevRef.current) {
@@ -41,7 +55,7 @@ export default function Typing({ stage }: Props) {
       }
     default: {
       // use pending stage as fallback
-      content = <Pending />;
+      content = Pending(lang, strs);
     }
   }
 
@@ -56,70 +70,35 @@ export default function Typing({ stage }: Props) {
 }
 
 // components for each sequence
-function Opening(theme: ThemeValueType | null) {
-  let sequence;
-  if (theme === 'dark') {
-    sequence = [hideCursor, 4200, showCursor, 'Hello!  '];
-  } else {
-    sequence = [hideCursor, 3800, showCursor, 'Hello!  '];
-  }
+function Opening(theme: ThemeValueType, lang: LangValueType) {
   return (
     <TypeAnimation
-      sequence={sequence}
+      sequence={generateSequence('opening', theme, lang)}
       wrapper="h1"
-      speed={{ type: 'keyStrokeDelayInMs', value: 150 }}
+      speed={generateSpeed('opening', theme, lang)}
       className={styles['hide-cursor']}
     />
   );
 }
 
-function Main(theme: ThemeValueType | null) {
-  let sequence, speed;
-  if (theme === 'dark') {
-    sequence = [
-      hideCursor,
-      1700,
-      showCursor,
-      'A Web Developer',
-      1500,
-      '',
-      'A Software Engineer',
-      1050,
-      '',
-      200,
-      'Seungwan Cho',
-    ];
-    speed = 145;
-  } else {
-    sequence = [
-      hideCursor,
-      1350,
-      showCursor,
-      'A Web Developer',
-      2000,
-      '',
-      200,
-      'A Software Engineer',
-      1600,
-      '',
-      200,
-      'Seungwan Cho',
-    ];
-    speed = 148;
-  }
+function Main(theme: ThemeValueType, lang: LangValueType, strs: StrsType) {
   return (
     <>
       <div style={{ display: 'flex' }}>
-        <h1>Hello!&ensp;</h1>
-        <TypeAnimation
-          sequence={[1000, "I'm", hideCursor]}
-          speed={10}
-          wrapper="h1"
-        />
+        <h1>{renderText(strs['hello'])}</h1>
+        {lang === LANG_ENUM.ENG ? (
+          <TypeAnimation
+            sequence={[1000, "I'm", hideCursor]}
+            speed={10}
+            wrapper="h1"
+          />
+        ) : (
+          <></>
+        )}
       </div>
       <TypeAnimation
-        sequence={sequence}
-        speed={{ type: 'keyStrokeDelayInMs', value: speed }}
+        sequence={generateSequence('main', theme, lang)}
+        speed={generateSpeed('main', theme, lang)}
         deletionSpeed={60}
         wrapper="h2"
       />
@@ -127,28 +106,21 @@ function Main(theme: ThemeValueType | null) {
   );
 }
 
-function Pending() {
+function Pending(lang: LangValueType, strs: StrsType) {
   const randNum = Math.floor(Math.random() * 3 + 1);
   const highlight = 'highlight-' + String(randNum);
   return (
     <>
       <h1>
-        <span className={styles[highlight]}>Hello!&ensp;</span>
-        <span>I'm</span>
+        <span className={styles[highlight]}>{renderText(strs['hello'])}</span>
+        {strs['iAm']}
       </h1>
-      <h3 className={styles.expand}>A Web Developer</h3>
-      <h3 className={styles.expand}>A Software Engineer</h3>
-      <h2 className={styles[highlight]}>Seungwan Cho</h2>
+      <h3 className={styles.expand}>{strs['webDev']}</h3>
+      <h3 className={styles.expand}>{strs['softEng']}</h3>
+      <h2>
+        <span className={styles[highlight]}>{strs['swcho']}</span>
+        {strs['ipnida']}
+      </h2>
     </>
   );
-}
-
-// show/hide typing cursor functions
-function showCursor(elem: HTMLElement | null) {
-  if (!elem) return;
-  elem.classList.remove(styles['hide-cursor']);
-}
-function hideCursor(elem: HTMLElement | null) {
-  if (!elem) return;
-  elem.classList.add(styles['hide-cursor']);
 }

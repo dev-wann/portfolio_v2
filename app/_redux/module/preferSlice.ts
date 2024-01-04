@@ -2,19 +2,19 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
 // enums
-export const LANG_ENUM = {
+export const LANG_ENUM = Object.freeze({
   ENG: 'en-US',
   KOR: 'ko-KR',
-};
-export const THEME_ENUM = {
+} as const);
+export const THEME_ENUM = Object.freeze({
   LIGHT: 'light',
   DARK: 'dark',
-};
-type valueOf<T> = T[keyof T];
-type LangValueType = valueOf<typeof LANG_ENUM>;
-export type ThemeValueType = valueOf<typeof THEME_ENUM>;
+} as const);
+export type LangValueType = (typeof LANG_ENUM)[keyof typeof LANG_ENUM];
+export type ThemeValueType = (typeof THEME_ENUM)[keyof typeof THEME_ENUM];
 
-// thunk for delayed theme change
+// thunk
+// delayed theme change
 type DelayedThemeType = { newTheme: ThemeValueType; time: number };
 export const changeThemeDelayed = createAsyncThunk<
   void,
@@ -27,7 +27,21 @@ export const changeThemeDelayed = createAsyncThunk<
   thunkAPI.dispatch(preferSlice.actions.setHomeClosing(true));
   await delay(time);
   thunkAPI.dispatch(preferSlice.actions.changeTheme(newTheme));
-  return;
+});
+
+// delayed lang change
+type DelayedLangType = { newLang: LangValueType; time: number };
+export const changeLangDelayed = createAsyncThunk<
+  void,
+  DelayedLangType,
+  { state: RootState }
+>('prefer/changeLangDelayed', async ({ newLang, time }, thunkAPI) => {
+  if (thunkAPI.getState().prefer.isHomeClosing) {
+    throw new Error('Processing a prerequest');
+  }
+  thunkAPI.dispatch(preferSlice.actions.setHomeClosing(true));
+  await delay(time);
+  thunkAPI.dispatch(preferSlice.actions.changeLang(newLang));
 });
 
 // Slice
@@ -71,6 +85,9 @@ const preferSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(changeThemeDelayed.fulfilled, (state) => {
+      state.isHomeClosing = false;
+    });
+    builder.addCase(changeLangDelayed.fulfilled, (state) => {
       state.isHomeClosing = false;
     });
   },
