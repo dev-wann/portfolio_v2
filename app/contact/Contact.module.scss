@@ -11,6 +11,7 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr 40px 1fr;
+  margin-top: 1rem;
 
   > * {
     margin: 1rem 0;
