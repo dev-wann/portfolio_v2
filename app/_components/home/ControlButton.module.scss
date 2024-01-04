@@ -17,7 +17,7 @@
   &.medium {
     flex-direction: row;
     top: 48vh;
-    scale: 1.35;
+    scale: 1.25;
     transform-origin: 0 0;
   }
   &.small {
@@ -27,12 +27,17 @@
     left: 0;
     translate: 0;
     width: auto;
+    scale: 0.88;
+    transform-origin: 0 0;
   }
   &.xsmall {
     flex-direction: row;
     top: calc(5vh + 16rem);
     margin-left: 10px;
-    scale: 0.78;
+    left: -5px;
+    translate: 0;
+    width: auto;
+    scale: 0.67;
     transform-origin: 0 0;
   }
 }
@@ -98,5 +103,24 @@
   }
   &:active {
     box-shadow: var(--shadow-outer-hover);
+  }
+}
+
+.opening {
+  animation: 2.7s show-with-delay;
+}
+@keyframes show-with-delay {
+  0% {
+    opacity: 0;
+    box-shadow: none;
+    translate: 0 4px;
+  }
+  75% {
+    opacity: 0;
+    box-shadow: none;
+    translate: 0 4px;
+  }
+  100% {
+    opacity: 1;
   }
 }

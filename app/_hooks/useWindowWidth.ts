@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export default function useWindowWidth() {
-  // null means not loaded yet (== useEffect is not excuted)
-  const [windowWidth, setWindowWidth] = useState<number>(
-    window.visualViewport?.width || window.innerHeight
-  );
+  const [windowWidth, setWindowWidth] = useState<number>(360);
 
   function changeWindowSize() {
     let width = window.visualViewport?.width || window.innerHeight;

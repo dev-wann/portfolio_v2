@@ -59,14 +59,10 @@ export default function ControlButton({ stage, setStage, setStop }: Props) {
 
   // button shape control
   let className = `${styles.btn} ${theme ? styles[theme] : ''}`;
-  switch (stage) {
-    case 'idle':
-    case 'ready':
-    case 'closing':
-      className += ' hide-box hide-text';
-      break;
-    default:
-      break;
+  if (stage === 'idle' || stage === 'ready' || stage === 'closing') {
+    className += ' hide-box hide-text';
+  } else if (stage === 'opening') {
+    className += ' ' + styles.opening;
   }
 
   // event handlers
