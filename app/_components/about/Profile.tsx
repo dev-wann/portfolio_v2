@@ -1,6 +1,6 @@
 'use client';
 
-import useCustomRouter from '@/app/_hooks/useCustomRouter';
+import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
 import useLangString from '@/app/_hooks/useLangString';
 import useWindowWidth from '@/app/_hooks/useWindowWidth';
 import { renderText } from '@/app/_utils';
@@ -14,14 +14,14 @@ import styles from './Profile.module.scss';
 export default function Profile() {
   const strs = useLangString('about', 'profile');
   const windowWidth = useWindowWidth();
-  const router = useCustomRouter();
+  const routeTo = useCustomRouteTo();
 
   const [showDetails, setShowDetails] = useState(false);
   const isSmall = windowWidth && windowWidth < 600;
 
   // event listeners
   const toResume = () => {
-    router.push('/resume');
+    routeTo('/resume');
   };
   const showBtnContent = (
     <div>

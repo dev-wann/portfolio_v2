@@ -1,0 +1,12 @@
+.wrapper {
+  position: relative;
+  top: calc(3rem + 40px);
+  max-width: 1100px;
+  height: 40vh;
+  margin: auto;
+  padding: 0 4%;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
