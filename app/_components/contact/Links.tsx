@@ -1,5 +1,6 @@
 'use client';
 
+import useLangString from '@/app/_hooks/useLangString';
 import useWindowWidth from '@/app/_hooks/useWindowWidth';
 import { RootState } from '@/app/_redux';
 import Image from 'next/image';
@@ -9,8 +10,12 @@ import styles from './Links.module.scss';
 export default function Links() {
   const theme = useSelector((state: RootState) => state.prefer.theme);
   const windowWidth = useWindowWidth();
+  const strs = useLangString('contact', 'links');
 
-  const mainSize = windowWidth && windowWidth <= 700 ? 80 : 100;
+  let mainSize = 90;
+  if (windowWidth && windowWidth <= 700 && windowWidth >= 600) mainSize = 70;
+  if (windowWidth && windowWidth < 600) mainSize = 90;
+  if (windowWidth && windowWidth < 340) mainSize = 60;
   const subSize = 40;
 
   // functions to generate images
@@ -82,11 +87,11 @@ export default function Links() {
   // render
   return (
     <div className={styles.wrapper}>
-      <h2 className="observe text">One of these ways</h2>
+      {/* <h2 className="observe text">One of these ways</h2> */}
       <div className={styles.grid}>
         <div className={`${styles.item} observe`}>
           {genMainImg('email')}
-          <p>Mail</p>
+          <p>{strs ? strs['email'] : 'Email'}</p>
           <div className={styles.hover}>
             {genSubImg('email', 'copy', copyEmail)}
             {genSubImg('email', 'link', toEmail)}
@@ -94,28 +99,28 @@ export default function Links() {
         </div>
         <div className={`${styles.item} observe`}>
           {genMainImg('linked-in')}
-          <p>LinkedIn</p>
+          <p>{strs ? strs['linkedin'] : 'LinkedIn'}</p>
           <div className={styles.hover}>
             {genSubImg('linked-in', 'link', toLinkedIn)}
           </div>
         </div>
         <div className={`${styles.item} observe`}>
           {genMainImg('github')}
-          <p>GitHub</p>
+          <p>{strs ? strs['github'] : 'GitHub'}</p>
           <div className={styles.hover}>
             {genSubImg('github', 'link', toGithub)}
           </div>
         </div>
         <div className={`${styles.item} observe`}>
           {genMainImg('blog')}
-          <p>Blog</p>
+          <p>{strs ? strs['blog'] : 'Blog'}</p>
           <div className={styles.hover}>
             {genSubImg('blog', 'link', toBlog)}
           </div>
         </div>{' '}
         <div className={`${styles.item} observe`}>
           {genMainImg('instagram')}
-          <p>IG</p>
+          <p>{strs ? strs['insta'] : 'IG'}</p>
           <div className={styles.hover}>
             {genSubImg('instagram', 'link', toInstagram)}
           </div>

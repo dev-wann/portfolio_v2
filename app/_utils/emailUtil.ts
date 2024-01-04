@@ -1,4 +1,5 @@
 import { delay } from '.';
+import { LANG_ENUM, LangValueType } from '../_redux/module/preferSlice';
 
 // enums
 export enum SendStatus {
@@ -15,7 +16,11 @@ export enum ValidStatus {
 }
 
 // send mail by nodemailer
-export async function sendEmail(client: string, text: string) {
+export async function sendEmail(
+  client: string,
+  text: string,
+  lang: LangValueType | null
+) {
   if (!process.env.NEXT_PUBLIC_API_URL) {
     throw new Error('Error: API URL not found');
   }
@@ -26,9 +31,9 @@ export async function sendEmail(client: string, text: string) {
     cache: 'no-cache',
     credentials: 'same-origin',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ client, text }),
+    body: JSON.stringify({ client, text, lang }),
   });
-  await delay(1000);
+  await delay(500);
   if (!res.ok) throw new Error(res.statusText);
   return res;
 }
@@ -49,23 +54,25 @@ export function validateEmailMessage(msg: string, emailStatus: ValidStatus) {
 }
 
 // send button message generators
-export function makeSendBtnMsg(status: SendStatus) {
+export function makeSendBtnMsg(status: SendStatus, lang: LangValueType | null) {
   let msg = '';
+  const isKor = lang === LANG_ENUM.KOR;
+
   switch (status) {
     case SendStatus.PENDING: {
-      msg = 'Delivering your message...';
+      msg = isKor ? '메세지 전송 중...' : 'Delivering your message...';
       break;
     }
     case SendStatus.SUCCESS: {
-      msg = 'Successfully Delieverd';
+      msg = isKor ? '전송 성공' : 'Successfully Delieverd';
       break;
     }
     case SendStatus.FAIL: {
-      msg = "Something's gone wrong..!";
+      msg = isKor ? '오류 발생' : "Something's gone wrong..!";
       break;
     }
     default: {
-      msg = 'Send Message';
+      msg = isKor ? '메세지 보내기' : 'Send Message';
     }
   }
   return msg;
@@ -75,21 +82,29 @@ export function makeSendBtnHoverMsg(
   emailStatus: ValidStatus,
   messageStatus: ValidStatus,
   btnStatus: ValidStatus,
-  error: string
+  error: string,
+  lang: LangValueType | null
 ) {
   if (error !== '') return error;
 
+  const isKor = lang === LANG_ENUM.KOR;
+
   let msg = '';
   if (btnStatus !== ValidStatus.VALID) {
-    msg = `Please check your`;
-    if (emailStatus !== ValidStatus.VALID) msg += ' email';
+    if (emailStatus !== ValidStatus.VALID) {
+      msg += isKor ? '이메일' : ' email';
+      if (isKor && messageStatus === ValidStatus.VALID) msg += '을';
+    }
     if (
       emailStatus !== ValidStatus.VALID &&
       messageStatus !== ValidStatus.VALID
     ) {
-      msg += ' and';
+      msg += isKor ? '과 ' : ' and';
     }
-    if (messageStatus !== ValidStatus.VALID) msg += ' message';
+    if (messageStatus !== ValidStatus.VALID) {
+      msg += isKor ? '메세지를' : ' message';
+    }
+    msg = isKor ? msg + ' 확인해주세요' : `Please check your` + msg;
   }
   return msg;
 }

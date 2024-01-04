@@ -1,5 +1,7 @@
 'use client';
 
+import useLangString from '@/app/_hooks/useLangString';
+import { RootState } from '@/app/_redux';
 import {
   SendStatus,
   ValidStatus,
@@ -10,6 +12,7 @@ import {
   validateEmailMessage,
 } from '@/app/_utils/emailUtil';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './DirectMessage.module.scss';
 
 export default function DirectMessage() {
@@ -17,6 +20,9 @@ export default function DirectMessage() {
   const [message, setMessage] = useState('');
   const [sendStatus, setSendStatus] = useState(SendStatus.IDLE);
   const [error, setError] = useState('');
+
+  const strs = useLangString('contact', 'dm');
+  const lang = useSelector((state: RootState) => state.prefer.lang);
 
   // status
   const emailStatus = validateEmailAddress(email);
@@ -27,12 +33,13 @@ export default function DirectMessage() {
       : ValidStatus.INVALID;
 
   // button messages
-  let btnMainMsg = makeSendBtnMsg(sendStatus);
+  let btnMainMsg = makeSendBtnMsg(sendStatus, lang);
   const btnHoverMsg = makeSendBtnHoverMsg(
     emailStatus,
     messageStatus,
     btnStatus,
-    error
+    error,
+    lang
   );
 
   // event listener
@@ -57,7 +64,7 @@ export default function DirectMessage() {
       return;
     }
     // send email
-    sendEmail(email, message)
+    sendEmail(email, message, lang)
       .then(() => setSendStatus(SendStatus.SUCCESS))
       .catch((error) => {
         setError(String(error));
@@ -65,15 +72,14 @@ export default function DirectMessage() {
       });
   };
 
-  const textareaPlaceholder = `Hello there!
-Would you like to start a project with me?`;
-
   // render
   return (
     <div className={styles.wrapper}>
-      <h2 className="observe text">Direct message</h2>
+      <h2 className="observe text">{strs ? strs['dm'] : 'Direct message'}</h2>
       <form className={styles.form} onSubmit={sendMessage}>
-        <label className="observe text">Email address</label>
+        <label className="observe text">
+          {strs ? strs.email : 'Email address'}
+        </label>
         <input
           type="text"
           placeholder="email@domain.com"
@@ -84,9 +90,9 @@ Would you like to start a project with me?`;
             emailStatus ? styles[ValidStatus[emailStatus]] : ''
           } observe`}
         />
-        <label className="observe text">Message</label>
+        <label className="observe text">{strs ? strs.msg : 'Message'}</label>
         <textarea
-          placeholder={textareaPlaceholder}
+          placeholder={strs ? strs['placeholder'] : ''}
           spellCheck="false"
           onChange={updateMessage}
           className={`${styles[ValidStatus[messageStatus]]} observe`}

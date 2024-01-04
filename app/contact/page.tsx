@@ -14,7 +14,7 @@ export default function Contact() {
 
   return (
     <div className={`${styles.wrapper} container-800`}>
-      <NeuTitle text="Get in touch via.." className="observe" />
+      <NeuTitle text="Get in touch by.." className="observe" />
       <div className={`${styles.grid} ${isSmall ? styles.small : ''}`}>
         <Links />
         <Dividor isSmall={isSmall} />
