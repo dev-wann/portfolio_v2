@@ -72,7 +72,7 @@
 }
 .placeholder {
   div {
-    transition: color 1s;
+    transition: color 1s !important;
     background: linear-gradient(90deg, #f35626, #feab3a);
     background-clip: text;
     animation: hue 4s infinite linear;
