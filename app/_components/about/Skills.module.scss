@@ -30,6 +30,18 @@
   }
 }
 
+.grid.small {
+  grid-template-columns: 1fr;
+  @for $i from 1 to 6 {
+    & > *:nth-child(#{$i}) {
+      grid-area: #{$i} / 1 / #{$i + 1} / 2;
+    }
+  }
+  & > *:nth-child(5) {
+    display: none;
+  }
+}
+
 .grid-item {
   @include mixins.neumorphic-box-outer;
   border-radius: 12px;
