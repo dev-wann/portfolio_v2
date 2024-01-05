@@ -2,6 +2,7 @@
 
 import useLangString from '@/app/_hooks/useLangString';
 import useWindowWidth from '@/app/_hooks/useWindowWidth';
+import { renderText } from '@/app/_utils';
 import NeuTitle from '../common/NeuTitle';
 import RoundImage from '../common/RoundImage';
 import gStyles from './AboutGlobal.module.scss';
@@ -29,7 +30,9 @@ export function Education() {
         <div className={`${styles.desc} observe text`}>
           <h2 className={styles.univ}>
             {strs?.univ}
-            <span className={styles.sub}>{strs ? strs['univ-loc'] : ''}</span>
+            <span className={styles.sub}>
+              {strs ? renderText(strs.univLoc) : ''}
+            </span>
           </h2>
           <h3>{strs?.ms}</h3>
           <p className={styles.sub}>2017.03 ~ 2019.08</p>

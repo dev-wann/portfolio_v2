@@ -22,7 +22,7 @@ export default function Project() {
   const [selected, setSelected] = useState(1);
   useEffect(() => {
     // show second item first
-    if (initRef.current?.offsetTop) {
+    if (window.location.hash === '' && initRef.current?.offsetTop) {
       scrollTo(0, initRef.current.offsetTop);
     }
 
