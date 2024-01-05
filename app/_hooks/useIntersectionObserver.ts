@@ -104,16 +104,20 @@ async function animate(queue: AnimateData[], observer: IntersectionObserver) {
 
 async function show({ elem, type }: AnimateData) {
   (elem as HTMLElement).style.visibility = 'visible';
-  if (type === AnimateType.both || type === AnimateType.box) {
-    elem?.classList?.remove('hide-box');
-    await delay(200);
-  }
-  if (type === AnimateType.both || type === AnimateType.text) {
-    elem?.classList?.remove('hide-text');
-  }
-  elem?.classList?.remove('observe');
-  if (type !== AnimateType.both) await delay(200);
-  await delay(200);
+  (async () => {
+    switch (type) {
+      case AnimateType.both:
+        elem?.classList?.remove('hide-box');
+        await delay(200);
+        elem?.classList?.remove('hide-text');
+        break;
+      case AnimateType.text:
+      case AnimateType.box:
+        elem?.classList?.remove('hide-box');
+        elem?.classList?.remove('hide-text');
+    }
+  })();
+  await delay(150);
 }
 
 function delay(ms: number) {
