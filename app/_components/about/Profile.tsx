@@ -25,13 +25,17 @@ export default function Profile() {
   };
   const showBtnContent = (
     <div>
-      <span className={styles['btn-name']}>Show Details</span>
+      <span className={styles['btn-name']}>
+        {strs?.detail || 'More Stories'}
+      </span>
       <Arrows dir="down" />
     </div>
   );
   const closeBtnContent = (
     <div>
-      <span className={styles['btn-name']}>Close Details</span>
+      <span className={styles['btn-name']}>
+        {strs?.detailClose || 'Close Stories'}
+      </span>
       <Arrows dir="up" />
     </div>
   );
@@ -65,7 +69,9 @@ export default function Profile() {
       <div className={styles['button-wrapper']}>
         <button className={`${styles.btn} observe`} onClick={toResume}>
           <div className={styles['btn-outer-bg']} />
-          <span className={styles['btn-name']}>Go to Resume</span>
+          <span className={styles['btn-name']}>
+            {strs?.resume || 'Check Resume'}
+          </span>
           <Arrows dir="right" />
         </button>
         <button
