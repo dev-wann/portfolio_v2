@@ -13,8 +13,8 @@ import styles from './Skills.module.scss';
 export default function Skill() {
   // responsive
   const windowWidth = useWindowWidth();
-  const size = windowWidth && windowWidth < 600 ? 'small' : 'big';
-  const imgSize = size === 'small' ? 25 : 50;
+  const isSmall = windowWidth && windowWidth < 600;
+  const imgSize = isSmall ? 40 : 50;
 
   const strs = useLangString('about', 'skills');
   const theme = useSelector((state: RootState) => state.prefer.theme);
@@ -69,7 +69,7 @@ export default function Skill() {
   return (
     <section className={gStyles.section}>
       <NeuTitle text="Skills" className="observe" />
-      <div className={styles.grid}>
+      <div className={`${styles.grid} ${isSmall ? styles.small : ''}`}>
         <GlowOnHoverBox>
           <h2>{strs?.frontend || 'Front-end'}</h2>
           <p>{strs?.frontDesc0 || 'description'}</p>

@@ -35,13 +35,25 @@
 }
 
 .desc {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  vertical-align: top;
+
+  &.small {
+    margin: auto;
+  }
+
   h3 {
     font-size: 1.2rem !important;
-    margin-top: 0.4rem;
+  }
+  p {
+    margin-bottom: 0.4rem;
   }
 }
 
 .sub {
   color: var(--color-label);
   font-weight: 300 !important;
+  margin-bottom: 0.4rem;
 }
