@@ -12,8 +12,13 @@ import preferSlice, {
 import styles from './ThemeButton.module.scss';
 
 export default function ThemeButton() {
+  //redux
   const dispatch = useDispatch<AppDispatch>();
   const theme = useSelector((state: RootState) => state.prefer.theme);
+  const isClosing = useSelector(
+    (state: RootState) => state.prefer.isHomeClosing
+  );
+
   const themeRef = useRef<HTMLInputElement>(null);
   const path = usePathname();
 
@@ -30,6 +35,7 @@ export default function ThemeButton() {
 
   //handle theme change
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isClosing) return;
     const newTheme = e.currentTarget.checked
       ? THEME_ENUM.DARK
       : THEME_ENUM.LIGHT;

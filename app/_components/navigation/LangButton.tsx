@@ -11,9 +11,14 @@ import preferSlice, {
 import styles from './LangButton.module.scss';
 
 export default function LangButton() {
-  const langRef = useRef<HTMLInputElement>(null);
+  // redux
   const dispatch = useDispatch<AppDispatch>();
   const lang = useSelector((state: RootState) => state.prefer.lang);
+  const isClosing = useSelector(
+    (state: RootState) => state.prefer.isHomeClosing
+  );
+
+  const langRef = useRef<HTMLInputElement>(null);
   const path = usePathname();
 
   // initial language setting
@@ -29,6 +34,7 @@ export default function LangButton() {
   // handle language change
   const onChangeHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (isClosing) return;
       const newLang = e.currentTarget.checked ? LANG_ENUM.KOR : LANG_ENUM.ENG;
       if (path === '/') {
         dispatch(changeLangDelayed({ newLang, time: 1600 }));

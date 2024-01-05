@@ -19,7 +19,7 @@ export async function getVideoImages(theme: ThemeValueType) {
   return cache[theme];
 }
 
-let cancelId: number | null;
+let clearId: NodeJS.Timeout | null;
 let curVideo: HTMLVideoElement | null;
 // play video
 export function playVideo(
@@ -41,7 +41,7 @@ export function playVideo(
       const play = () => {
         if (!isPlaying) return;
         context?.drawImage(data, 0, 0);
-        cancelId = requestAnimationFrame(play);
+        clearId = setTimeout(play, 1000 / 60);
       };
       data.addEventListener('play', () => {
         play();
@@ -61,7 +61,7 @@ export function playVideo(
       context?.clearRect(0, 0, canvas.width, canvas.height);
       context?.drawImage(data[idx], 0, 0);
       idx++;
-      cancelId = requestAnimationFrame(play);
+      clearId = setTimeout(play, 1000 / 60);
     };
     play();
   });
@@ -69,9 +69,9 @@ export function playVideo(
 
 // stop video
 export function stopVideo() {
-  if (cancelId) cancelAnimationFrame(cancelId);
+  if (clearId) clearTimeout(clearId);
   if (curVideo) curVideo.load();
-  cancelId = null;
+  clearId = null;
 }
 
 async function fetchVideoImages(theme: ThemeValueType) {
