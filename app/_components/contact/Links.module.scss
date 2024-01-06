@@ -53,7 +53,10 @@
   }
 
   &:hover {
-    @include mixins.neumorphic-box-outer-s;
+    @include mixins.neumorphic-box-outer-hover;
+  }
+  &:active {
+    box-shadow: none;
   }
 }
 
