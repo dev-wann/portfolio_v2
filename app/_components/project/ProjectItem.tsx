@@ -50,14 +50,17 @@ const ProjectItem = forwardRef(
         <NeuTitle text={String(item.title)} />
         {/* project */}
         <div className={`${styles.grid} ${size}`}>
+          {/* representative image */}
           <div className={styles['image-outer']}>
             <div className={styles['image-inner']}>{images[0]}</div>
             <div className={styles['image-inner']}>{images[1]}</div>
           </div>
+          {/* info about org and period */}
           <div className={styles.org}>
             <span>{item.org}</span>
             <span>{item.period}</span>
           </div>
+          {/* info strings */}
           <div className={styles.info}>{renderText(item.info)}</div>
           <p className={styles.skills}>
             {item.skills.map((skill) => (
@@ -65,14 +68,28 @@ const ProjectItem = forwardRef(
             ))}
           </p>
         </div>
-        {/* description */}
+
         <div className={styles.desc}>
-          <h2>What I did?</h2>
+          {/* description */}
+          <h2>What was my role?</h2>
           <ul>
             {item.descs.map((desc, idx) => (
               <li key={idx}>{renderText(desc)}</li>
             ))}
           </ul>
+          {/* For your information */}
+          {item.fyi ? (
+            <>
+              <h3>FYI</h3>
+              <ul>
+                {item.fyi.map((fyi, idx) => (
+                  <li key={idx}>{renderText(fyi)}</li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </section>
     );

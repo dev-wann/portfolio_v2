@@ -8,6 +8,7 @@
       "swcho": "조승완",
       "ipnida": "입니다."
     },
+
     "about": {
       "profile": {
         "desc0": "안녕하세요, <b>프론트엔드 개발자</b> 조승완입니다. 2019년에 소프트웨어 연구원으로 일을 시작하며 개발자을 길을 걷고 있습니다. 문서 편집 웹 앱과 데스크탑 소프트웨어를 개발했습니다.",
@@ -42,6 +43,32 @@
         "bs": "전기전자공학부 학사"
       }
     },
+
+    "project": {
+      "personal": "개인 프로젝트",
+      "CS-desc0": "Now Working on a New Project",
+      "PF-info": "<p>지금 보고 계시는 개인 포트폴리오 페이지입니다. 부드럽고 미니멀한 느낌을 위해 <b>Neumorphism</b> 디자인을 적용하였습니다.</p><p>네비게이션 바에서 테마 선택 기능과 언어 선택 기능을 제공합니다. '<b>HOME</b>' 페이지에서 <b>선택 변경 이펙트</b>를 감상해보세요.</p>",
+      "PF-desc0": "홈페이지를 직접 <b>디자인</b>하고 <b>개발</b>하였습니다.",
+      "PF-desc1": "<b>Next.js</b> 프레임워크와 <b>TypeScript</b>, <b>SCSS </b>를 사용해 개발하였습니다.",
+      "PF-desc2": "<b>Redux Toolkit</b>을 사용해 '테마'와 '언어' 상태를 전역적으로 관리하였습니다.",
+      "PF-desc3": "'<b>react-type-animation</b>'으로 타이핑 효과를, '<b>nodemailer</b>'로 'CONTACT' 페이지의 문의사항 기능을 구현하였습니다.",
+      "PF-fyi0": "제 <a href='https://github.com/dev-wann/portfolio_v2' target='_blank'>GitHub&#x1F517;</a>에서 소스코드를 확인하실 수 있습니다.",
+      "PF-fyi1": "이전 버전의 포트폴리오 페이지를 <a href='https://portfolio-dev-wann.vercel.app/' target='_blank'>여기&#x1F517;</a>에서 확인하실 수 있습니다.",
+      "SO-info": "<p><b>웹</b> / <b>Electron</b> 기반 문서 편집 앱입니다. 다른 사용자와의 <b>실시간 공동 편집</b> 기능을 제공합니다. Google Docs, Sheets, Slides와 유사한 앱입니다.</p><p>서울시 교육청과 대한민국 육군본부에 도입되어 사용되었습니다.</p>",
+      "SO-desc0": "제품 개발의 시작부터 참여하여 <b>아키텍처 설계</b>부터 <b>배포</b>까지 전 과정을 경험하였습니다.",
+      "SO-desc1": "<b>Client-side 문서 정보 관리 구조</b> 설계 및 <b>공동 편집</b> 기능 개발에 참여하였습니다.",
+      "SO-desc2": "Word processor와 presentation 앱에서 사용되는 <b>표 개체 공통 컴포넌트 및 기능</b> 개발을 주로 담당하였습니다.",
+      "SO-desc3": "표 개체와 관련된 <b>20개 이상의 UI 기능</b>을 개발하였습니다.",
+      "SO-desc4": "JS 로직 및 MobX 최적화를 통해 <b>렌더링 속도를 70% 개선</b>하였습니다.",
+      "SO-desc5": "Electron(혹은 Chromium) 렌더링 엔진인 Blink에서 사용할 <b>커스텀 페이지 레이아웃 알고리즘</b>을 개발하였습니다.",
+      "TO-info": "<p>Windows와 Linux 운영체제를 위한 문서 편집 프로그램입니다. MS Office와 유사한 제품입니다.</p><p>특허청 및 한국교육학술정보원에 도입되어 사용되었습니다.</p>",
+      "TO-desc0": "Word processor, presentation, spreadsheet에서 사용될 <b>표 개체 관련 UI 기능</b>과 <b>문서 레이아웃 알고리즘</b> 개발을 담당하였습니다.",
+      "TO-desc1": "<b>10개 이상</b>의 표 개체 관련 UI 기능을 개발하였습니다.",
+      "TO-desc2": "중첩된 표, 텍스트 개체 둘러싸기 등 <b>복잡한 레이아웃 알고리즘</b> 을 개발하였습니다..",
+      "TO-desc3": "레이아웃 상태 관리를 통해 <b>레이아웃 성능을 30% 개선</b>하였습니다.",
+      "TO-desc4": "다양한 파일 확장자(doc, docx, doch, pptx, hwp)의 parser 및 writer를 구현하였습니다."
+    },
+
     "contact": {
       "links": {
         "email": "이메일",
@@ -58,6 +85,7 @@
       }
     }
   },
+
   "en-US": {
     "home": {
       "hello": "Hello!&ensp;",
@@ -67,6 +95,7 @@
       "swcho": "Seungwan Cho",
       "ipnida": ""
     },
+
     "about": {
       "profile": {
         "desc0": "I am a <b>web developer</b> from South Korea. I started my career at 2019 as a software engineer and developed document editing web apps and desktop softwares.",
@@ -101,16 +130,24 @@
         "bs": "B.S. in Electrical and Electornic Engineering"
       }
     },
+
     "project": {
       "personal": "Personal Project",
       "CS-desc0": "Now Working on a New Project",
       "CS-desc1": "Please look forward to it!",
-      "SO-info": "<p>A <b>web</b> / <b>Electron</b> based document editing application suite. Supports <b>editing with other users in real-time</b>. Similar to Google docs.</p><p>Used by 'Seoul Metropolitan Office of Education' & 'Republic of Korea Army.'</p>",
+      "PF-info": "<p>A personal portfolio page you're watching right now. <b>Neumorphism</b> design was used to present a soft and minimalistic impression.</p><p>Provides theme and language selections at the navigation bar. Please enjoy the <b>selection change effect</b> on the <b>'HOME'</b> page.</p>",
+      "PF-desc0": "<b>Designed</b> and <b>developed</b> this page from the scratch.",
+      "PF-desc1": "<b>Next.js</b> framework, <b>TypeScript</b>, and <b>SCSS </b>was used to develop.",
+      "PF-desc2": "<b>Redux Toolkit</b> was used to manage 'theme' and 'language' state globally.",
+      "PF-desc3": "Used '<b>react-type-animation</b>' for the typing animation effect and '<b>nodemailer</b>' for the direct message on the contact page.",
+      "PF-fyi0": "You can check the source code at my <a href='https://github.com/dev-wann/portfolio_v2' target='_blank'>GitHub&#x1F517;</a>.",
+      "PF-fyi1": "In fact, there's a previous version of my portfolio. You can check it <a href='https://portfolio-dev-wann.vercel.app/' target='_blank'>here&#x1F517;</a>",
+      "SO-info": "<p>A <b>web</b> / <b>Electron</b> based document editing application suite. Provides <b>editing with other users in real-time</b>. Similar to Google Docs, Sheets, Slides.</p><p>Used by 'Seoul Metropolitan Office of Education' & 'Republic of Korea Army.'</p>",
       "SO-desc0": "Participated all the way from the <b>architecture design</b> to the <b>deployment</b>.",
       "SO-desc1": "Developed <b>client-side document data managing</b> architecture and <b>document co-editing</b> features.",
       "SO-desc2": "Responsible for developing <b>'table'-related common components and features</b>, which were used for word processor and presentation apps.",
       "SO-desc3": "Developed <b>20+ UI features</b> related to table manipulation.",
-      "SO-desc4": "Achieved a <b>70% rendering speed increase</b> with the optimization of JS logic and MobX.",
+      "SO-desc4": "Achieved a <b>70% rendering speed improvement</b> by the optimization of JS logic and MobX.",
       "SO-desc5": "Developed a <b>custom pagination layout algorithm</b> that will be used in the Blink, an Electron(or Chromium) rendering engine.",
       "TO-info": "<p>A document editing software suite for Linux and Windows OS. Similar to Microsoft Office.</p><p>Used by 'Korean Intellectual Property Office' & 'Korea Education and Research Information Service.'</p>",
       "TO-desc0": "Responsible for the development of <b>'table'-related UI features and layout algorithms</b>, used for word processor, presentation, and spreadsheet software.",
@@ -119,6 +156,7 @@
       "TO-desc3": "Achieved <b>30% rendering speed increase</b> with the layout state management",
       "TO-desc4": "Developed parsers and writers for various extensions including doc, docx, doch, pptx, hwp."
     },
+
     "contact": {
       "links": {
         "email": "Email",
