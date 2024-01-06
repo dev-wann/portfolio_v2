@@ -16,7 +16,10 @@ type Props = {
 const ProjectItem = forwardRef(
   ({ item, id }: Props, ref: ForwardedRef<HTMLElement>) => {
     const windowWidth = useWindowWidth();
-    const isSmall = windowWidth && windowWidth < 600;
+    let size = '';
+    if (windowWidth && windowWidth <= 810) size = styles.large;
+    if (windowWidth && windowWidth <= 745) size = styles.medium;
+    if (windowWidth && windowWidth < 600) size = styles.small;
 
     // handle 'Coming Soon' part seperately
     if (item.title === 'Coming Soon..') {
@@ -45,25 +48,22 @@ const ProjectItem = forwardRef(
     return (
       <section className={styles.section} ref={ref} id={id}>
         <NeuTitle text={String(item.title)} />
-        <div className={`${styles.flex} ${isSmall ? styles.small : ''}`}>
-          {/* representative image */}
+        {/* project */}
+        <div className={`${styles.grid} ${size}`}>
           <div className={styles['image-outer']}>
             <div className={styles['image-inner']}>{images[0]}</div>
             <div className={styles['image-inner']}>{images[1]}</div>
           </div>
-          {/* project info */}
-          <div className={styles.info}>
-            <div>
-              <span>{item.org}</span>
-              <span>{item.period}</span>
-            </div>
-            <div>{renderText(item.info)}</div>
-            <p className={styles.skills}>
-              {item.skills.map((skill) => (
-                <span key={skill}>{skill}</span>
-              ))}
-            </p>
+          <div className={styles.org}>
+            <span>{item.org}</span>
+            <span>{item.period}</span>
           </div>
+          <div className={styles.info}>{renderText(item.info)}</div>
+          <p className={styles.skills}>
+            {item.skills.map((skill) => (
+              <span key={skill}>{skill}</span>
+            ))}
+          </p>
         </div>
         {/* description */}
         <div className={styles.desc}>

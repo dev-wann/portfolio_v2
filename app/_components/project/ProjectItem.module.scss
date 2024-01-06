@@ -8,50 +8,84 @@
   margin: auto;
 }
 
-.flex {
-  display: flex;
-  gap: 1rem;
-  margin: 1.2rem 0;
+.grid {
+  margin: 1rem 0;
   padding-left: 0.4rem;
 
-  & > *:last-child {
-    flex-grow: 1;
+  display: grid;
+  gap: 0.6rem 1rem;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  & > *:nth-child(1) {
+    grid-area: 1 / 1 / 4 / 2;
+  }
+  & > *:nth-child(2) {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+  & > *:nth-child(3) {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  & > *:nth-child(4) {
+    grid-area: 3 / 2 / 4 / 3;
   }
 
   &.small {
-    flex-direction: column;
+    margin-top: 0.4rem;
+    grid-template-columns: 1fr;
+    & > *:nth-child(1) {
+      grid-area: 2 / 1 / 3 / 2;
+    }
+    & > *:nth-child(2) {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+    & > *:nth-child(3) {
+      grid-area: 3 / 1 / 4 / 2;
+    }
+    & > *:nth-child(4) {
+      grid-area: 4 / 1 / 5 / 2;
+    }
   }
 }
 
 .image-outer {
   @include mixins.neumorphic-box-outer;
   border-radius: 12px;
-  padding: 10px;
+  padding: 0.4rem;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-width: 320px;
+  max-width: 100%;
+  min-height: 180px;
+  max-height: 100%;
+}
+.large .image-outer {
+  min-width: 256px;
+}
+.medium .image-outer {
+  min-width: 224px;
+}
+.small .image-outer {
+  min-width: auto;
 }
 
 .image-inner {
-  position: relative;
-  min-width: 320px;
-  border-radius: 6px;
+  position: absolute;
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: calc(12px - 0.2rem);
   overflow: hidden;
-
-  &:nth-child(2) {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    translate: -50% -50%;
-    opacity: 0;
-    animation: 6s change-image infinite;
-  }
 
   img {
     object-fit: cover;
     width: 100%;
     height: 100%;
+  }
+
+  &:nth-child(2) {
+    opacity: 0;
+    animation: 6s change-image infinite;
   }
 }
 @keyframes change-image {
@@ -69,34 +103,36 @@
   }
 }
 
+.image-outer ~ div {
+  padding: 0 0.4rem;
+}
+
+.org {
+  margin-top: 0.4rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 1em;
+
+  span:first-child {
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  span:nth-child(2) {
+    font-weight: 500;
+  }
+}
 .info {
+  font-size: 0.95rem;
+  text-indent: 1em;
+  line-height: 1.2em;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.2rem 0;
-  font: 0.95rem;
-
-  & > div:nth-child(1) {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    column-gap: 1em;
-
-    span:first-child {
-      font-weight: bold;
-      font-size: 1.3rem;
-    }
-    span:nth-child(2) {
-      font-weight: 500;
-    }
-  }
-  & > div:nth-child(2) {
-    font-size: 0.95rem;
-    text-indent: 1em;
-    line-height: 1.2em;
-  }
+  justify-content: space-evenly;
+  gap: 0.2rem;
 }
 
 .skills {
@@ -123,6 +159,9 @@
   h2 {
     font-style: italic;
     margin: 1rem 0 0.6rem 0.2rem;
+  }
+  ul {
+    margin-left: 0.4rem;
   }
   li {
     margin-bottom: 0.4rem;
