@@ -10,7 +10,7 @@ type AnimateData = { elem: Element; type: AnimateType };
 
 const animateQueue: AnimateData[] = [];
 let targets: Element[] = [];
-let timeoutId: NodeJS.Timeout;
+let timeoutIds: NodeJS.Timeout[] = [];
 let isAnimating = false;
 
 export default function useIntersectionObserver() {
@@ -37,7 +37,10 @@ export default function useIntersectionObserver() {
 }
 
 export async function clearPage() {
-  clearTimeout(timeoutId);
+  // cancel timeouts
+  timeoutIds.forEach((id) => clearTimeout(id));
+  timeoutIds = [];
+
   // hide contents
   targets.forEach((target) => {
     target.classList.add('observe', 'fade-out', 'hide-box', 'hide-text');
@@ -96,9 +99,11 @@ async function animate(queue: AnimateData[], observer: IntersectionObserver) {
     isAnimating = false;
     animate(queue, observer);
   } else {
-    timeoutId = setTimeout(() => {
-      animate(queue, observer);
-    }, 200);
+    timeoutIds.push(
+      setTimeout(() => {
+        animate(queue, observer);
+      }, 200)
+    );
   }
 }
 
@@ -121,5 +126,5 @@ async function show({ elem, type }: AnimateData) {
 }
 
 function delay(ms: number) {
-  return new Promise((res) => (timeoutId = setTimeout(res, ms)));
+  return new Promise((res) => timeoutIds.push(setTimeout(res, ms)));
 }
