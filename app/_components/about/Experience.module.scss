@@ -172,9 +172,8 @@
   transition: $tr-color, $tr-bdr, $tr-shd;
 
   &:hover {
-    color: var(--color-text-strong) !important;
     border-color: transparent !important;
-    box-shadow: var(--shadow-outer);
+    box-shadow: var(--shadow-outer-s);
   }
 
   &:active {
