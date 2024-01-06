@@ -47,30 +47,32 @@ const ProjectItem = forwardRef(
 
     return (
       <section className={styles.section} ref={ref} id={id}>
-        <NeuTitle text={String(item.title)} />
+        <NeuTitle text={String(item.title)} className="observe" />
         {/* project */}
-        <div className={`${styles.grid} ${size}`}>
-          {/* representative image */}
-          <div className={styles['image-outer']}>
-            <div className={styles['image-inner']}>{images[0]}</div>
-            <div className={styles['image-inner']}>{images[1]}</div>
+        <div className="observe">
+          <div className={`${styles.grid} ${size}`}>
+            {/* representative image */}
+            <div className={styles['image-outer']}>
+              <div className={styles['image-inner']}>{images[0]}</div>
+              <div className={styles['image-inner']}>{images[1]}</div>
+            </div>
+            {/* info about org and period */}
+            <div className={styles.org}>
+              <span>{item.org}</span>
+              <span>{item.period}</span>
+            </div>
+            {/* info strings */}
+            <div className={styles.info}>{renderText(item.info)}</div>
+            <p className={styles.skills}>
+              {item.skills.map((skill) => (
+                <span key={skill}>{skill}</span>
+              ))}
+            </p>
           </div>
-          {/* info about org and period */}
-          <div className={styles.org}>
-            <span>{item.org}</span>
-            <span>{item.period}</span>
-          </div>
-          {/* info strings */}
-          <div className={styles.info}>{renderText(item.info)}</div>
-          <p className={styles.skills}>
-            {item.skills.map((skill) => (
-              <span key={skill}>{skill}</span>
-            ))}
-          </p>
         </div>
 
-        <div className={styles.desc}>
-          {/* description */}
+        {/* description */}
+        <div className={styles.desc + ' observe'}>
           <h2>What was my role?</h2>
           <ul>
             {item.descs.map((desc, idx) => (
@@ -100,19 +102,15 @@ export default ProjectItem;
 
 function ComingSoon({ descs }: { descs: string[] }) {
   return (
-    <section style={{ marginTop: '5rem' }} id={'project0'}>
-      <NeuTitle text="Coming Soon.." />
-      <div className={styles['coming-soon']}>
+    <section className={styles.section} id={'project0'}>
+      <NeuTitle text="Coming Soon.." className="observe" />
+      <div className={styles['coming-soon'] + ' observe text'}>
         <div>
           <Image
-            src="/images/project/ComingSoon.jpeg"
-            width={500}
-            height={500}
+            src="/images/project/UnderConstruction.png"
+            width={736}
+            height={736}
             alt="Coming Soon image"
-            style={{
-              objectFit: 'cover',
-              filter: 'grayscale(1) brightness(109%)',
-            }}
           />
         </div>
         <p>{descs[0]}</p>
