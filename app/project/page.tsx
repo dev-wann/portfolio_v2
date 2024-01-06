@@ -3,23 +3,28 @@
 import { useEffect, useRef, useState } from 'react';
 import ProjectItem from '../_components/project/ProjectItem';
 import useLangString from '../_hooks/useLangString';
+import { generateProjectItems } from '../_utils/projectItemUtil';
 import styles from './Project.module.scss';
 
 export type ItemType = {
   title: string;
-  info?: string;
-  org?: string;
-  period?: string;
+  info: string;
+  org: string;
+  period: string;
   descs: string[];
   skills: string[];
+  fyi?: string[];
 };
 
 export default function Project() {
   // useIntersectionObserver();
-  const strs = useLangString('project');
   const initRef = useRef<HTMLElement>(null);
-
   const [selected, setSelected] = useState(1);
+
+  // items to render
+  const strs = useLangString('project');
+  const items = generateProjectItems(strs);
+
   useEffect(() => {
     // show second item first
     if (window.location.hash === '' && initRef.current?.offsetTop) {
@@ -44,58 +49,6 @@ export default function Project() {
       if (elem) observer.observe(elem);
     });
   }, []);
-
-  // items to render
-  const items = [
-    {
-      title: 'Coming Soon..',
-      info: '',
-      org: strs?.personal,
-      descs: strs ? [strs['CS-desc0'], strs['CS-desc1']] : [],
-      skills: [],
-    },
-    {
-      title: 'Portfolio Page',
-      info: '',
-      org: strs?.personal,
-      period: '2023.12',
-      descs: strs ? [] : [],
-      skills: ['Next.js', 'TypeScript', 'SCSS', 'Redux'],
-    },
-    {
-      title: 'SuperOffice',
-      info: strs ? strs['SO-info'] : '',
-      org: '@TmaxOffice',
-      period: '2021.03 ~ 2023.05',
-      descs: strs
-        ? [
-            strs['SO-desc0'],
-            strs['SO-desc1'],
-            strs['SO-desc2'],
-            strs['SO-desc3'],
-            strs['SO-desc4'],
-            strs['SO-desc5'],
-          ]
-        : [],
-      skills: ['React', 'TypeScript', 'MobX', 'Jest', 'GitLab'],
-    },
-    {
-      title: 'ToOffice',
-      info: strs ? strs['TO-info'] : '',
-      org: '@TmaxA&C',
-      period: '2019.08 ~ 2021.10',
-      descs: strs
-        ? [
-            strs['TO-desc0'],
-            strs['TO-desc1'],
-            strs['TO-desc2'],
-            strs['TO-desc3'],
-            strs['TO-desc4'],
-          ]
-        : [],
-      skills: ['C++', 'GitLab'],
-    },
-  ];
 
   // render
   return (

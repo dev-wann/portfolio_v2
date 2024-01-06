@@ -154,17 +154,27 @@
 }
 
 .desc {
-  padding-left: 0.4rem;
+  padding-left: 0.6rem;
 
   h2 {
     font-style: italic;
-    margin: 1rem 0 0.6rem 0.2rem;
+    margin: 1rem 0 0.6rem;
+  }
+  h3 {
+    font-style: italic;
+    font-weight: bold;
+    margin: 0.6rem 0 0.6rem;
   }
   ul {
     margin-left: 0.4rem;
   }
   li {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.2rem;
+    line-height: 1.2em;
+  }
+  a {
+    color: var(--color-text);
+    font-weight: bold;
   }
 }
 
