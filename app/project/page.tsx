@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import ProjectItem from '../_components/project/ProjectItem';
+import useIntersectionObserver from '../_hooks/useIntersectionObserver';
 import useLangString from '../_hooks/useLangString';
 import { generateProjectItems } from '../_utils/projectItemUtil';
 import styles from './Project.module.scss';
@@ -17,7 +18,7 @@ export type ItemType = {
 };
 
 export default function Project() {
-  // useIntersectionObserver();
+  useIntersectionObserver();
   const initRef = useRef<HTMLElement>(null);
   const [selected, setSelected] = useState(1);
 
@@ -88,7 +89,7 @@ function Sidebar({
         {items.map((_, idx) => (
           <button
             key={idx}
-            className={idx === selected ? styles.selected : ''}
+            className={(idx === selected ? styles.selected : '') + ' observe'}
             onClick={() => {
               setSelected(idx);
               scrollToItem(idx);
