@@ -13,20 +13,31 @@ type RouteToType = (path: string, e?: React.MouseEvent) => void;
 export default function Navigation() {
   const pathname = usePathname();
   const routeTo = useCustomRouteTo();
+  const navRef = useRef<HTMLDivElement | null>(null);
 
   // find selected page
   const selectIdx = routes.findIndex((elem) => elem[1] === pathname);
-
   const windowWidth = useWindowWidth(); // returns null when page is not loaded
-  const isLoaded = windowWidth !== null;
   const isSmall = windowWidth ? windowWidth < 600 : false;
 
+  // first appearance effect
+  const isLoaded = !!windowWidth;
+  useEffect(() => {
+    if (!navRef.current) return;
+    navRef.current.classList.remove('observe', 'hide-box', 'hide-text');
+  }, [isLoaded]);
+
+  // show nav selection after page transition finished
   useEffect(showNavSelect, [pathname]);
 
   return (
     <>
       <nav className={styles['nav-wrapper']}>
-        <div className={`${styles.navigation} container-800`}>
+        <div
+          className={`${styles.navigation} container-800 observe hide-box hide-text`}
+          ref={navRef}
+        >
+          <div className={styles['nav-bg'] + ' container-800'} />
           {isSmall ? (
             <RoutesSmall
               selectIdx={selectIdx}
@@ -133,7 +144,7 @@ function RoutesSmall({
   return (
     <>
       <div className={styles['routes-small']}>
-        <div className={styles['menu-toggle']} onClick={toggleMenu}>
+        <button className={styles['menu-toggle']} onClick={toggleMenu}>
           <input type="checkbox" ref={inputRef} />
           {/* divs to make hamburger shape */}
           <div className={styles.hamburger} />
@@ -141,8 +152,11 @@ function RoutesSmall({
           <div className={styles.hamburger} />
           <span>MENU</span>
           {/* div for neumorphic background */}
-          <div className={styles['menu-bg']} />
-        </div>
+          <div className={styles['menu-bg']}>
+            <div className={styles.outset} />
+            <div className={styles.inset} />
+          </div>
+        </button>
       </div>
       {/* menu items */}
       <div className={`${styles['menu-items']} ${isOpen ? styles.open : ''}`}>
@@ -164,13 +178,13 @@ function RoutesSmall({
       </div>
 
       {/* show page name when possible */}
-      <div className={styles['small-title']}>
+      <p className={styles['small-title']}>
         {windowWidth && windowWidth < 400 ? (
           <></>
         ) : (
           routes[selectIdx][0].toUpperCase()
         )}
-      </div>
+      </p>
 
       {/* back-cover to make contents dim */}
       <div

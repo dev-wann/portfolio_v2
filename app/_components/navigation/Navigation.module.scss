@@ -4,10 +4,13 @@
 .nav-wrapper {
   position: fixed;
   top: 1.4rem;
-  left: 0px;
-  right: 0px;
-  min-width: 275px;
-  z-index: 9999;
+  left: 0;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 1vw;
+  min-width: 300px;
+  z-index: 99;
 }
 
 .navigation {
@@ -15,26 +18,25 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  padding: 0 calc(1vw + 6px);
+  padding: 0 6px;
   width: 100%;
   height: 40px;
   border-radius: 24px;
   backdrop-filter: blur(5px);
 
-  &::before {
+  .nav-bg {
     @include mixins.neumorphic-box-outer;
     opacity: 0.75;
     position: absolute;
-    top: 0px;
-    left: calc(1vw);
-    width: calc(100% - 2vw);
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
     border-radius: 24px;
-    transition: $tr-op, $tr-bg;
-    content: '';
+    transition: $tr-op, $tr-bg, $tr-shd;
   }
 
-  &:hover::before {
+  &:hover .nav-bg {
     opacity: 1;
   }
 }
@@ -106,7 +108,7 @@
     background: var(--color-text);
     border-radius: 3px;
     transform-origin: 4px 0px;
-    transition: transform 0.3s, opacity 0.3s;
+    transition: 0.3s transform, 0.3s opacity, $tr-bg;
     z-index: 1;
   }
   .hamburger:nth-child(2) {
@@ -139,7 +141,7 @@
     position: relative;
     top: 0px;
     left: 47px;
-    transition: $tr-bold;
+    transition: $tr-bold, $tr-color;
     z-index: 1;
   }
   input:checked ~ span {
@@ -148,8 +150,8 @@
 
   // neumorphic button: change from outset to inset
   .menu-bg {
-    &::before,
-    &::after {
+    .inset,
+    .outset {
       position: absolute;
       top: 0px;
       left: 0px;
@@ -160,36 +162,39 @@
       content: '';
     }
     // outset when button is not pushed
-    &::before {
+    .outset {
       @include mixins.neumorphic-box-outer-s;
       opacity: 1;
     }
     // inset when button is pushed
-    &::after {
+    .inset {
       @include mixins.neumorphic-box-inner-s;
       opacity: 0;
     }
   }
 
-  input:checked {
-    & ~ .menu-bg {
-      &::before {
-        opacity: 0;
-      }
-      &::after {
-        opacity: 1;
-      }
+  input:checked ~ .menu-bg {
+    .outset {
+      opacity: 0;
+    }
+    .inset {
+      opacity: 1;
     }
   }
 
-  &:hover {
-    .menu-bg {
-      &::before {
-        @include mixins.neumorphic-box-outer-hover;
-      }
-      &::after {
-        @include mixins.neumorphic-box-inner-hover;
-      }
+  &:hover .menu-bg {
+    .outset {
+      @include mixins.neumorphic-box-outer-hover;
+    }
+    .inset {
+      @include mixins.neumorphic-box-inner-hover;
+    }
+  }
+
+  &:active .menu-bg {
+    .outset,
+    .inset {
+      box-shadow: none;
     }
   }
 }
@@ -200,9 +205,9 @@
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 0px;
-  left: 1vw;
-  width: calc(100% - 2vw);
+  top: 0;
+  left: 0;
+  width: 100%;
   padding-top: 50px;
   padding-bottom: 10px;
   border-radius: 20px;
