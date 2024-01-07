@@ -1,6 +1,3 @@
-'use client';
-
-import Image from 'next/image';
 import Link from 'next/link';
 import styles from './resume.module.scss';
 
@@ -8,18 +5,8 @@ export default function Resume() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
-        <button
-          className={styles.print}
-          onClick={() => {
-            window?.print();
-          }}
-        >
-          <Image
-            src="/images/about/print.svg"
-            width={50}
-            height={50}
-            alt="print button"
-          />
+        <button>
+          <Image />
         </button>
         <h1 className={styles.resumeTitle}>
           <span style={{ fontSize: '0.85em' }}>Frontend Developer</span>
@@ -156,18 +143,15 @@ export default function Resume() {
           <Link href={'/'}>
             <p>https://portfolio-dev-wann.vercel.app/</p>
           </Link>
-          <p>2023.12 ~ </p>
+          <p>2023.07 ~ 2023.08</p>
           <h3>Description</h3>
           <p>
-            Neumorphism 디자인을 적용, 직관적이면서도 미니멀한 사용 경험 제공
+            Next.js framework 및 TypeScript를 사용해 제작한 포트폴리오 페이지
           </p>
-          <p>라이트/다크 모드 테마와 한국어/영어 선택 기능 제공</p>
-          <p>
-            'react-type-animation'을 이용한 타이핑 효과와 'nodemailer'기능을
-            이용한 문의사항 기능 구현
-          </p>
+          <p>심플하면서도 다양한 사용자 인터랙션을 구현하고자 함</p>
+          <p>canvas를 이용한 애니메이션 구현</p>
           <h3>Tech Stack</h3>
-          <p>Next.js, TypeScript, SCSS, Redux</p>
+          <p>Next.js, TypeScript</p>
         </div>
       </div>
       <div className={styles.content}>
@@ -176,20 +160,24 @@ export default function Resume() {
           <h2>Overall</h2>
           <p>
             프론트엔드는 사용자 경험에 가장 큰 영향을 주는 파트라고 생각합니다.
-            사용자를 가장 효과적으로 끌어들일 수 있는 수단이 될 수 있으면서도,
-            눈길조차 주지 않는 가장 큰 원인이 될 수도 있기 때문입니다. 그렇기에
-            기능 개발 시 이 기능을 사용자가 논리적으로 납득할 수 있을지 항상
-            고민하고, 작은 부분에서부터 좋은 사용성을 제공할 수 있도록
+          </p>
+          <p>
+            사용자를 효과적으로 끌어들일 수 있으면서도, 사소한 불편함이 가랑비에
+            옷 젖는 줄 모르듯이 쌓여가다 결국 떠나가게도 할 수도 있습니다.
+          </p>
+          <p>
+            그렇기에 기능 개발 시 이 기능을 사용자가 논리적으로 납득할 수 있을지
+            항상 고민하고, 작은 부분에서부터 좋은 사용성을 제공할 수 있도록
             노력합니다.
           </p>
         </div>
         <hr style={{ margin: '20px 0' }} />
         <div className={styles.desc_other}>
           <h2>Web Development</h2>
-          <h3>React / Next.js</h3>
+          <h3>React</h3>
           <ul>
-            <li>현업에서 React를 이용한 웹 앱을 개발한 경험이 있습니다.</li>
             <li>사용자와 복잡하게 상호작용하는 SPA를 개발할 수 있습니다.</li>
+            <li>React + MobX를 이용한 상태 관리에 익숙합니다.</li>
             <li>Jest를 이용한 테스트 작성 경험이 있습니다.</li>
           </ul>
           <h3>TypeScript / JavaScript</h3>
@@ -198,13 +186,6 @@ export default function Resume() {
               TypeScript 및 JavaScript로 복잡한 로직을 작성하고 유지 보수할 수
               있습니다.
             </li>
-          </ul>
-          <h3>상태 관리</h3>
-          <ul>
-            <li>
-              현업에서 MobX를 이용해 복잡한 문서 정보 상태를 관리하였습니다.
-            </li>
-            <li>Redux/RTK 및 Zustand를 이용한 상태 관리 또한 가능합니다.</li>
           </ul>
         </div>
         <hr style={{ margin: '20px 0' }} />

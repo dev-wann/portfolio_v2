@@ -1,5 +1,6 @@
 import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
 import { showNavSelect } from '@/app/_hooks/useIntersectionObserver';
+import resStyle from '@/app/resume/resume.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -32,7 +33,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className={styles['nav-wrapper']}>
+      <nav className={styles['nav-wrapper']} id={resStyle.nav}>
         <div
           className={`${styles.navigation} container-800 observe hide-box hide-text`}
           ref={navRef}
@@ -106,6 +107,7 @@ function RoutesSmall({
   windowWidth: number | null;
   routeTo: RouteToType;
 }) {
+  let name = usePathname().slice(1) || 'home';
   const inputRef = useRef<HTMLInputElement>(null);
   const [isOpen, setOpen] = useState(false);
 
@@ -179,11 +181,7 @@ function RoutesSmall({
 
       {/* show page name when possible */}
       <p className={styles['small-title']}>
-        {windowWidth && windowWidth < 400 ? (
-          <></>
-        ) : (
-          routes[selectIdx][0].toUpperCase()
-        )}
+        {windowWidth && windowWidth < 400 ? <></> : name.toUpperCase()}
       </p>
 
       {/* back-cover to make contents dim */}
