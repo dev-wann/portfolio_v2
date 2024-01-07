@@ -37,12 +37,12 @@ export default function Experience() {
             <div className={styles.bg} />
             <div className={`${styles.toggle} ${select}`} />
             <div className={styles.scale}>
-              <span>—&ensp;'24</span>
-              <span>—&ensp;'23</span>
-              <span>—&ensp;'22</span>
-              <span>—&ensp;'21</span>
-              <span>—&ensp;'20</span>
-              <span>—&ensp;'19</span>
+              <span>—&ensp;&apos;24</span>
+              <span>—&ensp;&apos;23</span>
+              <span>—&ensp;&apos;22</span>
+              <span>—&ensp;&apos;21</span>
+              <span>—&ensp;&apos;20</span>
+              <span>—&ensp;&apos;19</span>
             </div>
           </div>
           <div

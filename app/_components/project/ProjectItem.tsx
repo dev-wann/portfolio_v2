@@ -36,12 +36,14 @@ const ProjectItem = forwardRef(
         width={320}
         height={180}
         alt={`image of ${item.title}`}
+        key={`${name}-0`}
       />,
       <Image
         src={`/images/project/${name}1.jpg`}
         width={320}
         height={180}
         alt={`image of ${item.title}`}
+        key={`${name}-1`}
       />,
     ];
 
@@ -97,6 +99,7 @@ const ProjectItem = forwardRef(
     );
   }
 );
+ProjectItem.displayName = 'ProjectItem';
 
 export default ProjectItem;
 

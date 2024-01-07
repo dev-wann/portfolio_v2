@@ -163,8 +163,8 @@ export default function Resume() {
           </p>
           <p>라이트/다크 모드 테마와 한국어/영어 선택 기능 제공</p>
           <p>
-            'react-type-animation'을 이용한 타이핑 효과와 'nodemailer'기능을
-            이용한 문의사항 기능 구현
+            &apos;react-type-animation&apos;을 이용한 타이핑 효과와
+            &apos;nodemailer&apos;기능을 이용한 문의사항 기능 구현
           </p>
           <h3>Tech Stack</h3>
           <p>Next.js, TypeScript, SCSS, Redux</p>
