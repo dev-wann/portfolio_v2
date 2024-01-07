@@ -1,7 +1,8 @@
+import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { LANG_ENUM } from '../_redux/module/preferSlice';
 
-export async function POST(req: Request) {
+export async function POST(req: Request, res: Response) {
   const transporter = nodemailer.createTransport({
     ...smtpOptions,
   });
@@ -32,30 +33,11 @@ Language: ${lang}`;
       text: isKor ? textToClientKor : textToClientEng,
     });
   } catch (error) {
-    return new Error(String(error));
+    return NextResponse.json({ error }, { status: 500 });
   }
 
-  return new Response();
+  return NextResponse.json({}, { status: 200 });
 }
-
-type EmailPayload = {
-  from: string;
-  to: string;
-  subject: string;
-  text: string;
-};
-
-// Replace with your SMTP credentials
-
-export const sendEmail = async (data: EmailPayload) => {
-  const transporter = nodemailer.createTransport({
-    ...smtpOptions,
-  });
-
-  return await transporter.sendMail({
-    ...data,
-  });
-};
 
 const myMail = process.env.EMAIL;
 const smtpOptions = {
