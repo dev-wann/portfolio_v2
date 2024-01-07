@@ -29,17 +29,13 @@ export default function BackgroundVideo({ stage, setStage, stopFlag }: Props) {
   // play video in order
   useEffect(() => {
     if (theme === null || stage === 'idle' || stage === 'pending') return;
-    if (stage === 'ready') {
-      setStage('opening');
-      return;
-    }
 
     // play video
     getVideoImages(theme).then(async (res) => {
       if (!canvasRef.current) return;
       const newId = window.crypto.randomUUID();
       stopId.current = newId;
-      await playVideo(canvasRef.current, res[stage]);
+      if (stage !== 'ready') await playVideo(canvasRef.current, res[stage]);
 
       // stop by interruption
       const idx = stopRequest.current.indexOf(newId);
@@ -49,7 +45,9 @@ export default function BackgroundVideo({ stage, setStage, stopFlag }: Props) {
       }
 
       // set next stage
-      if (stage === 'opening') {
+      if (stage === 'ready') {
+        setStage('opening');
+      } else if (stage === 'opening') {
         setStage('main');
       } else if (stage === 'main') {
         setStage('pending');

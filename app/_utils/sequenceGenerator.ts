@@ -48,8 +48,8 @@ const seqData = {
       [LANG_ENUM.KOR]: [hideCursor, 3000, showCursor, kor['hello']],
     },
     [THEME_ENUM.LIGHT]: {
-      [LANG_ENUM.ENG]: [hideCursor, 3900, showCursor, eng['hello']],
-      [LANG_ENUM.KOR]: [hideCursor, 3900, showCursor, kor['hello']],
+      [LANG_ENUM.ENG]: [hideCursor, 3200, showCursor, eng['hello']],
+      [LANG_ENUM.KOR]: [hideCursor, 3200, showCursor, kor['hello']],
     },
   },
   main: {
