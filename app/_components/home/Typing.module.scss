@@ -46,6 +46,19 @@
   }
 }
 
+.wrap-placehold {
+  position: relative;
+}
+
+.placeholder {
+  opacity: 0;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+}
+
 // typing related styles
 .hide-cursor {
   &::after {
