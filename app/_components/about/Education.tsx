@@ -1,7 +1,7 @@
 'use client';
 
 import useLangString from '@/app/_hooks/useLangString';
-import useWindowWidth from '@/app/_hooks/useWindowWidth';
+import useWindowSize from '@/app/_hooks/useWindowSize';
 import { RootState } from '@/app/_redux';
 import { LANG_ENUM } from '@/app/_redux/module/preferSlice';
 import { renderText } from '@/app/_utils';
@@ -13,7 +13,7 @@ import styles from './Education.module.scss';
 
 export function Education() {
   const strs = useLangString('about', 'edu');
-  const windowWidth = useWindowWidth();
+  const { windowWidth } = useWindowSize();
   const isSmall = windowWidth && windowWidth < 600 ? true : false;
   const isKor =
     useSelector((state: RootState) => state.prefer.lang) === LANG_ENUM.KOR;

@@ -1,7 +1,6 @@
 'use client';
 
 import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
-import useWindowWidth from '@/app/_hooks/useWindowWidth';
 import { RootState } from '@/app/_redux';
 import { StageType } from '@/app/page';
 import Image from 'next/image';
@@ -12,17 +11,17 @@ type Props = {
   stage: StageType;
   setStage: (state: StageType) => void;
   setStop: () => void;
+  size: string;
 };
 
-export default function ControlButton({ stage, setStage, setStop }: Props) {
+export default function ControlButton({
+  stage,
+  setStage,
+  setStop,
+  size,
+}: Props) {
   const routeTo = useCustomRouteTo();
   const theme = useSelector((state: RootState) => state.prefer.theme);
-
-  const windowWidth = useWindowWidth();
-  let size = '';
-  if (windowWidth && windowWidth <= 700) size = styles.medium;
-  if (windowWidth && windowWidth < 510) size = styles.small;
-  if (windowWidth && windowWidth < 355) size = styles.xsmall;
 
   // icons
   const skipIcon = (
@@ -81,7 +80,9 @@ export default function ControlButton({ stage, setStage, setStop }: Props) {
   else if (stage === 'pending') handleClick = handleClick = replay;
 
   return (
-    <div className={`${styles.wrapper} ${size}`}>
+    <div
+      className={`${styles.wrapper} ${size === 'small' ? styles.small : ''}`}
+    >
       <button className={className} onClick={handleClick}>
         <div className={styles.icon}>{icon}</div>
         <span>{iconName}</span>

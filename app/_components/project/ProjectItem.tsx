@@ -1,6 +1,6 @@
 'use client';
 
-import useWindowWidth from '@/app/_hooks/useWindowWidth';
+import useWindowSize from '@/app/_hooks/useWindowSize';
 import { renderText } from '@/app/_utils';
 import { ItemType } from '@/app/project/page';
 import Image from 'next/image';
@@ -15,7 +15,7 @@ type Props = {
 
 const ProjectItem = forwardRef(
   ({ item, id }: Props, ref: ForwardedRef<HTMLElement>) => {
-    const windowWidth = useWindowWidth();
+    const { windowWidth } = useWindowSize();
     let size = '';
     if (windowWidth && windowWidth <= 810) size = styles.large;
     if (windowWidth && windowWidth <= 745) size = styles.medium;

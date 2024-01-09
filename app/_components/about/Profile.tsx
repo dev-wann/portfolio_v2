@@ -2,7 +2,7 @@
 
 import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
 import useLangString from '@/app/_hooks/useLangString';
-import useWindowWidth from '@/app/_hooks/useWindowWidth';
+import useWindowSize from '@/app/_hooks/useWindowSize';
 import { renderText } from '@/app/_utils';
 import { useState } from 'react';
 import NeuTitle from '../common/NeuTitle';
@@ -13,7 +13,7 @@ import styles from './Profile.module.scss';
 
 export default function Profile() {
   const strs = useLangString('about', 'profile');
-  const windowWidth = useWindowWidth();
+  const { windowWidth } = useWindowSize();
   const routeTo = useCustomRouteTo();
 
   const [showDetails, setShowDetails] = useState(false);
