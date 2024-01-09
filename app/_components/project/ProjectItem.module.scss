@@ -185,7 +185,7 @@
 
   & > div:nth-child(1) {
     margin-top: 1rem;
-    height: 55vh;
+    height: clamp(0px, 55vh, calc(98vw - 1.5rem));
     img {
       width: fit-content;
       height: 100%;
