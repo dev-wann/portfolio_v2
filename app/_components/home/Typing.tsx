@@ -1,7 +1,6 @@
 'use client';
 
 import useLangString, { StrsType } from '@/app/_hooks/useLangString';
-import useWindowWidth from '@/app/_hooks/useWindowWidth';
 import { RootState } from '@/app/_redux';
 import {
   LANG_ENUM,
@@ -22,18 +21,14 @@ import styles from './Typing.module.scss';
 
 type Props = {
   stage: StageType;
+  size: string;
 };
 
-export default function Typing({ stage }: Props) {
+export default function Typing({ stage, size }: Props) {
   const prevRef = useRef<React.JSX.Element | null>(null);
   const theme = useSelector((state: RootState) => state.prefer.theme);
   const lang = useSelector((state: RootState) => state.prefer.lang);
   const strs = useLangString('home');
-
-  const windowWidth = useWindowWidth();
-  let size = '';
-  if (windowWidth && windowWidth < 510) size = styles.small;
-  if (windowWidth && windowWidth < 355) size = styles.xsmall;
 
   if (!theme || !lang || !strs) return <></>;
   let content: React.JSX.Element;
@@ -59,7 +54,8 @@ export default function Typing({ stage }: Props) {
     }
   }
 
-  let className = styles.wrapper + ' ' + size;
+  let className = styles.wrapper;
+  if (size === 'small') className += ' ' + styles.small;
   if (stage === 'closing') {
     className += ' hide-text';
   } else {

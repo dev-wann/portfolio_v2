@@ -4,42 +4,11 @@
 .wrapper {
   position: absolute;
   top: 70vh;
-  left: 50%;
-  translate: -50% 0;
-  width: 100%;
-  max-width: 1100px;
-  padding-left: 5%;
+  left: clamp(5vw, calc(51.5vw - 500px), 100%);
 
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  &.medium {
-    flex-direction: row;
-    top: 48vh;
-    scale: 1.25;
-    transform-origin: 0 0;
-  }
-  &.small {
-    flex-direction: row;
-    gap: 10px;
-    top: calc(8vh + 19rem);
-    left: 0;
-    translate: 0;
-    width: auto;
-    scale: 0.88;
-    transform-origin: 0 0;
-  }
-  &.xsmall {
-    flex-direction: row;
-    top: calc(5vh + 16rem);
-    margin-left: 10px;
-    left: -5px;
-    translate: 0;
-    width: auto;
-    scale: 0.67;
-    transform-origin: 0 0;
-  }
 }
 
 .btn {
@@ -57,6 +26,7 @@
   text-align: center;
 
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 10px;
 
@@ -68,7 +38,7 @@
   }
   span {
     display: inline-block;
-    flex-grow: 1;
+    flex-basis: 7rem;
   }
 
   &:hover {
@@ -76,6 +46,23 @@
   }
   &:active {
     box-shadow: none;
+  }
+}
+
+.small {
+  &.wrapper {
+    top: 52.5vh;
+    width: 90vw;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  button {
+    width: 48%;
+    text-wrap: nowrap;
+    font-size: clamp(3vw, 1.2rem, 4.8vw);
+  }
+  span {
+    flex-basis: auto;
   }
 }
 

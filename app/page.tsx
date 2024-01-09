@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import BackgroundVideo from './_components/home/BackgroundVideo';
 import ControlButton from './_components/home/ControlButton';
 import Typing from './_components/home/Typing';
+import useWindowSize from './_hooks/useWindowSize';
 import { RootState } from './_redux';
 import { VideoImageType } from './_utils/videoUtil';
 
@@ -25,6 +26,14 @@ export default function Home() {
     (state: RootState) => state.prefer.isHomeClosing
   );
 
+  // window size
+  const { windowWidth, windowHeight } = useWindowSize();
+  let size = '';
+  if (windowWidth && windowHeight) {
+    if (windowHeight >= windowWidth) size = 'small';
+    if (windowWidth <= 510) size = 'small';
+  }
+
   // resetart when theme/lang changed
   useEffect(() => {
     if (theme && lang) setStage('ready');
@@ -43,8 +52,13 @@ export default function Home() {
   return (
     <main>
       <BackgroundVideo stage={stage} setStage={setStage} stopFlag={stopFlag} />
-      <Typing stage={stage} />
-      <ControlButton stage={stage} setStage={setStage} setStop={setStop} />
+      <Typing stage={stage} size={size} />
+      <ControlButton
+        stage={stage}
+        setStage={setStage}
+        setStop={setStop}
+        size={size}
+      />
     </main>
   );
 }

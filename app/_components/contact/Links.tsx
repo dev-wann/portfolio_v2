@@ -1,7 +1,7 @@
 'use client';
 
 import useLangString from '@/app/_hooks/useLangString';
-import useWindowWidth from '@/app/_hooks/useWindowWidth';
+import useWindowSize from '@/app/_hooks/useWindowSize';
 import { RootState } from '@/app/_redux';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ import styles from './Links.module.scss';
 
 export default function Links() {
   const theme = useSelector((state: RootState) => state.prefer.theme);
-  const windowWidth = useWindowWidth();
+  const { windowWidth } = useWindowSize();
   const strs = useLangString('contact', 'links');
 
   let mainSize = 90;

@@ -1,7 +1,7 @@
 'use client';
 
 import useLangString from '@/app/_hooks/useLangString';
-import useWindowWidth from '@/app/_hooks/useWindowWidth';
+import useWindowSize from '@/app/_hooks/useWindowSize';
 import { RootState } from '@/app/_redux';
 import { THEME_ENUM } from '@/app/_redux/module/preferSlice';
 import Image from 'next/image';
@@ -12,7 +12,7 @@ import styles from './Skills.module.scss';
 
 export default function Skill() {
   // responsive
-  const windowWidth = useWindowWidth();
+  const { windowWidth } = useWindowSize();
   const isSmall = windowWidth && windowWidth < 600;
   const imgSize = isSmall ? 40 : 50;
 

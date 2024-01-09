@@ -4,7 +4,7 @@ import resStyle from '@/app/resume/resume.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import useWindowWidth from '../../_hooks/useWindowWidth';
+import useWindowSize from '../../_hooks/useWindowSize';
 import LangButton from './LangButton';
 import styles from './Navigation.module.scss';
 import ThemeButton from './ThemeButton';
@@ -18,7 +18,7 @@ export default function Navigation() {
 
   // find selected page
   const selectIdx = routes.findIndex((elem) => elem[1] === pathname);
-  const windowWidth = useWindowWidth(); // returns null when page is not loaded
+  const { windowWidth } = useWindowSize(); // returns null when page is not loaded
   const isSmall = windowWidth ? windowWidth < 600 : false;
 
   // first appearance effect

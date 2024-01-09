@@ -4,12 +4,12 @@ import NeuTitle from '../_components/common/NeuTitle';
 import DirectMessage from '../_components/contact/DirectMessage';
 import Links from '../_components/contact/Links';
 import useIntersectionObserver from '../_hooks/useIntersectionObserver';
-import useWindowWidth from '../_hooks/useWindowWidth';
+import useWindowSize from '../_hooks/useWindowSize';
 import styles from './Contact.module.scss';
 
 export default function Contact() {
   useIntersectionObserver();
-  const windowWidth = useWindowWidth();
+  const { windowWidth } = useWindowSize();
   const isSmall = !!(windowWidth && windowWidth < 600);
 
   return (
