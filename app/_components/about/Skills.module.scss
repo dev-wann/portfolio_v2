@@ -82,25 +82,6 @@
     }
   }
 }
-.placeholder {
-  div {
-    transition: color 1s !important;
-    background: linear-gradient(90deg, #f35626, #feab3a);
-    background-clip: text;
-    animation: hue 4s infinite linear;
-  }
-  &.select div {
-    color: transparent;
-  }
-}
-@keyframes hue {
-  from {
-    filter: hue-rotate(0deg);
-  }
-  to {
-    filter: hue-rotate(-360deg);
-  }
-}
 
 .category {
   display: flex;
@@ -140,10 +121,40 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    translate: -50% -53%;
+    translate: -50% -53% !important;
 
     font-size: 5rem;
     font-weight: 900;
+    transition: 1s color;
+
+    &::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      content: '</>';
+
+      color: transparent;
+      background: linear-gradient(90deg, #f35626, #feab3a);
+      animation: hue 4s infinite linear;
+      background-clip: text;
+      opacity: 0;
+      transition: 1s opacity;
+    }
+  }
+  &.select {
+    & > div:after {
+      opacity: 1;
+    }
+  }
+}
+@keyframes hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(-360deg);
   }
 }
 
