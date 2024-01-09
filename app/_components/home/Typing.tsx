@@ -31,7 +31,7 @@ export default function Typing({ stage, size }: Props) {
   const strs = useLangString('home');
 
   if (!theme || !lang || !strs) return <></>;
-  let content: React.JSX.Element;
+  let content: React.JSX.Element = <></>;
   switch (stage) {
     case 'idle':
     case 'ready':
@@ -62,7 +62,14 @@ export default function Typing({ stage, size }: Props) {
     prevRef.current = content;
   }
 
-  return <div className={className}>{content}</div>;
+  return (
+    <div className={className}>
+      <div className={styles['wrap-placehold']}>
+        <div className={styles.content}>{content}</div>
+        <div className={styles.placeholder}>{Pending(lang, strs)}</div>
+      </div>
+    </div>
+  );
 }
 
 // components for each sequence
