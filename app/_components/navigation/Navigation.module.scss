@@ -143,6 +143,7 @@
     left: 47px;
     transition: $tr-bold, $tr-color;
     z-index: 1;
+    color: var(--color-text);
   }
   input:checked ~ span {
     font-weight: bold;
