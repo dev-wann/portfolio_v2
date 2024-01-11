@@ -2,6 +2,7 @@
 
 import { Provider } from 'react-redux';
 import store from '../_redux';
+import Footer from './footer/Footer';
 import Navigation from './navigation/Navigation';
 
 export default function ReduxProvider({
@@ -13,7 +14,7 @@ export default function ReduxProvider({
     <Provider store={store}>
       <Navigation />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </Provider>
   );
 }

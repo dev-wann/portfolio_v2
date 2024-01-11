@@ -1,5 +1,6 @@
 import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
 import { showNavSelect } from '@/app/_hooks/useIntersectionObserver';
+import { routes } from '@/app/_utils';
 import resStyle from '@/app/resume/resume.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -55,14 +56,6 @@ export default function Navigation() {
     </>
   );
 }
-
-// [pageName, pathname]
-const routes = [
-  ['home', '/'],
-  ['about', '/about'],
-  ['project', '/project'],
-  ['contact', '/contact'],
-];
 
 function RoutesLarge({
   selectIdx,

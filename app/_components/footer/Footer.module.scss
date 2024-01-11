@@ -1,0 +1,48 @@
+@use '/app/_styles/variables.scss' as *;
+@use '/app/_styles/mixins.scss';
+
+.footer {
+  @include mixins.neumorphic-box-outer;
+  border-radius: 20px 20px 0 0;
+
+  width: calc(100% - 12px);
+  max-width: 800px;
+  height: 1.6rem;
+  padding: 6px;
+  margin: 2rem auto 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    color: var(--color-label);
+    font-size: 0.8rem;
+  }
+}
+
+.btn {
+  width: 7rem;
+  height: 1.6rem;
+  border-radius: 14px;
+  cursor: pointer;
+
+  color: var(--color-label);
+  font-weight: bold;
+  text-align: center;
+
+  transition: 0.6s color, $tr-bg, $tr-shd;
+  &:hover {
+    color: var(color-text);
+    @include mixins.neumorphic-box-inner-hover;
+    transition: 0.6s color, $tr-bg, $tr-shd;
+  }
+  &:active {
+    @include mixins.neumorphic-box-inner-s;
+    transition: 0.6s color, $tr-bg, $tr-shd;
+  }
+}
+
+.btn-placeholder {
+  width: 7rem;
+}
