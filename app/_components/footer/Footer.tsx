@@ -6,7 +6,7 @@ import styles from './Footer.module.scss';
 
 export default function Footer() {
   const { windowWidth } = useWindowSize();
-  const size = windowWidth && windowWidth < 420 ? 'small' : '';
+  const size = windowWidth && windowWidth < 450 ? 'small' : '';
 
   // find prev/next page
   const path = usePathname();
@@ -47,9 +47,9 @@ export default function Footer() {
       className="observe"
       style={path === '/' ? { visibility: 'hidden' } : undefined}
     >
-      <div className={styles.footer}>
+      <div className={`${styles.footer} ${styles[size]}`}>
         {prevBtn}
-        {size === 'small' ? <></> : <span>© 2024 Seungwan Cho</span>}
+        <span>Copyright © 2024 Seungwan Cho</span>
         {nextBtn}
       </div>
     </footer>
