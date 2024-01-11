@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../_redux';
 import preferSlice, {
@@ -32,19 +32,15 @@ export default function LangButton() {
   }, []);
 
   // handle language change
-  const onChangeHandler = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (isClosing) return;
-      const newLang = e.currentTarget.checked ? LANG_ENUM.KOR : LANG_ENUM.ENG;
-      if (path === '/') {
-        dispatch(changeLangDelayed({ newLang, time: 1600 }));
-      } else {
-        dispatch(preferSlice.actions.changeLang(newLang));
-      }
-    },
-    []
-  );
-
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isClosing) return;
+    const newLang = e.currentTarget.checked ? LANG_ENUM.KOR : LANG_ENUM.ENG;
+    if (path === '/') {
+      dispatch(changeLangDelayed({ newLang, time: 1600 }));
+    } else {
+      dispatch(preferSlice.actions.changeLang(newLang));
+    }
+  };
   // set input checked state
   if (langRef.current) {
     langRef.current.checked = lang === LANG_ENUM.KOR;
