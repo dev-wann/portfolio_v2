@@ -49,10 +49,10 @@
     }
 
     &.VALID {
-      border-color: $color-success;
+      border-color: $color-primary-1;
     }
     &.INVALID {
-      border-color: $color-fail;
+      border-color: $color-primary-3;
     }
   }
 
@@ -122,11 +122,11 @@
 }
 
 button.PENDING {
-  border-color: $color-pending;
+  border-color: $color-primary-2;
 }
 button.SUCCESS {
-  border-color: $color-success;
+  border-color: $color-primary-1;
 }
 button.FAIL {
-  border-color: $color-fail;
+  border-color: $color-primary-3;
 }
