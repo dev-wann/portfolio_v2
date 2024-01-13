@@ -5,9 +5,9 @@
   position: relative;
   max-height: 0;
   overflow: hidden;
-  transition: 0.6s max-height;
+  transition: 0.6s max-height ease-in-out;
   &.show {
-    max-height: 200px;
+    max-height: 5000px;
   }
 }
 

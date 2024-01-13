@@ -40,6 +40,10 @@ body {
   &.change-theme {
     --color-bg-box: none !important;
   }
+
+  --color-primary-1: #{$color-primary-1};
+  --color-primary-2: #{$color-primary-2};
+  --color-primary-3: #{$color-primary-3};
 }
 
 // default styles for html tags

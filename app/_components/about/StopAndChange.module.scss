@@ -1,0 +1,79 @@
+.stopAndChange {
+  position: relative;
+  height: 100px;
+}
+
+.stopsign {
+  position: relative;
+  width: 3.6rem;
+  height: 3.6rem;
+  top: 30px;
+  left: -0.3rem;
+  z-index: 1;
+
+  span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #e0e0e0;
+    font-weight: 900;
+  }
+}
+
+.outer {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(3px 3px 3px var(--color-shadow-dark))
+    drop-shadow(-3px -3px 3px var(--color-shadow-light));
+  fill: #e0e0e0;
+}
+
+.inner {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+}
+
+.lineLeft,
+.lineRight {
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+
+  svg {
+    position: absolute;
+    filter: drop-shadow(1px 1px 1px var(--color-shadow-dark))
+      drop-shadow(-1px -1px 1px var(--color-shadow-light));
+  }
+}
+
+.lineLeft {
+  top: -25px;
+  left: calc(1.5rem + 5px);
+  width: calc(50% - 1.5rem - 5px);
+
+  svg {
+    top: 0;
+    left: -10px;
+  }
+}
+
+.lineRight {
+  top: 0;
+  left: 50%;
+  width: 50%;
+
+  svg {
+    top: 20px;
+    right: calc(1.5rem - 5px);
+  }
+}
