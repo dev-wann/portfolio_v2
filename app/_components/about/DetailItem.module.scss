@@ -1,0 +1,69 @@
+@use '/app/_styles/mixins.scss';
+
+.grid {
+  display: grid;
+  column-gap: 0.5rem;
+
+  grid-template-rows: auto 1fr;
+  &.right {
+    grid-template-areas:
+      'year title media .'
+      'line desc media .';
+    grid-template-columns: auto 1fr 0.6fr auto;
+  }
+  &.left {
+    grid-template-areas:
+      '. media title year'
+      '. media desc line';
+    grid-template-columns: 0.5rem, 1fr 0.6fr auto;
+  }
+}
+
+.year {
+  grid-area: year;
+
+  @include mixins.neumorphic-box-outer-s;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.title {
+  grid-area: title;
+
+  display: flex;
+  align-items: center;
+
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.line {
+  grid-area: line;
+
+  @include mixins.neumorphic-box-outer-hover;
+  width: 10px;
+  margin: -30px calc(1.5rem - 5px);
+}
+
+.desc {
+  grid-area: desc;
+
+  text-indent: 1rem;
+  line-height: 1.2rem;
+}
+
+.media {
+  grid-area: media;
+
+  width: 100%;
+  border-radius: 12px;
+}

@@ -1,0 +1,59 @@
+@use '/app/_styles/variables.scss' as *;
+@use '/app/_styles/mixins.scss';
+
+.wrapper {
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  width: calc(50% - 143px);
+  height: 70px;
+  background-color: var(--color-bg);
+  transition: $tr-bg;
+
+  svg {
+    position: absolute;
+    top: -25px;
+    right: calc(1.5rem - 5px);
+  }
+}
+
+.arrow {
+  position: absolute;
+  width: 199px;
+  height: 166px;
+  top: 40px;
+  left: calc(50% - 56px);
+  overflow: hidden;
+  z-index: 1;
+
+  svg {
+    width: 194px;
+    height: 156px;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+}
+
+.line > svg,
+.arrow > svg {
+  filter: drop-shadow(1px 1px 1px var(--color-shadow-dark))
+    drop-shadow(-1px -1px 1px var(--color-shadow-light));
+}
+
+.title {
+  padding: 190px 6% 1rem;
+
+  p {
+    @include mixins.neumorphic-box-outer;
+    border-radius: 1rem;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
+  }
+}
