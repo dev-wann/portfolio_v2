@@ -4,8 +4,8 @@ export type DetailItemType = {
   title: string;
   year: number;
   desc: string;
-  mediaType: 'image' | 'video';
-  media: HTMLImageElement | HTMLImageElement[];
+  mediaType: 'image' | 'video' | 'none';
+  media: HTMLImageElement | HTMLImageElement[] | null;
   colors: { cur: string; next: string };
   position: 'left' | 'right';
 };
@@ -25,8 +25,8 @@ async function loadDetailItems(lang: LangValueType) {
   const items: DetailItemType[] = [];
   for (let i = 0; i < data[lang].length; i++) {
     const item = data[lang][i];
-    // const media = await createMedia(item.mediaSrc);
-    const media = new Image();
+    const media =
+      item.mediaType !== 'none' ? await createMedia(item.mediaSrc) : null;
     items.push({
       title: item.title,
       year: item.year,
@@ -80,7 +80,7 @@ const data = {
     {
       title: 'Born',
       year: 1994,
-      desc: 'I was born in Seoul, South Korea, and lived in this beautiful city until I finish my MS degree.',
+      desc: 'I was born in <b>Seoul, South Korea</b>, and lived in this city until I finish my MS degree.',
       mediaType: 'video',
       mediaSrc: new Array(240)
         .fill(undefined)
@@ -97,8 +97,8 @@ const data = {
       title: 'Got into Yonsei University',
       year: 2013,
       desc: 'I majored electrical and electronic engineering',
-      mediaType: 'image',
-      mediaSrc: '/images/about/yonsei.jpg',
+      mediaType: 'none',
+      mediaSrc: '',
       colors: { cur: bg, next: orange },
       position: 'right',
     },
@@ -106,7 +106,7 @@ const data = {
       title: 'Start MS in EE',
       year: 2017,
       desc: 'MS degree, but found myself fascinated with making experimental setups and programs.',
-      mediaType: 'image',
+      mediaType: 'none',
       mediaSrc: '',
       colors: { cur: orange, next: orange },
       position: 'right',
@@ -115,7 +115,7 @@ const data = {
       title: 'Publish a paper',
       year: 2018,
       desc: 'wrote a paper and decided to code asdf sa ds dasf dsaf sda asd fsdaf sdaf asf asdf dsaf sad asf as fjdsfl asdl fasjf asl fjksaf lasd fsdlak fjaslf askf jaskljfas',
-      mediaType: 'image',
+      mediaType: 'none',
       mediaSrc: '',
       colors: { cur: orange, next: orange },
       position: 'right',
@@ -124,7 +124,7 @@ const data = {
       title: 'stop and change',
       year: 0,
       desc: '',
-      mediaType: 'image',
+      mediaType: 'none',
       mediaSrc: '',
       colors: { cur: '', next: '' },
       position: 'right',
@@ -133,7 +133,7 @@ const data = {
       title: 'Start career as developer',
       year: 2019,
       desc: 'got into tmax and made some stuffs sadfklasdjfl;asdfkjaslkfj',
-      mediaType: 'image',
+      mediaType: 'none',
       mediaSrc: '',
       colors: { cur: green, next: green },
       position: 'left',
@@ -142,7 +142,7 @@ const data = {
       title: 'Start web development',
       year: 2021,
       desc: 'got into tmax and made some stuffs sadfklasdjfl;asdfkjaslkfj',
-      mediaType: 'image',
+      mediaType: 'none',
       mediaSrc: '',
       colors: { cur: green, next: green },
       position: 'left',
@@ -151,7 +151,7 @@ const data = {
       title: 'end',
       year: 0,
       desc: '',
-      mediaType: 'image',
+      mediaType: 'none',
       mediaSrc: '',
       colors: { cur: '', next: '' },
       position: 'left',

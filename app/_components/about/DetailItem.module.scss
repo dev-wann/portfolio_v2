@@ -7,15 +7,15 @@
   grid-template-rows: auto 1fr;
   &.right {
     grid-template-areas:
-      'year title media .'
-      'line desc media .';
-    grid-template-columns: auto 1fr 0.6fr auto;
+      'year title media'
+      'line desc media';
+    grid-template-columns: auto 1fr 0.6fr;
   }
   &.left {
     grid-template-areas:
       '. media title year'
       '. media desc line';
-    grid-template-columns: 0.5rem, 1fr 0.6fr auto;
+    grid-template-columns: 0.5rem, 1fr 0.6fr;
   }
 }
 

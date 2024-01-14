@@ -1,3 +1,4 @@
+import { renderText } from '@/app/_utils';
 import { DetailItemType } from '@/app/_utils/DetailsUtil';
 import { useEffect, useRef } from 'react';
 import styles from './DetailItem.module.scss';
@@ -35,7 +36,7 @@ export default function DetailItem({ item }: Props) {
         {item.year}
       </p>
       <p className={styles.title}>{item.title}</p>
-      <p className={styles.desc}>{item.desc}</p>
+      <p className={styles.desc}>{renderText(item.desc)}</p>
       <canvas
         className={styles.media}
         width={960}
