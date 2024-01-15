@@ -51,12 +51,41 @@
   p {
     @include mixins.neumorphic-box-outer;
     border-radius: 1rem;
-    padding: 1rem 0;
+    padding: 1rem 0.4rem;
     background: var(--color-primary-1);
 
     color: var(--color-text-strong);
     font-size: 1.5rem;
     font-weight: 900;
     text-align: center;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 0.2rem;
+  }
+}
+
+// responsive
+.small {
+  .line {
+    width: calc(50% - 60px);
+  }
+
+  .arrow {
+    width: 101px;
+    height: 127px;
+    left: calc(50% - 40px);
+    top: -3px;
+
+    svg {
+      width: 135px;
+      height: 100px;
+    }
+  }
+
+  .title {
+    padding-top: 115px;
   }
 }

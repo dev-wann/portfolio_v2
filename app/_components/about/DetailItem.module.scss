@@ -97,3 +97,22 @@
     object-fit: cover;
   }
 }
+
+// responsive
+.small {
+  .content {
+    flex-direction: column-reverse;
+  }
+  .desc {
+    flex-basis: auto;
+  }
+  .media {
+    flex-basis: auto;
+
+    img {
+      position: relative;
+      height: 100%;
+      max-height: 260px;
+    }
+  }
+}

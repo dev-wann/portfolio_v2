@@ -1,7 +1,21 @@
 import styles from './DetailItemEnd.module.scss';
 
-export default function DetailItemEnd() {
-  const line = (
+export default function DetailItemEnd({ isSmall }: { isSmall: boolean }) {
+  const line = isSmall ? (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="430"
+      height="55"
+      viewBox="0 0 430 55"
+      fill="none"
+    >
+      <path
+        d="M425 0V25C425 37.5 412.5 50 400 50H0"
+        stroke="var(--color-primary-1)"
+        stroke-width="10"
+      />
+    </svg>
+  ) : (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="455"
@@ -17,7 +31,28 @@ export default function DetailItemEnd() {
     </svg>
   );
 
-  const arrow = (
+  const arrow = isSmall ? (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="135"
+      height="100"
+      viewBox="0 0 135 100"
+      fill="none"
+    >
+      <path
+        d="M52.7376 56.2917L73.126 53.1917C73.8911 53.0777 74.6984 53.2857 75.3265 53.8297C76.462 54.8137 76.5828 56.5297 75.5923 57.6577L39.2768 99.0721L38.9567 99.3781C37.7971 100.332 36.0737 100.17 35.1154 99.0181L0.619973 57.6037C0.134774 57.0057 -0.102791 56.2117 0.0421649 55.3977C0.307917 53.9297 1.72526 52.9517 3.20099 53.2157L20.4809 56.3037C20.9017 52.7077 21.8036 48.7857 23.1707 44.7496C26.7321 34.2175 33.5209 22.7574 43.3698 14.0853C53.3154 5.32723 66.3634 -0.604828 82.3488 0.0491782C88.1712 0.28318 94.3761 1.39919 100.941 3.57521C102.004 3.84321 102.844 4.73922 102.981 5.88523C103.158 7.37325 102.087 8.72326 100.591 8.89726C80.4422 11.2833 68.7592 19.0034 61.9765 28.5475C55.9125 37.0775 53.6516 47.1856 52.7376 56.2917Z"
+        fill="var(--color-primary-1)"
+      />
+      <path
+        d="M80 2.21257e-09H135V10H80V2.21257e-09Z"
+        fill="var(--color-primary-1)"
+      />
+      <path
+        d="M76 3.42847L108.73 1.96044e-06L109.616 8.46596L76.8868 11.8944L76 3.42847Z"
+        fill="var(--color-primary-1)"
+      />
+    </svg>
+  ) : (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="194"
@@ -39,12 +74,16 @@ export default function DetailItemEnd() {
       />
     </svg>
   );
+
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${isSmall ? styles.small : ''}`}>
       <div className={styles.line}>{line}</div>
       <div className={styles.arrow}>{arrow}</div>
       <div className={styles.title}>
-        <p>Keep Diving into the Web Development</p>
+        <p>
+          <span>Keep Diving into the&nbsp;</span>
+          <span>Web Development</span>
+        </p>
       </div>
     </div>
   );
