@@ -3,19 +3,18 @@
 .grid {
   display: grid;
   column-gap: 0.5rem;
-
   grid-template-rows: auto 1fr;
   &.right {
     grid-template-areas:
-      'year title media'
-      'line desc media';
-    grid-template-columns: auto 1fr 0.6fr;
+      'year title'
+      'line content';
+    grid-template-columns: auto 1fr;
   }
   &.left {
     grid-template-areas:
-      '. media title year'
-      '. media desc line';
-    grid-template-columns: 0.5rem, 1fr 0.6fr;
+      'title year'
+      'content line';
+    grid-template-columns: 1fr auto;
   }
 }
 
@@ -32,6 +31,7 @@
   justify-content: center;
   align-items: center;
 
+  color: var(--color-text-strong);
   font-weight: bold;
   font-size: 0.8rem;
 }
@@ -45,6 +45,9 @@
   font-weight: bold;
   font-size: 1.5rem;
 }
+.left .title {
+  justify-content: right;
+}
 
 .line {
   grid-area: line;
@@ -54,16 +57,43 @@
   margin: -30px calc(1.5rem - 5px);
 }
 
-.desc {
-  grid-area: desc;
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+}
+.left .content {
+  flex-direction: row-reverse;
+}
 
+.desc {
+  flex-basis: 60%;
   text-indent: 1rem;
   line-height: 1.2rem;
+  word-break: keep-all;
+
+  span {
+    color: var(--color-label);
+    font-size: 0.9em;
+  }
 }
 
 .media {
-  grid-area: media;
+  flex-basis: 40%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
 
-  width: 100%;
-  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    position: absolute;
+    width: 100%;
+    max-height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
 }

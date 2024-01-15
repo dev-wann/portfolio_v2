@@ -1,17 +1,15 @@
 import { RootState } from '@/app/_redux';
-import { DetailItemType, getDetailItems } from '@/app/_utils/DetailsUtil';
-import { useEffect, useState } from 'react';
+import { getDetailItems } from '@/app/_utils/DetailsUtil';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import DetailItem from './DetailItem';
 import styles from './Details.module.scss';
 
 export default function Details({ show }: { show: boolean }) {
-  const [items, setItems] = useState<DetailItemType[]>([]);
   const lang = useSelector((state: RootState) => state.prefer.lang);
-
-  useEffect(() => {
-    if (!lang) return;
-    getDetailItems(lang).then((res) => setItems(res));
+  const items = useMemo(() => {
+    if (!lang) return [];
+    return getDetailItems(lang);
   }, [lang]);
 
   // render
@@ -19,7 +17,7 @@ export default function Details({ show }: { show: boolean }) {
     <div className={`${styles.detailsWrapper} ${show ? styles.show : ''}`}>
       <div className={styles.details}>
         {items.map((item) => (
-          <DetailItem item={item} key={item.title} />
+          <DetailItem item={item} key={`${item.title}-${lang}`} />
         ))}
       </div>
     </div>

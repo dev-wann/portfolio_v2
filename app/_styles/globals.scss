@@ -86,6 +86,7 @@ p,
 span,
 label {
   transition: $tr-color;
+  word-break: keep-all;
 }
 img {
   transition: $tr-op;
