@@ -1,6 +1,7 @@
 import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
 import useWindowSize from '@/app/_hooks/useWindowSize';
 import { routes } from '@/app/_utils';
+import resStyle from '@/app/resume/resume.module.scss';
 import { usePathname } from 'next/navigation';
 import styles from './Footer.module.scss';
 
@@ -46,6 +47,7 @@ export default function Footer() {
     <footer
       className="observe"
       style={path === '/' ? { visibility: 'hidden' } : undefined}
+      id={resStyle.footer}
     >
       <div className={`${styles.footer} ${styles[size]}`}>
         {prevBtn}
