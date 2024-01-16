@@ -12,7 +12,7 @@ export default function DetailItemEnd({ isSmall }: { isSmall: boolean }) {
       <path
         d="M425 0V25C425 37.5 412.5 50 400 50H0"
         stroke="var(--color-primary-1)"
-        stroke-width="10"
+        strokeWidth="10"
       />
     </svg>
   ) : (
@@ -26,7 +26,7 @@ export default function DetailItemEnd({ isSmall }: { isSmall: boolean }) {
       <path
         d="M450 0V25C450 50 425 75 400 75H0"
         stroke="var(--color-primary-1)"
-        stroke-width="10"
+        strokeWidth="10"
       />
     </svg>
   );
