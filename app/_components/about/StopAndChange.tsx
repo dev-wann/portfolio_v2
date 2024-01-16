@@ -37,9 +37,9 @@ export default function StopAndChange() {
           width="96"
           height="96"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -98,7 +98,7 @@ export default function StopAndChange() {
       <path
         d="M855 50H55C30 50 5 25 5 0"
         stroke="var(--color-primary-1)"
-        stroke-width="10"
+        strokeWidth="10"
       />
     </svg>
   );
@@ -113,7 +113,7 @@ export default function StopAndChange() {
       <path
         d="M0 5H800C825 5 850 30 850 55V155"
         stroke="var(--color-primary-1)"
-        stroke-width="10"
+        strokeWidth="10"
       />
     </svg>
   );
