@@ -164,7 +164,7 @@ textarea {
     transition: $tr-color, opacity 0.3s,
       $tr-shd cubic-bezier(0.47, 2, 0.41, 0.75),
       translate 0.6s cubic-bezier(0.47, 2, 0.41, 0.75),
-      filter 0.6s cubic-bezier(0.47, 2, 0.41, 0.75) !important;
+      filter 0.6s cubic-bezier(0.47, 2, 0.41, 0.75), border-color 0.3s !important;
     &::placeholder {
       color: transparent;
     }
