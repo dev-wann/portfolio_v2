@@ -12,7 +12,7 @@
   overflow: hidden;
   width: calc(50% - 143px);
   height: 70px;
-  background-color: var(--color-bg);
+  background-color: var(--color-bg) !important;
   transition: $tr-bg;
 
   svg {
@@ -46,7 +46,7 @@
 }
 
 .title {
-  padding: 172px 6% 1rem;
+  padding: 172px 6% 0;
 
   p {
     @include mixins.neumorphic-box-outer;

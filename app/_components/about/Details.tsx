@@ -15,7 +15,7 @@ export default function Details({ show }: { show: boolean }) {
   // render
   return (
     <div className={`${styles.detailsWrapper} ${show ? styles.show : ''}`}>
-      <div className={styles.details}>
+      <div className={styles.details + ' observe_0'}>
         {items.map((item) => (
           <DetailItem item={item} key={`${item.title}-${lang}`} />
         ))}

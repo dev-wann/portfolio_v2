@@ -15,20 +15,35 @@ let isAnimating = false;
 
 export default function useIntersectionObserver() {
   useEffect(() => {
-    targets = Array.from(document.body.getElementsByClassName('observe'));
-    const observer = new IntersectionObserver(callback, { threshold: 0.4 });
-    targets.forEach((target) => {
-      if (target.classList.contains('text')) {
-        target.classList.add('hide-text');
-      } else if (target.classList.contains('box')) {
-        target.classList.add('hide-box');
-      } else {
-        target.classList.add('hide-box', 'hide-text');
-      }
-      observer.observe(target);
-    });
+    // _x_x means threshold (ex. _0_4 === 0.4)
+    const targets_0_4 = Array.from(
+      document.body.getElementsByClassName('observe')
+    );
+    const targets_0 = Array.from(
+      document.body.getElementsByClassName('observe_0')
+    );
 
-    animate(animateQueue, observer);
+    // create observer and enroll items
+    const enrollObserve = (elem: Element, obs: IntersectionObserver) => {
+      if (elem.classList.contains('text')) {
+        elem.classList.add('hide-text');
+      } else if (elem.classList.contains('box')) {
+        elem.classList.add('hide-box');
+      } else {
+        elem.classList.add('hide-box', 'hide-text');
+      }
+      obs.observe(elem);
+    };
+
+    const observer = new IntersectionObserver(callback, { threshold: 0.4 });
+    targets_0_4.forEach((target) => enrollObserve(target, observer));
+
+    const observer_0 = new IntersectionObserver(callback, { threshold: 0 });
+    targets_0.forEach((target) => enrollObserve(target, observer_0));
+
+    targets.push(...targets_0_4, ...targets_0);
+
+    setTimeout(() => animate(animateQueue), 0);
 
     return () => {
       cleanUp(observer);
@@ -65,10 +80,9 @@ function callback(
 ) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      const target = targets.find((item) => item === entry.target);
-      if (!target) return;
-
+      const target = entry.target;
       let type;
+
       if (target.classList.contains('text')) type = AnimateType.text;
       else if (target.classList.contains('box')) type = AnimateType.box;
       else type = AnimateType.both;
@@ -89,7 +103,7 @@ function cleanUp(observer: IntersectionObserver) {
 }
 
 // animaitng functions
-async function animate(queue: AnimateData[], observer: IntersectionObserver) {
+async function animate(queue: AnimateData[]) {
   if (isAnimating) return;
 
   const item = queue.shift();
@@ -97,11 +111,11 @@ async function animate(queue: AnimateData[], observer: IntersectionObserver) {
     isAnimating = true;
     await show(item);
     isAnimating = false;
-    animate(queue, observer);
+    animate(queue);
   } else {
     timeoutIds.push(
       setTimeout(() => {
-        animate(queue, observer);
+        animate(queue);
       }, 200)
     );
   }
