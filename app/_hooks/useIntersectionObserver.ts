@@ -43,7 +43,7 @@ export default function useIntersectionObserver() {
 
     targets.push(...targets_0_4, ...targets_0);
 
-    setTimeout(() => animate(animateQueue), 0);
+    setTimeout(() => animate(animateQueue), 300);
 
     return () => {
       cleanUp(observer);
