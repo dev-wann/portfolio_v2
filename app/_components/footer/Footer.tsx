@@ -15,7 +15,7 @@ export default function Footer() {
   let prevIdx: number | null = null;
   let nextIdx: number | null = null;
   if (curIdx > 0) prevIdx = curIdx - 1;
-  if (curIdx < routes.length - 1) nextIdx = curIdx + 1;
+  if (curIdx !== -1 && curIdx < routes.length - 1) nextIdx = curIdx + 1;
 
   // buttons to prev/next page
   const routesTo = useCustomRouteTo();
