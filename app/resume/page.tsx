@@ -15,16 +15,32 @@ export default function Resume() {
   const langClassname = lang === LANG_ENUM.ENG ? styles.eng : '';
 
   // buttons
-  const downloadBtn = <button>Download</button>;
+  const downloadBtn = (
+    <button className={styles['download-btn']}>
+      <Link
+        href={`/resume_${lang}.pdf`}
+        download={`resume_SeungwanCho_${lang === LANG_ENUM.ENG ? 'en' : 'kr'}`}
+        target="_blank"
+      >
+        <Image
+          src="/images/resume/download.svg"
+          width={50}
+          height={50}
+          alt="download button"
+        />
+      </Link>
+    </button>
+  );
+
   const printBtn = (
     <button
       className={styles['print-btn']}
       onClick={() => {
-        window?.print();
+        window.print();
       }}
     >
       <Image
-        src="/images/about/print.svg"
+        src="/images/resume/print.svg"
         width={50}
         height={50}
         alt="print button"
@@ -55,6 +71,7 @@ export default function Resume() {
     <div className={`${styles['page-wrapper']} ${langClassname}`}>
       <div className={styles.page} id="resume">
         {/* buttons */}
+        {downloadBtn}
         {printBtn}
 
         {/* header of the first page */}
