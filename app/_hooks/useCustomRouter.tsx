@@ -1,3 +1,4 @@
+import resStyle from '@/app/resume/resume.module.scss';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { usePathname, useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
@@ -22,6 +23,9 @@ export default function useCustomRouteTo() {
         dispatch(preferSlice.actions.setHomeClosing(true));
         await delay(1600);
         dispatch(preferSlice.actions.setHomeClosing(false));
+      } else if (curPath === '/resume') {
+        document.querySelector('#resume')?.classList.add(resStyle.hide);
+        await delay(600);
       }
       push(router, newPath);
     })();
