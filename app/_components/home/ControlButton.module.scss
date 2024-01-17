@@ -42,10 +42,10 @@
   }
 
   &:hover {
-    @include mixins.neumorphic-box-outer-hover;
+    @include mixins.neumorphic-box-outer-s;
   }
   &:active {
-    box-shadow: none;
+    @include mixins.neumorphic-box-outer-hover;
   }
 }
 
