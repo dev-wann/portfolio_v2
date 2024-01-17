@@ -50,9 +50,10 @@ export default function Resume() {
   );
 
   // render
+  if (!lang) return <></>;
   return (
     <div className={`${styles['page-wrapper']} ${langClassname}`}>
-      <div className={styles.page}>
+      <div className={styles.page} id="resume">
         {/* buttons */}
         {printBtn}
 
