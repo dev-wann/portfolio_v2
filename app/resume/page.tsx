@@ -2,12 +2,17 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import useLangString from '../_hooks/useLangString';
+import { RootState } from '../_redux';
+import { LANG_ENUM } from '../_redux/module/preferSlice';
 import { renderText } from '../_utils';
 import styles from './resume.module.scss';
 
 export default function Resume() {
   const strs = useLangString('resume');
+  const lang = useSelector((state: RootState) => state.prefer.lang);
+  const langClassname = lang === LANG_ENUM.ENG ? styles.eng : '';
 
   // buttons
   const downloadBtn = <button>Download</button>;
@@ -46,7 +51,7 @@ export default function Resume() {
 
   // render
   return (
-    <div className={styles['page-wrapper']}>
+    <div className={`${styles['page-wrapper']} ${langClassname}`}>
       <div className={styles.page}>
         {/* buttons */}
         {printBtn}
@@ -127,8 +132,10 @@ export default function Resume() {
           <div className={styles.edu}>
             <p className={styles.title}>Education</p>
             <p className={styles.degree}>{strs?.ms}</p>
+            <p className={styles.yonsei}>{strs?.yonsei}</p>
             <p className={styles.period}>2017.03 ~ 2019.08</p>
             <p className={styles.degree}>{strs?.bs}</p>
+            <p className={styles.yonsei}>{strs?.yonsei}</p>
             <p className={styles.period}>2013.03 ~ 2017.02</p>
           </div>
         </div>

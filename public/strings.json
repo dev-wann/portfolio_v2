@@ -104,7 +104,7 @@
       "header1": "조승완입니다",
       "aboutDesc": "2019년부터 소프트웨어 연구원으로 일하며 개발자의 길을 걷고 있습니다.<br/>현업에서는 Web/Electron 문서 편집 앱의 프론트엔드 파트를 주로 개발하였습니다.<br/>'해보지 않으면 모른다'라는 말을 모토로 이것 저것 시도해보는 것을 좋아합니다.",
       "interestDesc": "직관적으로 사용법을 이해가기 쉽고<br/>자연스레 사용자의 행동을 유도하며<br/>효율적이고 미니멀한 디자인을 가진<br/>UI/UX 개발에 관심이 많습니다.",
-      "contactDesc": "휴대폰: 010-xxxx-xxxx<br/>이메일: swcho8220@gmail.com<br/>깃허브: https://github.com/dev-wann<br/>블로그: https://dev-wann.tistory.com",
+      "contactDesc": "휴대폰: 010-5437-6062<br/>이메일: swcho8220@gmail.com<br/>깃허브: https://github.com/dev-wann<br/>블로그: https://dev-wann.tistory.com",
       "role": "소프트웨어 연구원",
       "officeDesc": "<p>Web/Electron 문서 편집 앱인 'SuperOffice' 제품을 개발하였습니다. 사용자 간 실시간 공동 편집을 지원하는 Google Docs, Slides, Sheets와 비슷한 앱입니다.</p><p>Word processor 및 presentation 앱의 표 개체 공통 기능 개발을 담당하였으며 프로젝트의 시작부터 배포까지 참여하였습니다.</p>",
       "officeList0": "20개 이상의 표 개체 편집 관련 UI 개발",
@@ -224,6 +224,32 @@
         "msg": "Message",
         "placeholder": "Hello there!  Would you like to start a new project with me?"
       }
+    },
+
+    "resume": {
+      "header0": "Web developer",
+      "header1": "Seungwan Cho",
+      "aboutDesc": "Started my career at 2019 as a software engineer.<br/>In the field, I developed the front-end part of a document editing apps.<br/>With my motto 'you never know until you try', I love to try various things.",
+      "interestDesc": "Developing UX/UI that is<br/>intuitive and easy to understand,<br/>naturally driving user's behavior,<br>and has minimalistic design.",
+      "contactDesc": "Phone: (+82)10-5437-6062<br/>Email: swcho8220@gmail.com<br/>Github: https://github.com/dev-wann<br/>Blog: https://dev-wann.tistory.com",
+      "role": "Software Engineer",
+      "officeDesc": "<p>Developed a web/Electron document editing application suite called 'SuperOffice', which is similar to Google Docs, Slides, and Sheets.</p><p>Was responsible for developing 'table'-related common components and features for apps. Participated from the start to distribution.</p>",
+      "officeList0": "Developed over 20 UI features",
+      "officeList1": "Developed client-side document information management model using the MVC pattern",
+      "officeList2": "Improve rendering peformance by 70% with JS command handling logic and MobX optimization",
+      "officeList3": "Develped real-time multi-user editing feature",
+      "officeList4": "Developed Blink custom layout algorithm for document pagination",
+      "ancDesc": "<p>Developed a desktop document editing program suite called 'ToOffice', which is similiar to MS Word, PowerPoint, Excel, Outlook.</p><p>Was responsible for developing 'table'-related UI features and document layout algorithms.</p>",
+      "ancList0": "Developed over 10 UI features",
+      "ancList1": "Improved performance by 30% with layout algorithm optimization",
+      "ancList2": "Developed complex layout algorithms including text wrap and nested table",
+      "ancList3": "Developed parser and writer for OOXML files",
+      "portfolio": "Portfolio page",
+      "portfolioDesc": "<p>Designed with the concept of Neumorphism. Used Next.js, TypeScript, Redux, SCSS to build.</p><p>Provides theme and language selection feature, and an email seding feature using nodemailer.</p>",
+      "ms": "M.S. in Electrical and Electornic Engineering",
+      "bs": "B.S. in Electrical and Electornic Engineering",
+      "yonsei": "Yonsei University, South Korea",
+      "footnote": "This resume is written on letter paper size."
     }
   }
 }
