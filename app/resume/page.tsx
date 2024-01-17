@@ -82,15 +82,15 @@ export default function Resume() {
         <div className={styles.intro}>
           <div className={styles.about}>
             <p className={styles['intro-title']}>About</p>
-            <p>{renderText(strs?.aboutDesc)}</p>
+            <div>{renderText(strs?.aboutDesc)}</div>
           </div>
           <div className={styles.interest}>
             <p className={styles['intro-title']}>Interest</p>
-            <p>{renderText(strs?.interestDesc)}</p>
+            <div>{renderText(strs?.interestDesc)}</div>
           </div>
           <div className={styles.contact}>
             <p className={styles['intro-title']}>Contact</p>
-            <p>{renderText(strs?.contactDesc)}</p>
+            <div>{renderText(strs?.contactDesc)}</div>
           </div>
         </div>
 
@@ -130,7 +130,7 @@ export default function Resume() {
               {strs?.portfolio} {link}
             </p>
             <p className={styles.period}>2023.12 ~ 2024.01</p>
-            <p className={styles.desc}>{renderText(strs?.portfolioDesc)}</p>
+            <div className={styles.desc}>{renderText(strs?.portfolioDesc)}</div>
           </div>
 
           {/* skills */}
