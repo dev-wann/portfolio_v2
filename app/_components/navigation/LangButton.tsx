@@ -29,7 +29,7 @@ export default function LangButton() {
         navigator.language === LANG_ENUM.KOR ? LANG_ENUM.KOR : LANG_ENUM.ENG;
     }
     dispatch(preferSlice.actions.changeLang(defaultLang));
-  }, []);
+  }, [dispatch]);
 
   // handle language change
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

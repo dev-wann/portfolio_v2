@@ -53,7 +53,7 @@ export default function BackgroundVideo({ stage, setStage, stopFlag }: Props) {
         setStage('pending');
       }
     });
-  }, [stage]);
+  }, [stage, setStage, theme]);
 
   // render
   return (

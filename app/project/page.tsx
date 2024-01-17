@@ -49,7 +49,7 @@ export default function Project() {
     targets.forEach((elem) => {
       if (elem) observer.observe(elem);
     });
-  }, []);
+  }, [items.length]);
 
   // render
   return (
