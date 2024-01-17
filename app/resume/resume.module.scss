@@ -50,7 +50,7 @@
     translate: 0 0;
   }
   100% {
-    translate: 0 31cm;
+    translate: 0 31.5cm;
   }
 }
 
@@ -216,8 +216,14 @@
   color: transparent;
 }
 
-// styles for english version
+.placeholder {
+  height: 33cm;
+}
+.eng ~ .placeholder {
+  height: 12.3in;
+}
 
+// styles for english version
 .eng {
   &.page-wrapper {
     height: 11.5in;
