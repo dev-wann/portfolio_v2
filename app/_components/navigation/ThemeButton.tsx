@@ -31,7 +31,7 @@ export default function ThemeButton() {
         : THEME_ENUM.LIGHT;
     }
     dispatch(preferSlice.actions.changeTheme(defaultTheme));
-  }, []);
+  }, [dispatch]);
 
   //handle theme change
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
