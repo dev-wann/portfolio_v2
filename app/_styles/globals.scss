@@ -102,6 +102,9 @@ ul {
   list-style: disc !important;
   padding-left: 1.4rem !important;
 }
+li {
+  word-break: keep-all;
+}
 
 input,
 textarea {

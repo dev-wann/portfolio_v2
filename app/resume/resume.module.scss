@@ -301,9 +301,9 @@
   }
   .page-wrapper {
     padding-top: 0 !important;
-    height: 29.7cm;
+    height: 29.7cm !important;
     &.eng {
-      height: 11in;
+      height: 11in !important;
     }
   }
   .page {
@@ -318,5 +318,8 @@
   .footnote {
     display: none !important;
     height: 0;
+  }
+  .placeholder {
+    display: none;
   }
 }
