@@ -28,8 +28,9 @@ export default function Project() {
 
   useEffect(() => {
     // show second item first
-    if (window.location.hash === '' && initRef.current?.offsetTop) {
-      scrollTo(0, initRef.current.offsetTop);
+    const scrollTarget = initRef.current?.offsetTop;
+    if (window.location.hash === '' && scrollTarget) {
+      setTimeout(() => scrollTo(0, scrollTarget));
     }
 
     // observer for sidebar tracking
