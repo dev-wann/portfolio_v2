@@ -87,10 +87,12 @@ async function fetchVideoImages(theme: ThemeValueType) {
     const promise = new Promise<string>((resolve) => {
       let elem = type === 'main' ? data.main : new Image();
       elem.src = pathMaker(type, idx);
-      if (type === 'main') {
-        (elem as HTMLVideoElement).muted = true;
+      if (type === 'main' && elem instanceof HTMLVideoElement) {
+        elem.muted = true;
+        elem.autoplay = true;
+        elem.playsInline = true;
         elem.addEventListener('loadeddata', () => resolve(''));
-      } else if (elem instanceof HTMLImageElement) {
+      } else if (type !== 'main' && elem instanceof HTMLImageElement) {
         elem.addEventListener('load', () => resolve(''));
         data[type].push(elem);
       }
