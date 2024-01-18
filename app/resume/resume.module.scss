@@ -9,6 +9,7 @@
   height: 31cm;
   padding-top: 5rem;
   overflow: hidden;
+  min-width: 21cm;
 }
 
 .page {
@@ -227,6 +228,7 @@
 .eng {
   &.page-wrapper {
     height: 11.5in;
+    min-width: 8.5in;
   }
 
   .page {
