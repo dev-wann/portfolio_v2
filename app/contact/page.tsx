@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import NeuTitle from '../_components/common/NeuTitle';
 import DirectMessage from '../_components/contact/DirectMessage';
 import Links from '../_components/contact/Links';
@@ -11,6 +12,8 @@ export default function Contact() {
   useIntersectionObserver();
   const { windowWidth } = useWindowSize();
   const isSmall = !!(windowWidth && windowWidth < 600);
+
+  useEffect(() => window.scrollTo(0, 0)); // for mobile
 
   return (
     <div className={`${styles.wrapper} container-800`}>
