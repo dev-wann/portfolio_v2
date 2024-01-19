@@ -46,11 +46,13 @@ export const changeLangDelayed = createAsyncThunk<
 
 // Slice
 let timeoutId: NodeJS.Timeout | null = null;
+
 const initialState: {
   lang: LangValueType | null;
   theme: ThemeValueType | null;
   isHomeClosing: boolean;
 } = { lang: null, theme: null, isHomeClosing: false };
+
 const preferSlice = createSlice({
   name: 'prefer',
   initialState,

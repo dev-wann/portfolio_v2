@@ -1,15 +1,18 @@
 import resStyle from '@/app/resume/resume.module.scss';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { usePathname, useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../_redux';
+import { changeStageAndPlay } from '../_redux/module/homeStageSlice';
 import preferSlice from '../_redux/module/preferSlice';
 import { delay } from '../_utils';
 import { clearPage, hideNavSelect } from './useIntersectionObserver';
 
 export default function useCustomRouteTo() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const curPath = usePathname();
+  const theme = useSelector((state: RootState) => state.prefer.theme);
 
   const routeTo = (newPath: string, e?: React.MouseEvent) => {
     if (e) e.preventDefault();
@@ -21,9 +24,14 @@ export default function useCustomRouteTo() {
       if (curPath === '/') {
         // at home page, wait until closing sequence ends
         dispatch(preferSlice.actions.setHomeClosing(true));
-        await delay(1600);
+        if (theme) dispatch(changeStageAndPlay({ stage: 'closing', theme }));
+
+        await delay(2000);
+
         dispatch(preferSlice.actions.setHomeClosing(false));
+        if (theme) dispatch(changeStageAndPlay({ stage: 'idle', theme }));
       } else if (curPath === '/resume') {
+        dispatch(preferSlice.actions.setHomeClosing(false));
         document.querySelector('#resume')?.classList.add(resStyle.hide);
         await delay(600);
       }

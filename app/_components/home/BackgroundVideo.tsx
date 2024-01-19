@@ -1,79 +1,78 @@
 'use client';
 
-import { RootState } from '@/app/_redux';
-import {
-  drawFallbackImage,
-  getVideoImages,
-  playVideo,
-  stopVideo,
-} from '@/app/_utils/videoUtil';
-import { StageType } from '@/app/page';
-import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/app/_redux';
+import homeStageSlice from '@/app/_redux/module/homeStageSlice';
+import { getCurrentVideo } from '@/app/_utils/stageUtil';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './BackgroundVideo.module.scss';
 
-type Props = {
-  stage: StageType;
-  setStage: (state: StageType) => void;
-  stopFlag: number;
-};
+export default function BackgroundVideo() {
+  const dispatch = useDispatch<AppDispatch>();
+  const stage = useSelector((state: RootState) => state.homeStage.stage);
+  const videoType = useSelector(
+    (state: RootState) => state.homeStage.videoType
+  );
 
-export default function BackgroundVideo({ stage, setStage, stopFlag }: Props) {
-  const theme = useSelector((state: RootState) => state.prefer.theme);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [error, setError] = useState<string | null>(null);
+  // show/hide canvas according to the stage
+  let canvasClassname = '';
+  switch (stage) {
+    case 'opening':
+      canvasClassname = styles.opening;
+      break;
+    case 'closing':
+      canvasClassname = styles.closing;
+      break;
+    case 'idle':
+    case 'ready':
+      canvasClassname = styles.hide;
+      break;
+    default:
+      break;
+  }
+  stage === 'opening'
+    ? styles.opening
+    : stage === 'closing'
+    ? styles.closing
+    : '';
 
-  // id to interrupt promise while playing video
-  const stopId = useRef<string | null>(null);
-  const stopRequest = useRef<string[]>([]);
-
+  // draw video to canvas
   useEffect(() => {
-    if (stopId.current) stopRequest.current.push(stopId.current);
-    stopVideo();
-  }, [stopFlag]);
+    if (!videoType || !canvasRef.current) return;
 
-  // play video in order
-  useEffect(() => {
-    if (theme === null || stage === 'idle' || stage === 'pending') return;
+    const video = getCurrentVideo();
+    if (!video) return;
 
     // play video
-    getVideoImages(theme)
-      .then(async (res) => {
-        if (!canvasRef.current) return;
-        const newId = window.crypto.randomUUID();
-        if (stage !== 'ready') {
-          stopId.current = newId;
-          await playVideo(canvasRef.current, res[stage]);
-        }
+    const setFinished = () =>
+      dispatch(homeStageSlice.actions.setStageFinished(true));
+    video.addEventListener('ended', setFinished);
+    video.play();
 
-        // stop by interruption
-        const idx = stopRequest.current.indexOf(newId);
-        if (idx !== -1) {
-          stopRequest.current.splice(idx, 1);
-          return;
-        }
+    // draw 30fps
+    const context = canvasRef.current.getContext('2d');
+    const intervalId = setInterval(
+      () => context?.drawImage(video, 0, 0),
+      1000 / 30
+    );
 
-        // set next stage
-        if (stage === 'ready') {
-          setStage('opening');
-        } else if (stage === 'opening') {
-          setStage('main');
-        } else if (stage === 'main') {
-          setStage('pending');
-        }
-      })
-      .catch((error) => {
-        setError(`Error: ${error}`);
-        if (canvasRef.current) drawFallbackImage(canvasRef.current, theme);
-        setStage('pending');
-      });
-  }, [stage, setStage]);
+    // cleanup
+    return () => {
+      video.removeEventListener('ended', setFinished);
+      clearInterval(intervalId);
+    };
+  }, [videoType]);
 
   // render
   return (
     <div className={styles.wrapper}>
-      <canvas width={2146} height={1080} ref={canvasRef} />
-      {error ? <div className={styles.error}>{error}</div> : <></>}
+      <canvas
+        className={canvasClassname}
+        width={2146}
+        height={1080}
+        ref={canvasRef}
+      />
     </div>
   );
 }

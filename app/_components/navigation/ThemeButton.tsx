@@ -1,5 +1,9 @@
 'use client';
 
+import {
+  changeStageAndPlay,
+  changeStageTo,
+} from '@/app/_redux/module/homeStageSlice';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef } from 'react';
@@ -35,12 +39,20 @@ export default function ThemeButton() {
 
   //handle theme change
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // ignore duplicated requests
     if (isClosing) return;
+
+    // new theme to apply
     const newTheme = e.currentTarget.checked
       ? THEME_ENUM.DARK
       : THEME_ENUM.LIGHT;
+
     if (path === '/') {
-      dispatch(changeThemeDelayed({ newTheme, time: 2100 }));
+      // in case of home, wait until closing sequence ends, and then start ready sequence
+      if (theme) dispatch(changeStageAndPlay({ stage: 'closing', theme }));
+      dispatch(changeThemeDelayed({ newTheme, time: 2100 })).then(() => {
+        dispatch(changeStageTo({ stage: 'ready', theme: newTheme }));
+      });
     } else {
       dispatch(preferSlice.actions.changeTheme(newTheme));
     }
