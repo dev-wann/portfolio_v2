@@ -73,7 +73,7 @@ export default function ControlButton({
     setStage('closing');
     setTimeout(() => {
       setStage('opening');
-    }, 1600);
+    }, 2100);
   };
   let handleClick = (e: React.MouseEvent) => {};
   if (stage === 'opening' || stage === 'main') handleClick = skip;

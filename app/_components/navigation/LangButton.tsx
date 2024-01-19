@@ -36,7 +36,7 @@ export default function LangButton() {
     if (isClosing) return;
     const newLang = e.currentTarget.checked ? LANG_ENUM.KOR : LANG_ENUM.ENG;
     if (path === '/') {
-      dispatch(changeLangDelayed({ newLang, time: 1600 }));
+      dispatch(changeLangDelayed({ newLang, time: 2100 }));
     } else {
       dispatch(preferSlice.actions.changeLang(newLang));
     }

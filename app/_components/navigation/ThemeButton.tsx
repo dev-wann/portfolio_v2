@@ -40,7 +40,7 @@ export default function ThemeButton() {
       ? THEME_ENUM.DARK
       : THEME_ENUM.LIGHT;
     if (path === '/') {
-      dispatch(changeThemeDelayed({ newTheme, time: 1600 }));
+      dispatch(changeThemeDelayed({ newTheme, time: 2100 }));
     } else {
       dispatch(preferSlice.actions.changeTheme(newTheme));
     }

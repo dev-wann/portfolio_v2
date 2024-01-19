@@ -7,9 +7,9 @@ import ControlButton from './_components/home/ControlButton';
 import Typing from './_components/home/Typing';
 import useWindowSize from './_hooks/useWindowSize';
 import { RootState } from './_redux';
-import { VideoImageType } from './_utils/videoUtil';
+import { VideoDataType } from './_utils/videoUtil';
 
-export type StageType = keyof VideoImageType | 'idle' | 'ready' | 'pending';
+export type StageType = keyof VideoDataType | 'idle' | 'ready' | 'pending';
 
 export default function Home() {
   // stage order: idle -> ready -> opening -> main -> pending -> closing
@@ -36,7 +36,10 @@ export default function Home() {
 
   // resetart when theme/lang changed
   useEffect(() => {
-    if (theme && lang) setStage('ready');
+    if (theme && lang) {
+      setStop();
+      setStage('ready');
+    }
     return () => {
       setStop();
     };

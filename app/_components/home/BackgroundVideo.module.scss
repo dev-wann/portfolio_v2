@@ -1,3 +1,5 @@
+@use '/app/_styles/mixins.scss';
+
 .wrapper {
   position: absolute;
   top: 0;
@@ -13,4 +15,21 @@
     left: 50%;
     translate: -50% 0;
   }
+}
+
+.error {
+  @include mixins.neumorphic-box-outer-s;
+
+  position: absolute;
+  top: 4.5rem;
+  left: 50%;
+  translate: -50% 0;
+
+  padding: 0.2rem 0.4rem;
+  border: 2px solid var(--color-primary-3);
+  border-radius: 1rem;
+
+  color: var(--color-primary-3);
+  font-weight: bold;
+  z-index: 1;
 }
