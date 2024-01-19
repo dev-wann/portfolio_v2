@@ -165,7 +165,10 @@ function RoutesSmall({
             className={idx === selectIdx ? styles.selected : ''}
             href={path}
             key={name}
-            onClick={(e) => routeTo(path, e)}
+            onClick={(e) => {
+              closeMenu();
+              routeTo(path, e);
+            }}
           >
             {name.toUpperCase()}
           </Link>
