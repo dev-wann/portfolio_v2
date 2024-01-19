@@ -12,10 +12,12 @@ const initialState: {
   stage: StageType;
   videoType: string | null;
   isStageFinished: boolean;
+  isProcessing: boolean;
 } = {
   stage: 'idle',
   videoType: null,
   isStageFinished: true,
+  isProcessing: false,
 };
 
 const homeStageSlice = createSlice({
@@ -31,6 +33,9 @@ const homeStageSlice = createSlice({
     setStageFinished(state, action) {
       state.isStageFinished = action.payload;
     },
+    setProcessing(state, action) {
+      state.isProcessing = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(changeStageTo.pending, (state) => {
@@ -38,12 +43,14 @@ const homeStageSlice = createSlice({
     });
     builder.addCase(changeStageTo.fulfilled, (state) => {
       state.isStageFinished = true;
+      state.isProcessing = false;
     });
-    builder.addCase(changeStageTo.rejected, (state) => {
-      state.isStageFinished = true;
-    });
+
     builder.addCase(changeStageAndPlay.pending, (state) => {
       state.isStageFinished = false;
+    });
+    builder.addCase(changeStageAndPlay.fulfilled, (state) => {
+      state.isProcessing = false;
     });
   },
 });
@@ -54,6 +61,13 @@ export const changeStageTo = createAsyncThunk<
   { stage: StageType; theme: ThemeValueType },
   { state: RootState }
 >('homeStage/changeStageTo', async ({ stage, theme }, thunkAPI) => {
+  // block duplicated requests
+  if (thunkAPI.getState().homeStage.isProcessing) {
+    throw new Error('duplicated request');
+  }
+  thunkAPI.dispatch(homeStageSlice.actions.setProcessing(true));
+
+  // change stage
   await prepareStage(stage, theme);
   thunkAPI.dispatch(homeStageSlice.actions.setStage(stage));
 });
@@ -63,6 +77,13 @@ export const changeStageAndPlay = createAsyncThunk<
   { stage: StageType; theme: ThemeValueType },
   { state: RootState }
 >('homeStage/changeStageAndPlay', async ({ stage, theme }, thunkAPI) => {
+  // block duplicated requests
+  if (thunkAPI.getState().homeStage.isProcessing) {
+    throw new Error('duplicated request');
+  }
+  thunkAPI.dispatch(homeStageSlice.actions.setProcessing(true));
+
+  // change stage
   await prepareStage(stage, theme);
   thunkAPI.dispatch(homeStageSlice.actions.setStage(stage));
 

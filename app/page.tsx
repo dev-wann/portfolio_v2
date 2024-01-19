@@ -34,8 +34,6 @@ export default function Home() {
 
     let nextStage = StageList[StageList.indexOf(curStage) + 1];
     switch (curStage) {
-      case 'idle':
-        dispatch(changeStageTo({ stage: nextStage, theme }));
       case 'ready':
       case 'opening':
       case 'main':
