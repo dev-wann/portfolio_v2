@@ -1,5 +1,5 @@
 import { RootState } from '@/app/_redux';
-import { getDetailItems } from '@/app/_utils/DetailsUtil';
+import { getDetailItems } from '@/app/_utils/detailsUtil';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import DetailItem from './DetailItem';

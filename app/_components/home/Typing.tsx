@@ -13,19 +13,18 @@ import {
   generateSpeed,
   hideCursor,
 } from '@/app/_utils/sequenceGenerator';
-import { StageType } from '@/app/page';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { TypeAnimation } from 'react-type-animation';
 import styles from './Typing.module.scss';
 
 type Props = {
-  stage: StageType;
   size: string;
 };
 
-export default function Typing({ stage, size }: Props) {
+export default function Typing({ size }: Props) {
   const prevRef = useRef<React.JSX.Element | null>(null);
+  const stage = useSelector((state: RootState) => state.homeStage.stage);
   const theme = useSelector((state: RootState) => state.prefer.theme);
   const lang = useSelector((state: RootState) => state.prefer.lang);
   const strs = useLangString('home');

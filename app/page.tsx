@@ -1,30 +1,50 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import BackgroundVideo from './_components/home/BackgroundVideo';
 import ControlButton from './_components/home/ControlButton';
 import Typing from './_components/home/Typing';
 import useWindowSize from './_hooks/useWindowSize';
-import { RootState } from './_redux';
-import { VideoDataType } from './_utils/videoUtil';
-
-export type StageType = keyof VideoDataType | 'idle' | 'ready' | 'pending';
+import { AppDispatch, RootState } from './_redux';
+import {
+  changeStageAndPlay,
+  changeStageTo,
+} from './_redux/module/homeStageSlice';
+import { StageList } from './_utils/stageUtil';
 
 export default function Home() {
-  // stage order: idle -> ready -> opening -> main -> pending -> closing
-  const [stage, setStage] = useState<StageType>('idle');
-  const [stopFlag, setStopFlag] = useState(0);
-  const setStop = () => {
-    setStopFlag(stopFlag + 1);
-  };
-
   // redux
+  const dispatch = useDispatch<AppDispatch>();
   const theme = useSelector((state: RootState) => state.prefer.theme);
-  const lang = useSelector((state: RootState) => state.prefer.lang);
-  const isClosing = useSelector(
-    (state: RootState) => state.prefer.isHomeClosing
+  const curStage = useSelector((state: RootState) => state.homeStage.stage);
+  const isFinished = useSelector(
+    (state: RootState) => state.homeStage.isStageFinished
   );
+
+  // starter for the first page load
+  useEffect(() => {
+    if (!theme) return;
+    if (curStage === 'idle') dispatch(changeStageTo({ stage: 'ready', theme }));
+  }, [theme]);
+
+  // stage control
+  useEffect(() => {
+    if (!theme || !isFinished) return;
+
+    let nextStage = StageList[StageList.indexOf(curStage) + 1];
+    switch (curStage) {
+      case 'idle':
+        dispatch(changeStageTo({ stage: nextStage, theme }));
+      case 'ready':
+      case 'opening':
+      case 'main':
+        dispatch(changeStageAndPlay({ stage: nextStage, theme }));
+        break;
+      default:
+        break;
+    }
+  }, [isFinished]);
 
   // window size
   const { windowWidth, windowHeight } = useWindowSize();
@@ -34,34 +54,11 @@ export default function Home() {
     if (windowWidth <= 510) size = 'small';
   }
 
-  // resetart when theme/lang changed
-  useEffect(() => {
-    if (theme && lang) {
-      setStop();
-      setStage('ready');
-    }
-    return () => {
-      setStop();
-    };
-  }, [theme, lang]);
-
-  // force closing stage
-  useEffect(() => {
-    if (!isClosing) return;
-    setStop();
-    setStage('closing');
-  }, [isClosing]);
-
   return (
     <main>
-      <BackgroundVideo stage={stage} setStage={setStage} stopFlag={stopFlag} />
-      <Typing stage={stage} size={size} />
-      <ControlButton
-        stage={stage}
-        setStage={setStage}
-        setStop={setStop}
-        size={size}
-      />
+      <BackgroundVideo />
+      <Typing size={size} />
+      <ControlButton size={size} />
     </main>
   );
 }

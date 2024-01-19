@@ -17,19 +17,31 @@
   }
 }
 
-.error {
-  @include mixins.neumorphic-box-outer-s;
+.opening {
+  opacity: 0;
+  animation: opening 1.2s forwards;
+}
+@keyframes opening {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
-  position: absolute;
-  top: 4.5rem;
-  left: 50%;
-  translate: -50% 0;
+.closing {
+  animation: closing 2s forwards;
+}
+@keyframes closing {
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 
-  padding: 0.2rem 0.4rem;
-  border: 2px solid var(--color-primary-3);
-  border-radius: 1rem;
-
-  color: var(--color-primary-3);
-  font-weight: bold;
-  z-index: 1;
+.hide {
+  opacity: 0;
 }

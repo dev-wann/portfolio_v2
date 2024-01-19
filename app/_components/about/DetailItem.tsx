@@ -1,6 +1,6 @@
 import useWindowSize from '@/app/_hooks/useWindowSize';
 import { renderText } from '@/app/_utils';
-import { DetailItemType } from '@/app/_utils/DetailsUtil';
+import { DetailItemType } from '@/app/_utils/detailsUtil';
 import styles from './DetailItem.module.scss';
 import DetailItemEnd from './DetailItemEnd';
 import StopAndChange from './StopAndChange';
