@@ -2,7 +2,9 @@
 
 import { AppDispatch, RootState } from '@/app/_redux';
 import homeStageSlice from '@/app/_redux/module/homeStageSlice';
+import { LANG_ENUM } from '@/app/_redux/module/preferSlice';
 import { getCurrentVideo } from '@/app/_utils/stageUtil';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './BackgroundVideo.module.scss';
@@ -13,20 +15,24 @@ export default function BackgroundVideo() {
   const videoType = useSelector(
     (state: RootState) => state.homeStage.videoType
   );
+  const isLowPowerMode = useSelector(
+    (state: RootState) => state.homeStage.isLowPowerMode
+  );
+  const theme = useSelector((state: RootState) => state.prefer.theme);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // show/hide canvas according to the stage
-  let canvasClassname = '';
+  let stageClassname = '';
   switch (stage) {
     case 'opening':
-      canvasClassname = styles.opening;
+      stageClassname = styles.opening;
       break;
     case 'closing':
-      canvasClassname = styles.closing;
+      stageClassname = styles.closing;
       break;
     case 'idle':
     case 'ready':
-      canvasClassname = styles.hide;
+      stageClassname = styles.hide;
       break;
     default:
       break;
@@ -64,15 +70,40 @@ export default function BackgroundVideo() {
     };
   }, [videoType]);
 
+  // strings for low-power mode fallback
+  const lang = useSelector((state: RootState) => state.prefer.lang);
+  const lowPowerStr =
+    lang === LANG_ENUM.KOR
+      ? '저전력 모드를 끄고 새로고침 해주세요'
+      : 'Please turn off low battery mode and refresh';
+
   // render
   return (
     <div className={styles.wrapper}>
-      <canvas
-        className={canvasClassname}
-        width={2146}
-        height={1080}
-        ref={canvasRef}
-      />
+      {!isLowPowerMode ? (
+        // canvas to draw video
+        <canvas
+          className={stageClassname}
+          width={2146}
+          height={1080}
+          ref={canvasRef}
+        />
+      ) : (
+        // fallback UI for low power mode
+        <>
+          <div className={`${styles['fallback-img']} ${stageClassname}`}>
+            <Image
+              src={`/images/home/typing-fallback-${theme}.webp`}
+              width={2146}
+              height={1080}
+              alt="fallback image"
+            />
+          </div>
+          <div className={`${styles['fallback-msg']} ${stageClassname}`}>
+            {lowPowerStr}
+          </div>
+        </>
+      )}
     </div>
   );
 }
