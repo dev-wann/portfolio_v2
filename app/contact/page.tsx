@@ -13,7 +13,7 @@ export default function Contact() {
   const { windowWidth } = useWindowSize();
   const isSmall = !!(windowWidth && windowWidth < 600);
 
-  useEffect(() => window.scrollTo(0, 0)); // for mobile
+  useEffect(() => window.scrollTo(0, 0), []); // for mobile
 
   return (
     <div className={`${styles.wrapper} container-800`}>
