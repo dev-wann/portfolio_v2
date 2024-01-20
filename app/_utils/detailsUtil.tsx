@@ -1,5 +1,5 @@
 import strings from '@/public/strings.json';
-import Image from 'next/image';
+import ImageWithLoading from '../_components/loading/ImageWithLoading';
 import { LANG_ENUM, LangValueType } from '../_redux/module/preferSlice';
 
 export type DetailItemType = {
@@ -43,10 +43,15 @@ function loadDetailItems(lang: LangValueType) {
     } else {
       // normal items
       const img = (
-        <Image src={item.imgSrc} width={960} height={560} alt="item image" />
+        <ImageWithLoading
+          src={item.imgSrc}
+          width={960}
+          height={560}
+          alt="item image"
+        />
       );
       const imgSmall = item.imgSrcSmall ? (
-        <Image
+        <ImageWithLoading
           src={item.imgSrcSmall}
           width={960}
           height={560}

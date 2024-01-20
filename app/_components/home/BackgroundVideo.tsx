@@ -7,6 +7,7 @@ import { getCurrentVideo } from '@/app/_utils/stageUtil';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../loading/Loading';
 import styles from './BackgroundVideo.module.scss';
 
 export default function BackgroundVideo() {
@@ -104,6 +105,7 @@ export default function BackgroundVideo() {
           </div>
         </>
       )}
+      <Loading isLoading={stage === 'idle' || stage === 'ready'} />
     </div>
   );
 }
