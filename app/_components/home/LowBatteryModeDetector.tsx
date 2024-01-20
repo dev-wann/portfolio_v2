@@ -3,7 +3,7 @@ import homeStageSlice from '@/app/_redux/module/homeStageSlice';
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-export default function LowBatteryModeHandler() {
+export default function LowBatteryModeDetector() {
   const dispatch = useDispatch<AppDispatch>();
   const videoRef = useRef<HTMLVideoElement>(null);
 
