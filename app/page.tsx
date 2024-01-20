@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BackgroundVideo from './_components/home/BackgroundVideo';
 import ControlButton from './_components/home/ControlButton';
+import LowBatteryModeDetector from './_components/home/LowBatteryModeDetector';
 import Typing from './_components/home/Typing';
 import useWindowSize from './_hooks/useWindowSize';
 import { AppDispatch, RootState } from './_redux';
@@ -20,6 +21,9 @@ export default function Home() {
   const curStage = useSelector((state: RootState) => state.homeStage.stage);
   const isFinished = useSelector(
     (state: RootState) => state.homeStage.isStageFinished
+  );
+  const isLowPowerMode = useSelector(
+    (state: RootState) => state.homeStage.isLowPowerMode
   );
 
   // starter for the first page load
@@ -44,6 +48,16 @@ export default function Home() {
     }
   }, [isFinished]);
 
+  // handle low battery mode
+  useEffect(() => {
+    if (!isLowPowerMode || !theme) return;
+    if (curStage !== 'opening') return;
+    setTimeout(
+      () => dispatch(changeStageAndPlay({ stage: 'pending', theme })),
+      1000
+    );
+  }, [theme, curStage, isLowPowerMode]);
+
   // window size
   const { windowWidth, windowHeight } = useWindowSize();
   let size = '';
@@ -57,6 +71,7 @@ export default function Home() {
       <BackgroundVideo />
       <Typing size={size} />
       <ControlButton size={size} />
+      <LowBatteryModeDetector />
     </main>
   );
 }

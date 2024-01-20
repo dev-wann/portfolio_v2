@@ -13,11 +13,13 @@ const initialState: {
   videoType: string | null;
   isStageFinished: boolean;
   isProcessing: boolean;
+  isLowPowerMode: boolean;
 } = {
   stage: 'idle',
   videoType: null,
   isStageFinished: true,
   isProcessing: false,
+  isLowPowerMode: false,
 };
 
 const homeStageSlice = createSlice({
@@ -35,6 +37,9 @@ const homeStageSlice = createSlice({
     },
     setProcessing(state, action) {
       state.isProcessing = action.payload;
+    },
+    setLowPowerMode(state, action) {
+      state.isLowPowerMode = action.payload;
     },
   },
   extraReducers: (builder) => {
