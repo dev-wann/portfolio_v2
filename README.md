@@ -147,10 +147,10 @@ HOME related states are controlled by the 'homeStageSlice.tsx'
 
 #### Behavior
 
-When page is loaded, stage automatically proceeds from idle to pending.
-When SKIP button is pressed, current stage stops and changes into pending.
-When REPLAY button is pressed, closing stage is played and ready stage starts again.
-When theme / language / page changes, current stage stops and closing stage is played before change.
+When page is loaded, stage automatically proceeds from idle to pending.  
+When SKIP button is pressed, current stage stops and changes into pending.  
+When REPLAY button is pressed, closing stage is played and ready stage starts again.  
+When theme / language / page changes, current stage stops and closing stage is played before change.  
 
 #### How it works
 
@@ -166,36 +166,36 @@ When theme / language / page changes, current stage stops and closing stage is p
 
 ### User Preference (Theme & Language)
 
-Theme and language state is managed by the 'preferSlice'
-Each preference has two version of reducers, a normal one and a thunk for delayed preference change (for HOME).
+Theme and language state is managed by the 'preferSlice'  
+Each preference has two version of reducers, a normal one and a thunk for delayed preference change (for HOME).  
 
 #### Normal Reducers
 
-Preference states are saved to localStorage after each change.
-They are used to remember the last selected preferences and provide it at the next visit.
+Preference states are saved to localStorage after each change.  
+They are used to remember the last selected preferences and provide it at the next visit.  
 
 #### Thunks
 
-Thunks are for closing stage of HOME page.
-When the client requests preference change at HOME, the page needs to wait until the closing sequence ends.
-Therefore, each thunk waits for a certain delay time(the length of closing video) and then change the preference.
+Thunks are for closing stage of HOME page.  
+When the client requests preference change at HOME, the page needs to wait until the closing sequence ends.  
+Therefore, each thunk waits for a certain delay time(the length of closing video) and then change the preference.  
 
 <br />
 
 ### Low Power Mode
 
-If the mobile device is in low power mode, videos will never gonna be able to play.
-Therefore, it is necessary to detect low power mode and show fallback
+If the mobile device is in low power mode, videos will never gonna be able to play.  
+Therefore, it is necessary to detect low power mode and show fallback  
 
 #### Detect low power mode
 
-There's no way to directly detect the low power mode.
-I just played a dummy video and if it is not playable(=== throws error), I just assumed it to be low power mode.
-Check 'LowBatteryModeDetector.tsx' for detecting codes.
+There's no way to directly detect the low power mode.  
+I just played a dummy video and if it is not playable(=== throws error), I just assumed it to be low power mode.  
+Check 'LowBatteryModeDetector.tsx' for detecting codes.  
 
 #### Show fallback
 
-When it is turned out to be low battery mode, I presented a fallback image and a message to turn off the low battery mode.
+When it is turned out to be low battery mode, I presented a fallback image and a message to turn off the low battery mode.  
 You can find the fallback code at 'BackgroundVideo.tsx'.<br/>
 <br/><img src="https://github.com/dev-wann/portfolio_v2/assets/89072661/790adc18-6c48-45a1-be13-69a2ee1b6656" width=400><br/>
 <br/>
