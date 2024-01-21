@@ -12,6 +12,9 @@ export default function LowBatteryModeDetector() {
     videoRef.current?.play().catch(() => {
       dispatch(homeStageSlice.actions.setLowPowerMode(true));
     });
+    return () => {
+      dispatch(homeStageSlice.actions.setLowPowerMode(false));
+    };
   }, []);
 
   return (
@@ -20,7 +23,6 @@ export default function LowBatteryModeDetector() {
       style={{ visibility: 'hidden' }}
       ref={videoRef}
       autoPlay
-      loop
       muted
       playsInline
     />
