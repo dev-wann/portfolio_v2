@@ -31,11 +31,22 @@ export default function Links() {
       </div>
     );
   };
-  const genSubImg = (name: string, type: string, handler: () => void) => {
+  const genSubImg = (
+    name: string,
+    type: string,
+    href?: string,
+    handler?: (e: React.MouseEvent) => void
+  ) => {
+    const onClickHandler = handler
+      ? handler
+      : !href
+      ? (e: React.MouseEvent) => e.preventDefault()
+      : undefined;
     return (
-      <div
+      <a
         className={`${styles.subImg} ${theme ? styles[theme] : ''}`}
-        onClick={handler}
+        onClick={onClickHandler}
+        href={href}
       >
         <Image
           src={`/images/contact/${type}.svg`}
@@ -44,13 +55,15 @@ export default function Links() {
           height={subSize}
         />
         {type === 'copy' ? <p id={`${name}-copy`}>Copied</p> : <></>}
-      </div>
+      </a>
     );
   };
 
   // event listeners
   let timeoutId: NodeJS.Timeout;
-  const copyEmail = () => {
+  const copyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+
     const elem = document.querySelector('#email-copy');
     if (!elem) return;
     navigator.clipboard.writeText('swcho8220@gmail.com');
@@ -65,24 +78,6 @@ export default function Links() {
       );
     });
   };
-  const toEmail = () => {
-    window.open('mailto:swcho8220@gmail.com');
-  };
-  const toLinkedIn = () => {
-    window.open(
-      'https://www.linkedin.com/in/seung-wan-cho-bb9175212/',
-      '_blank'
-    );
-  };
-  const toGithub = () => {
-    window.open('https://github.com/dev-wann/', '_blank');
-  };
-  const toBlog = () => {
-    window.open('https://dev-wann.tistory.com/', '_blank');
-  };
-  const toInstagram = () => {
-    window.open('https://www.instagram.com/cswann1222/', '_blank');
-  };
 
   // render
   return (
@@ -93,36 +88,44 @@ export default function Links() {
           {genMainImg('email')}
           <p>{strs ? strs['email'] : 'Email'}</p>
           <div className={styles.hover}>
-            {genSubImg('email', 'copy', copyEmail)}
-            {genSubImg('email', 'link', toEmail)}
+            {genSubImg('email', 'copy', undefined, copyEmail)}
+            {genSubImg('email', 'link', 'mailto:swcho8220@gmail.com')}
           </div>
         </div>
         <div className={`${styles.item} observe`}>
           {genMainImg('linked-in')}
           <p>{strs ? strs['linkedin'] : 'LinkedIn'}</p>
           <div className={styles.hover}>
-            {genSubImg('linked-in', 'link', toLinkedIn)}
+            {genSubImg(
+              'linked-in',
+              'link',
+              'https://www.linkedin.com/in/seung-wan-cho-bb9175212/'
+            )}
           </div>
         </div>
         <div className={`${styles.item} observe`}>
           {genMainImg('github')}
           <p>{strs ? strs['github'] : 'GitHub'}</p>
           <div className={styles.hover}>
-            {genSubImg('github', 'link', toGithub)}
+            {genSubImg('github', 'link', 'https://github.com/dev-wann/')}
           </div>
         </div>
         <div className={`${styles.item} observe`}>
           {genMainImg('blog')}
           <p>{strs ? strs['blog'] : 'Blog'}</p>
           <div className={styles.hover}>
-            {genSubImg('blog', 'link', toBlog)}
+            {genSubImg('blog', 'link', 'https://dev-wann.tistory.com/')}
           </div>
         </div>{' '}
         <div className={`${styles.item} observe`}>
           {genMainImg('instagram')}
           <p>{strs ? strs['insta'] : 'IG'}</p>
           <div className={styles.hover}>
-            {genSubImg('instagram', 'link', toInstagram)}
+            {genSubImg(
+              'instagram',
+              'link',
+              'https://www.instagram.com/cswann1222/'
+            )}
           </div>
         </div>
       </div>
