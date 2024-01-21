@@ -107,6 +107,7 @@ function RoutesSmall({
   // compute style for selected background (inset box)
   const selectedBg: React.CSSProperties = {
     marginTop: `${50 + 30 * selectIdx}px`,
+    visibility: selectIdx < 0 ? 'hidden' : 'visible',
   };
 
   // open & close menu when menu button is clicked
