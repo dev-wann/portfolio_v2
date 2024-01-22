@@ -64,7 +64,10 @@ export default function BackgroundVideo() {
     );
 
     // cleanup
+    const width = canvasRef.current.width;
+    const height = canvasRef.current.height;
     return () => {
+      if (stage === 'closing') context?.clearRect(0, 0, width, height);
       video.removeEventListener('ended', setFinished);
       clearInterval(intervalId);
     };
