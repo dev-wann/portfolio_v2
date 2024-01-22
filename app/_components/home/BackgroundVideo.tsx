@@ -55,7 +55,6 @@ export default function BackgroundVideo() {
     const setFinished = () =>
       dispatch(homeStageSlice.actions.setStageFinished(true));
     video.addEventListener('ended', setFinished);
-    video.play();
 
     // draw 30fps
     const context = canvasRef.current.getContext('2d');

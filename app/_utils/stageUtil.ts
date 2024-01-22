@@ -74,7 +74,7 @@ function prepareVideo(stage: StageType, theme: ThemeValueType) {
   if (stage === 'opening' || stage === 'main' || stage === 'closing') {
     curVideo = storage[theme][stage];
     curVideo.load();
-    curVideo.pause();
+    curVideo.play();
     curVideoType = `${theme}-${stage}`;
   } else {
     curVideo = null;
