@@ -9,8 +9,10 @@ export default function LowBatteryModeDetector() {
 
   // detect and set low power mode
   useEffect(() => {
-    videoRef.current?.play().catch(() => {
-      dispatch(homeStageSlice.actions.setLowPowerMode(true));
+    videoRef.current?.play().catch((error) => {
+      if (error.name === 'NotAllowedError') {
+        dispatch(homeStageSlice.actions.setLowPowerMode(true));
+      }
     });
     return () => {
       dispatch(homeStageSlice.actions.setLowPowerMode(false));
