@@ -1,5 +1,4 @@
 @use './variables.scss' as *;
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css');
 
 // theme related css variables
 body {
@@ -53,7 +52,7 @@ html {
 }
 
 body {
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, Bazier Square,
+  font-family: "Pretendard Variable", Pretendard -apple-system, BlinkMacSystemFont, Bazier Square,
     Noto Sans KR, Segoe UI, Apple SD Gothic Neo, Roboto, Helvetica Neue, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Noto Color Emoji;
