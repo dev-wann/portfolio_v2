@@ -1,4 +1,4 @@
-import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
+import useCustomRouteTo from '@/app/_hooks/useCustomRouteTo';
 import useWindowSize from '@/app/_hooks/useWindowSize';
 import { routes } from '@/app/_utils';
 import resStyle from '@/app/resume/resume.module.scss';
