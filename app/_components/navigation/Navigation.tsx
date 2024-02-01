@@ -1,4 +1,4 @@
-import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
+import useCustomRouteTo from '@/app/_hooks/useCustomRouteTo';
 import { showNavSelect } from '@/app/_hooks/useIntersectionObserver';
 import { routes } from '@/app/_utils';
 import resStyle from '@/app/resume/resume.module.scss';

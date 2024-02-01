@@ -1,6 +1,6 @@
 'use client';
 
-import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
+import useCustomRouteTo from '@/app/_hooks/useCustomRouteTo';
 import useLangString from '@/app/_hooks/useLangString';
 import useWindowSize from '@/app/_hooks/useWindowSize';
 import { renderText } from '@/app/_utils';

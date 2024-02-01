@@ -1,6 +1,6 @@
 'use client';
 
-import useCustomRouteTo from '@/app/_hooks/useCustomRouter';
+import useCustomRouteTo from '@/app/_hooks/useCustomRouteTo';
 import { AppDispatch, RootState } from '@/app/_redux';
 import { changeStageAndPlay } from '@/app/_redux/module/homeStageSlice';
 import Image from 'next/image';

@@ -13,6 +13,7 @@ export default function useCustomRouteTo() {
   const router = useRouter();
   const curPath = usePathname();
   const theme = useSelector((state: RootState) => state.prefer.theme);
+  let isRouting = false;
 
   const routeTo = (newPath: string, e?: React.MouseEvent) => {
     if (e) e.preventDefault();
@@ -20,11 +21,15 @@ export default function useCustomRouteTo() {
     // ignore transition to same page
     if (newPath === curPath) return;
 
+    // ignore duplicated routing request
+    if (isRouting) return;
+
     (async () => {
       if (curPath === '/') {
         // at home page, wait until closing sequence ends
         dispatch(preferSlice.actions.setHomeClosing(true));
         if (theme) dispatch(changeStageAndPlay({ stage: 'closing', theme }));
+        isRouting = true;
 
         await delay(2000);
 
