@@ -18,10 +18,10 @@
   width: 21cm;
   height: 29.7cm;
   margin: auto;
-  padding: 1cm;
+  padding: 1.27cm;
 
   color: black;
-  font-size: 14pt;
+  font-size: 13pt;
 
   background: none;
   background-color: white;
@@ -56,7 +56,7 @@
 }
 
 .header {
-  padding-bottom: 16px;
+  padding-bottom: 18px;
 
   h1 {
     font-size: 40px !important;
@@ -71,8 +71,8 @@
   grid-template:
     'about about'
     'interest contact';
-  gap: 8px;
-  padding-bottom: 24px;
+  gap: 10px;
+  padding-bottom: 32px;
 }
 .about {
   grid-area: about;
@@ -85,7 +85,7 @@
 }
 
 .intro-title {
-  font-size: 26px;
+  font-size: 23px;
   font-weight: bold;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -98,10 +98,10 @@
     'work other'
     'work skills'
     'work edu';
-  grid-template-columns: 6fr 4fr;
+  grid-template-columns: 11fr 9fr;
   grid-template-rows: auto 1fr auto;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 .work {
   grid-area: work;
@@ -117,7 +117,7 @@
 }
 
 .title {
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 900;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -125,7 +125,7 @@
 }
 
 .subtitle {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
 }
 
@@ -141,16 +141,17 @@
 
 .list {
   padding-top: 6px;
+  padding-left: 20px !important;
 
   li {
     padding-bottom: 4px;
-    line-height: 1em;
+    line-height: 1.05em;
     word-break: keep-all;
   }
 }
 
 .work-item:not(:last-child) {
-  padding-bottom: 16px;
+  padding-bottom: 18px;
 }
 
 .degree {
@@ -165,13 +166,16 @@
 .skillList {
   margin-left: 0.5em;
 }
+.skillList:not(:last-child) {
+  margin-bottom: 0.2em;
+}
 
 // functional buttons
 .download-btn,
 .print-btn {
   @include mixins.neumorphic-box-outer;
   position: absolute;
-  top: 1cm;
+  top: 1.55cm;
   width: 60px;
   height: 60px;
   padding: 0;
@@ -192,7 +196,7 @@
   }
 }
 .download-btn {
-  right: calc(1cm + 80px);
+  right: calc(1.55cm + 80px);
   a {
     display: block;
     width: 100%;
@@ -200,7 +204,7 @@
   }
 }
 .print-btn {
-  right: 1cm;
+  right: 1.55cm;
 }
 
 .footnote {
@@ -238,7 +242,7 @@
   }
 
   .header {
-    padding-bottom: 14px;
+    padding-bottom: 12px;
     h1 {
       font-size: 35px !important;
       line-height: 1.05em;
@@ -251,6 +255,7 @@
 
   .intro {
     padding-bottom: 16px;
+    gap: 6px;
   }
 
   .intro-title {
@@ -289,6 +294,17 @@
 
   .footnote {
     width: 8.5in;
+  }
+
+  .download-btn,
+  .print-btn {
+    top: 1cm;
+  }
+  .download-btn {
+    right: calc(1cm + 80px);
+  }
+  .print-btn {
+    right: 1cm;
   }
 }
 
