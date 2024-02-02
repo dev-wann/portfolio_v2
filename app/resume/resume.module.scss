@@ -134,7 +134,7 @@
   color: $color-lbl--light;
 }
 
-.desc p {
+.desc > * {
   text-indent: 1em;
   padding: 2px 0;
 }
@@ -308,6 +308,11 @@
   }
 }
 
+.show-on-print {
+  display: none;
+  text-indent: 0;
+}
+
 // print settings
 @media print {
   #nav {
@@ -338,5 +343,12 @@
   }
   .placeholder {
     display: none;
+  }
+
+  .hide-on-print {
+    display: none;
+  }
+  .show-on-print {
+    display: block;
   }
 }
