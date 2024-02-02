@@ -57,6 +57,7 @@ export default function Resume() {
       href={'https://portfolio-dev-wann.vercel.app/'}
       target="_blank"
       prefetch={false}
+      className={styles['hide-on-print']}
     >
       <Image
         src="/images/contact/link.svg"
@@ -138,6 +139,12 @@ export default function Resume() {
               <p className={styles.period}>2023.12 ~ 2024.01</p>
               <div className={styles.desc}>
                 {renderText(strs?.portfolioDesc)}
+                <a
+                  className={styles['show-on-print']}
+                  href="https://portfolio-dev-wann.vercel.app"
+                >
+                  https://portfolio-dev-wann.vercel.app
+                </a>
               </div>
             </div>
 
