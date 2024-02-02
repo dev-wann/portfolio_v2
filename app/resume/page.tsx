@@ -148,7 +148,9 @@ export default function Resume() {
               <p className={styles.skillList}>React, Next.js, MobX, Redux</p>
               <p className={styles.skillCat}>Language</p>
               <p className={styles.skillList}>
-                TypeScript, SCSS, HTML, JavaScript, CSS, C++
+                TypeScript, SCSS, HTML,
+                <br />
+                JavaScript, CSS, C++
               </p>
               <p className={styles.skillCat}>Others</p>
               <p className={styles.skillList}>Jest, Electron, Git</p>
