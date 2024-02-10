@@ -71,11 +71,13 @@
   grid-template:
     'about about'
     'interest contact';
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   padding-bottom: 32px;
 }
 .about {
   grid-area: about;
+  word-break: keep-all;
 }
 .interest {
   grid-area: interest;
