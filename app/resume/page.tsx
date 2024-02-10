@@ -16,6 +16,7 @@ export default function Resume() {
   const strs = useLangString('resume');
   const lang = useSelector((state: RootState) => state.prefer.lang);
   const langClassname = lang === LANG_ENUM.ENG ? styles.eng : '';
+  const isDevMode = process.env.NODE_ENV === 'development';
 
   // buttons
   const downloadBtn = (
@@ -51,6 +52,21 @@ export default function Resume() {
     </button>
   );
 
+  const printDevBtn = (
+    <button
+      className={styles['print-dev-btn']}
+      onClick={() => {
+        const resume = document.getElementById('resume');
+        if (!resume) return;
+        resume.classList.add(styles['print-dev']);
+        window.print();
+        resume.classList.remove(styles['print-dev']);
+      }}
+    >
+      print for download file
+    </button>
+  );
+
   // link to portfolio
   const link = (
     <Link
@@ -78,6 +94,7 @@ export default function Resume() {
           {/* buttons */}
           {downloadBtn}
           {printBtn}
+          {isDevMode ? printDevBtn : <></>}
 
           {/* header of the first page */}
           <div className={styles.header}>
