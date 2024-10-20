@@ -28,10 +28,10 @@ export default function Experience() {
       const top0 = item0Ref.current.getBoundingClientRect().top;
 
       let sel = -1;
-      if (top0 < windowHeight * 0.7) sel = 0;
-      if (top0 < windowHeight * 0.5) sel = 1;
-      if (top0 < windowHeight * 0.3) sel = 2;
-      if (top0 < windowHeight * 0.1) sel = -1;
+      if (top0 < windowHeight * 0.8) sel = 0;
+      if (top0 < windowHeight * 0.4) sel = 1;
+      if (top0 < windowHeight * 0.2) sel = 2;
+      if (top0 < windowHeight * 0.05) sel = -1;
       setAutoSelect(sel);
     };
 
