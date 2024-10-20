@@ -8,6 +8,7 @@ import { generateProjectItems } from '../_utils/projectItemUtil';
 import styles from './Project.module.scss';
 
 export type ItemType = {
+  id: string;
   title: string;
   info: string;
   org: string;
@@ -38,7 +39,8 @@ export default function Project() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setSelected(+entry.target.id.slice(-1));
+            const idx = items.findIndex((item) => item.id === entry.target.id);
+            setSelected(idx);
           }
         });
       },
@@ -46,10 +48,11 @@ export default function Project() {
     );
     const targets = new Array(items.length)
       .fill('')
-      .map((_, idx) => document.querySelector(`#project${idx}`));
+      .map((_, idx) => document.querySelector(`#${items[idx].id}`));
     targets.forEach((elem) => {
       if (elem) observer.observe(elem);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length]);
 
   // render
@@ -59,7 +62,7 @@ export default function Project() {
       {items.map((item, idx) => (
         <ProjectItem
           item={item}
-          id={`project${idx}`}
+          id={item.id}
           key={item.title}
           ref={idx === 1 ? initRef : undefined}
         />
@@ -78,7 +81,7 @@ function Sidebar({
   setSelected: (input: number) => void;
 }) {
   const scrollToItem = (idx: number) => {
-    const item = document.querySelector(`#project${idx}`);
+    const item = document.querySelector(`#${items[idx].id}`);
     if (item instanceof HTMLElement) {
       scrollTo({ top: item.offsetTop, behavior: 'smooth' });
     }
@@ -91,10 +94,7 @@ function Sidebar({
           <button
             key={idx}
             className={(idx === selected ? styles.selected : '') + ' observe'}
-            onClick={() => {
-              setSelected(idx);
-              scrollToItem(idx);
-            }}
+            onClick={() => scrollToItem(idx)}
           />
         ))}
       </div>
