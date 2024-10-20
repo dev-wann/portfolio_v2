@@ -23,7 +23,7 @@ const ProjectItem = forwardRef(
 
     // handle 'Coming Soon' part seperately
     if (item.title === 'Coming Soon..') {
-      return <ComingSoon descs={item.descs} />;
+      return <ComingSoon id={id} descs={item.descs} />;
     }
 
     const name = item.title
@@ -103,9 +103,9 @@ ProjectItem.displayName = 'ProjectItem';
 
 export default ProjectItem;
 
-function ComingSoon({ descs }: { descs: string[] }) {
+function ComingSoon({ id, descs }: { id: string; descs: string[] }) {
   return (
-    <section className={styles.section} id={'project0'}>
+    <section className={styles.section} id={id}>
       <NeuTitle text="Coming Soon.." className="observe" />
       <div className={styles['coming-soon'] + ' observe text'}>
         <div>

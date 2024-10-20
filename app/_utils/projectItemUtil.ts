@@ -5,6 +5,7 @@ export function generateProjectItems(s: StrsType | null) {
 
   return [
     {
+      id: 'coming-soon',
       title: 'Coming Soon..',
       info: '',
       org: s.personal,
@@ -13,6 +14,7 @@ export function generateProjectItems(s: StrsType | null) {
       skills: [],
     },
     {
+      id: 'portfolio-page',
       title: 'Portfolio Page',
       info: s['PF-info'],
       org: s.personal,
@@ -22,6 +24,7 @@ export function generateProjectItems(s: StrsType | null) {
       skills: ['Next.js', 'TypeScript', 'SCSS', 'Redux'],
     },
     {
+      id: 'superoffice',
       title: 'SuperOffice',
       info: s['SO-info'],
       org: '@TmaxOffice',
@@ -37,6 +40,7 @@ export function generateProjectItems(s: StrsType | null) {
       skills: ['React', 'TypeScript', 'MobX', 'Jest', 'GitLab'],
     },
     {
+      id: 'tooffice',
       title: 'ToOffice',
       info: s['TO-info'],
       org: '@TmaxA&C',
@@ -55,6 +59,7 @@ export function generateProjectItems(s: StrsType | null) {
 
 const fallback = [
   {
+    id: 'coming-soon',
     title: 'Coming Soon..',
     info: '',
     org: '',
@@ -63,6 +68,7 @@ const fallback = [
     skills: [],
   },
   {
+    id: 'portfolio-page',
     title: 'Portfolio Page',
     info: '',
     org: '',
@@ -71,6 +77,7 @@ const fallback = [
     skills: [],
   },
   {
+    id: 'superoffice',
     title: 'SuperOffice',
     info: '',
     org: '',
@@ -79,6 +86,7 @@ const fallback = [
     skills: [],
   },
   {
+    id: 'tooffice',
     title: 'ToOffice',
     info: '',
     org: '',
