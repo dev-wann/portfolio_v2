@@ -45,16 +45,16 @@ export default function Skill() {
 
   // logo images
   const frontend = [
-    { name: 'React', src: '/images/about/react.svg' },
     { name: 'Next.js', src: '/images/about/next-js.svg' },
+    { name: 'React', src: '/images/about/react.svg' },
+    { name: 'Vue.js', src: '/images/about/vue.png' },
     { name: 'TypeScript', src: '/images/about/ts.svg' },
-    { name: 'HTML', src: '/images/about/html.svg' },
+    { name: 'Tailwind CSS', src: '/images/about/tailwindcss.svg' },
     { name: 'SCSS', src: '/images/about/scss.svg' },
-    { name: 'JavaScript', src: 'images/about/js.svg' },
   ];
   const state = [
-    { name: 'MobX', src: '/images/about/mobx.svg' },
-    { name: 'Redux', src: '/images/about/redux.svg' },
+    { name: 'Zustand', src: '/images/about/zustand.svg' },
+    { name: 'Tanstack Query', src: '/images/about/tanstack.png' },
   ];
   const backend = [
     { name: 'Node.js', src: `/images/about/node-js-${theme}.svg` },
