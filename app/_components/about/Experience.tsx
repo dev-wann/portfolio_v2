@@ -15,8 +15,7 @@ export default function Experience() {
 
   // select0/select1 is set when item0/item1 is hovered
   // autoSelect is set by the scroll event when nothing's hovered
-  const [select0, setSelect0] = useState(false);
-  const [select1, setSelect1] = useState(false);
+  const [select, setSelect] = useState(-1);
   const [autoSelect, setAutoSelect] = useState(-1);
 
   const { windowHeight } = useWindowSize();
@@ -57,10 +56,9 @@ export default function Experience() {
   }, [windowHeight]);
 
   // choose select
-  let select = '';
-  if (select0) select = styles.select0;
-  else if (select1) select = styles.select1;
-  else if (autoSelect !== -1) select = styles[`select${autoSelect}`];
+  let selectClass = '';
+  if (select >= 0) selectClass = styles[`select${select}`];
+  else if (autoSelect !== -1) selectClass = styles[`select${autoSelect}`];
 
   // render
   return (
@@ -85,7 +83,7 @@ export default function Experience() {
           {/* slide */}
           <div className={`${styles.slide} observe`}>
             <div className={styles.bg} />
-            <div className={`${styles.toggle} ${select}`} />
+            <div className={`${styles.toggle} ${selectClass}`} />
             <div className={styles.scale}>
               <span>—&ensp;&apos;24</span>
               <span>—&ensp;&apos;23</span>
@@ -99,8 +97,8 @@ export default function Experience() {
           {/* item0 */}
           <div
             className={`${styles.project} observe text`}
-            onMouseEnter={() => setSelect0(true)}
-            onMouseLeave={() => setSelect0(false)}
+            onMouseEnter={() => setSelect(0)}
+            onMouseLeave={() => setSelect(-1)}
             ref={item0Ref}
           >
             <h3>
@@ -114,7 +112,7 @@ export default function Experience() {
             </h3>
             <p
               className={`${styles.period} ${
-                select === styles.select0 ? styles.select0 : ''
+                select === 0 ? selectClass : ''
               }`}
             >
               2021.02 ~ 2023.05
@@ -127,8 +125,8 @@ export default function Experience() {
           {/* item1 */}
           <div
             className={`${styles.project} observe text`}
-            onMouseEnter={() => setSelect1(true)}
-            onMouseLeave={() => setSelect1(false)}
+            onMouseEnter={() => setSelect(1)}
+            onMouseLeave={() => setSelect(-1)}
           >
             <h3>
               ToOffice {strs?.project || 'project'}
@@ -141,7 +139,7 @@ export default function Experience() {
             </h3>
             <p
               className={`${styles.period} ${
-                select === styles.select1 ? styles.select1 : ''
+                select === 1 ? selectClass : ''
               }`}
             >
               2019.08 ~ 2021.10
