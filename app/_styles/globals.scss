@@ -75,12 +75,17 @@ h3 {
   font-size: $font-size-subtitle-s !important;
   font-weight: 600 !important;
 }
+h4 {
+  font-size: $font-size-subtitle-xs !important;
+  font-weight: 600 !important;
+}
 b {
   font-weight: bold !important;
 }
 h1,
 h2,
 h3,
+h4,
 p,
 span,
 label {

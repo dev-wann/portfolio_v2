@@ -44,7 +44,8 @@
         "othersDesc": "Electron 앱 제작, Jest를 이용한 유닛 테스트 작성, GitLab과 GitHub을 사용한 경험이 있습니다."
       },
       "experience": {
-        "role": "소프트웨어 연구원",
+        "role-frontend": "프론트엔드 엔지니어",
+        "role-software": "소프트웨어 연구원",
         "help": "&nbsp;분사로 사명이 변경되었습니다&nbsp;",
         "project": "프로젝트",
         "superoffice": "웹 / Electron 문서 편집 앱인 'SuperOffice'를 개발하였습니다. 실시간 사용자 공동 편집이 가능한 앱으로 Google Docs, Sheets, Slides와 비슷한 앱입니다. 프로젝트의 시작 단계부터 참여하여 앱 구조 설계부터 배포까지의 과정을 경험하였습니다. 주로 프론트엔드 관련 업무를 맡아 진행하였습니다.",
@@ -170,7 +171,8 @@
         "othersDesc": "Experienced building Electron app, write unit tests with Jest, and using GitLab / GitHub."
       },
       "experience": {
-        "role": "Software Engineer",
+        "role-frontend": "Front-end Engineer",
+        "role-software": "Software Engineer",
         "help": "Name changed by split-off",
         "project": "project",
         "superoffice": "Developed a web / Electron document editors suite, called 'SuperOffice.' It's easy to understand it as a Korean version of Google Docs, Sheets, and Slides. I was one of the initial members to start this project and experienced all the way from the architecture design to the deployment. I mostly worked on the front-end part of it.",
