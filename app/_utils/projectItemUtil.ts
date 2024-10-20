@@ -14,6 +14,16 @@ export function generateProjectItems(s: StrsType | null) {
       skills: [],
     },
     {
+      id: 'buzzbooster',
+      title: 'BuzzBooster',
+      info: s['BB-info'],
+      org: '@Buzzvil',
+      period: '2024.06 ~ Current',
+      descs: [s['BB-desc0'], s['BB-desc1'], s['BB-desc2'], s['BB-desc3']],
+      fyi: [s['BB-fyi0']],
+      skills: ['Next.js', 'TypeScript', 'Tailwind CSS','Zustand', 'Tanstack Query', 'GitHub'],
+    },
+    {
       id: 'portfolio-page',
       title: 'Portfolio Page',
       info: s['PF-info'],
@@ -61,6 +71,15 @@ const fallback = [
   {
     id: 'coming-soon',
     title: 'Coming Soon..',
+    info: '',
+    org: '',
+    period: '',
+    descs: [],
+    skills: [],
+  },
+  {
+    id: 'buzzbooster',
+    title: 'BuzzBooster',
     info: '',
     org: '',
     period: '',
