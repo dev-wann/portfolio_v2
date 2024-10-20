@@ -91,6 +91,13 @@ export default function Resume() {
     <>
       <div className={`${styles['page-wrapper']} ${langClassname}`}>
         <div className={styles.page} id="resume">
+          {/* caution */}
+          <p className={styles.caution}>
+            {lang === 'ko-KR'
+              ? 'ⓘ 아직 최신 사항이 반영되지 않았습니다. 빠른 시일 내에 업데이트 하겠습니다.'
+              : 'ⓘ This resume is a bit outdated. I will update it soon.'}
+          </p>
+
           {/* buttons */}
           {downloadBtn}
           {printBtn}
