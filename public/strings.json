@@ -34,14 +34,14 @@
       },
       "skills": {
         "frontend": "프론트엔드",
-        "frontDesc0": "React와 Next.js로 웹 앱과 페이지를 만들 수 있습니다. TypeScript 및 JavaScript로 복잡한 로직을 구현할 수 있으며 SCSS로 스타일을 작성하는데 능숙합니다.",
-        "frontDesc1": "현업에서는 React와 TypeScript로 문서 편집 웹 앱을 만든 경험이 있습니다.",
+        "frontDesc0": "Next.js, React, Vue.js로 웹 앱 및 페이지를 만들 수 있습니다. TypeScript로 복잡한 로직을 구현할 수 있으며 Tailwind CSS 및 SCSS로 다양한 스타일을 작성하는데 능숙합니다.",
+        "frontDesc1": "현업에서는 Next.js를 이용한 SaaS 제품과 React를 이용한 문서 편집 웹 앱을 만든 경험이 있습니다.",
         "state": "상태 관리",
-        "stateDesc": "MobX를 능숙히 다루며 Redux & RTK 또한 다룰 줄 압니다.",
+        "stateDesc": "Zustand와 Tanstack Query를 이용한 상태 관리에 익숙합니다.",
         "backend": "백엔드",
         "backDesc": "간단한 서버 API 작성과 DB 구축을 할 수 있습니다.",
         "others": "기타",
-        "othersDesc": "Electron 앱 제작, Jest를 이용한 유닛 테스트를 작성, GitLab과 GitHub을 사용한 경험이 있습니다."
+        "othersDesc": "Electron 앱 제작, Jest를 이용한 유닛 테스트 작성, GitLab과 GitHub을 사용한 경험이 있습니다."
       },
       "experience": {
         "role": "소프트웨어 연구원",
@@ -160,10 +160,10 @@
       },
       "skills": {
         "frontend": "Front-end",
-        "frontDesc0": "Can build web apps and pages with React and Next.js. Familiar with writing complex logics with TypeScript/JavaScript and styling with SCSS.",
-        "frontDesc1": "In the field, I built document editing web apps with React and TypeScript.",
+        "frontDesc0": "Can build web apps and pages with Next.js, React, and Vue.js. Capable of implementing complex logic with TypeScript. Proficient in styling with Tailwind CSS and SCSS.",
+        "frontDesc1": "Developed SaaS products using Next.js and document editing web apps using React.",
         "state": "State Management",
-        "stateDesc": "Familiar with MobX and can handle Redux & RTK.",
+        "stateDesc": "Familiar with using Zustand and Tanstack Query.",
         "backend": "Back-end",
         "backDesc": "Can make simple server APIs and build DB.",
         "others": "Others",
