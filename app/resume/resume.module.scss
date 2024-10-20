@@ -12,6 +12,15 @@
   overflow-y: clip;
 }
 
+.caution {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  margin: 0 auto 0.5em;
+  color: var(--color-label);
+  font-size: 14px;
+}
+
 .page {
   @include mixins.neumorphic-box-outer;
   box-sizing: border-box;
