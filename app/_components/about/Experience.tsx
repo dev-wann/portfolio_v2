@@ -13,7 +13,6 @@ export default function Experience() {
   const strs = useLangString('about', 'experience');
   const routeTo = useCustomRouteTo();
 
-  // select0/select1 is set when item0/item1 is hovered
   // autoSelect is set by the scroll event when nothing's hovered
   const [select, setSelect] = useState(-1);
   const [autoSelect, setAutoSelect] = useState(-1);
@@ -31,7 +30,8 @@ export default function Experience() {
       let sel = -1;
       if (top0 < windowHeight * 0.7) sel = 0;
       if (top0 < windowHeight * 0.5) sel = 1;
-      if (top0 < windowHeight * 0.3) sel = -1;
+      if (top0 < windowHeight * 0.3) sel = 2;
+      if (top0 < windowHeight * 0.1) sel = -1;
       setAutoSelect(sel);
     };
 
@@ -56,69 +56,79 @@ export default function Experience() {
   }, [windowHeight]);
 
   // choose select
-  let selectClass = '';
-  if (select >= 0) selectClass = styles[`select${select}`];
-  else if (autoSelect !== -1) selectClass = styles[`select${autoSelect}`];
+  const selected = select >= 0 ? select : autoSelect;
+  const selectClass = selected >= 0 ? styles[`select${selected}`] : '';
 
   // render
   return (
     <section className={gStyles.section}>
       <NeuTitle text="Experience" className="observe" />
-      <div className={gStyles.content} style={{ marginBottom: 0 }}>
-        {/* title */}
-        <div className="observe text">
-          <div className={styles.role}>
-            <h2>{strs?.role || 'Software Engineer'}&ensp;&nbsp;</h2>
-            <h3 className={styles.company}>
-              <span>@TmaxOffice, TmaxA&C </span>
-              <span className={styles.help}>?</span>
-              <span className={styles['help-desc']}>
-                {strs ? renderText(strs.help) : 'Name changed by split-off'}
-              </span>
-            </h3>
+      <div className={`${gStyles.content} ${styles.content}`} style={{ marginBottom: 0 }}>
+        {/* slide */}
+        <div className={`${styles.slide} observe`}>
+          <div className={styles.bg} />
+          <div className={`${styles.bar} ${selectClass}`} />
+          <div className={styles.scale}>
+            <span>—&ensp;&apos;25</span>
+            <span>—&ensp;&apos;24</span>
+            <span>—&ensp;&apos;23</span>
+            <span>—&ensp;&apos;22</span>
+            <span>—&ensp;&apos;21</span>
+            <span>—&ensp;&apos;20</span>
+            <span>—&ensp;&apos;19</span>
           </div>
         </div>
 
-        <div className={styles.grid}>
-          {/* slide */}
-          <div className={`${styles.slide} observe`}>
-            <div className={styles.bg} />
-            <div className={`${styles.toggle} ${selectClass}`} />
-            <div className={styles.scale}>
-              <span>—&ensp;&apos;24</span>
-              <span>—&ensp;&apos;23</span>
-              <span>—&ensp;&apos;22</span>
-              <span>—&ensp;&apos;21</span>
-              <span>—&ensp;&apos;20</span>
-              <span>—&ensp;&apos;19</span>
-            </div>
+        <div className={styles.projects}>
+          {/* job title */}
+          <div
+            className={`${styles.role} ${select === 0 ? styles.strong : ''} observe text`}
+          >
+            <h3>{strs?.['role-frontend'] || 'Front-end Engineer'}</h3>
+            <p className={styles.company}>@Buzzvil</p>
           </div>
 
-          {/* item0 */}
+          {/* BuzzBooster */}
           <div
             className={`${styles.project} observe text`}
             onMouseEnter={() => setSelect(0)}
             onMouseLeave={() => setSelect(-1)}
             ref={item0Ref}
           >
-            <h3>
-              SuperOffice {strs?.project || 'project'}
+            <h4>
+              BuzzBooster {strs?.project || 'project'}
               <button
                 className={styles['detail-btn']}
-                onClick={(e) => routeTo('/project#project2', e)}
+                onClick={(e) => routeTo('/project#buzzbooster', e)}
               >
                 DETAIL &gt;
               </button>
-            </h3>
+            </h4>
             <p
               className={`${styles.period} ${
-                select === 0 ? selectClass : ''
+                selected === 0 ? selectClass : ''
               }`}
             >
-              2021.02 ~ 2023.05
+              2024.06 ~ Present
             </p>
             <p className={styles['project-desc']}>
-              {strs?.superoffice || 'description'}
+              {strs?.buzzbooster || 'description'}
+            </p>
+          </div>
+
+          {/* job title */}
+          <div
+            className={`${styles.role} ${
+              select > 0 ? styles.strong : ''
+            } observe text`}
+          >
+            <h3>{strs?.['role-software'] || 'Software Engineer'}</h3>
+            <p className={styles.company}>
+              <span>@TmaxOffice, TmaxA&C </span>
+              <span className={styles.help}>?</span>
+              <span className={styles['help-desc']}>
+                {strs ? renderText(strs.help) : 'Name changed by split-off'}
+              </span>
             </p>
           </div>
 
@@ -128,18 +138,45 @@ export default function Experience() {
             onMouseEnter={() => setSelect(1)}
             onMouseLeave={() => setSelect(-1)}
           >
-            <h3>
-              ToOffice {strs?.project || 'project'}
+            <h4>
+              SuperOffice {strs?.project || 'project'}
               <button
                 className={styles['detail-btn']}
-                onClick={(e) => routeTo('/project#project3', e)}
+                onClick={(e) => routeTo('/project#superoffice', e)}
               >
                 DETAIL &gt;
               </button>
-            </h3>
+            </h4>
             <p
               className={`${styles.period} ${
-                select === 1 ? selectClass : ''
+                selected === 1 ? selectClass : ''
+              }`}
+            >
+              2021.02 ~ 2023.05
+            </p>
+            <p className={styles['project-desc']}>
+              {strs?.superoffice || 'description'}
+            </p>
+          </div>
+
+          {/* item2 */}
+          <div
+            className={`${styles.project} observe text`}
+            onMouseEnter={() => setSelect(2)}
+            onMouseLeave={() => setSelect(-1)}
+          >
+            <h4>
+              ToOffice {strs?.project || 'project'}
+              <button
+                className={styles['detail-btn']}
+                onClick={(e) => routeTo('/project#tooffice', e)}
+              >
+                DETAIL &gt;
+              </button>
+            </h4>
+            <p
+              className={`${styles.period} ${
+                selected === 2 ? selectClass : ''
               }`}
             >
               2019.08 ~ 2021.10
