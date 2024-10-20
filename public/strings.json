@@ -48,6 +48,7 @@
         "role-software": "소프트웨어 연구원",
         "help": "&nbsp;분사로 사명이 변경되었습니다&nbsp;",
         "project": "프로젝트",
+        "buzzbooster": "누구나 손쉽게 쇼핑몰 프로모션을 제작, 관리할 수 있는 SaaS 제품인 'BuzzBooster'를 개발하였습니다. 출석체크, 스탬프 미션 등 다양한 종류의 프로모션을 원하는 대로 커스터마이징하고 이를 통해 고객 인게이지먼트를 늘릴 수 있도록 도와주는 제품입니다. 제품의 어드민 페이지부터 엔드 유저 단 프로모션 페이지까지 전반적인 프론트엔드 개발 업무를 맡아 진행하였습니다.",
         "superoffice": "웹 / Electron 문서 편집 앱인 'SuperOffice'를 개발하였습니다. 실시간 사용자 공동 편집이 가능한 앱으로 Google Docs, Sheets, Slides와 비슷한 앱입니다. 프로젝트의 시작 단계부터 참여하여 앱 구조 설계부터 배포까지의 과정을 경험하였습니다. 주로 프론트엔드 관련 업무를 맡아 진행하였습니다.",
         "tooffice": "Window / Linux 문서 편집 소프트웨어인 'ToOffice'를 개발하였습니다. 다양한 문서 편집 알고리즘 및 UI 기능을 개발하였습니다."
       },
@@ -175,6 +176,7 @@
         "role-software": "Software Engineer",
         "help": "Name changed by split-off",
         "project": "project",
+        "buzzbooster": "Developed 'BuzzBooster', a SaaS product that simplifies the creation and management of shopping mall promotions. It enables users to create various types of fully customizable promotions, such as attendance checks and stamp missions, helping to enhance customer engagement. I was responsible for comprehensive front-end development, from the admin interface to the end-user promotion pages.",
         "superoffice": "Developed a web / Electron document editors suite, called 'SuperOffice.' It's easy to understand it as a Korean version of Google Docs, Sheets, and Slides. I was one of the initial members to start this project and experienced all the way from the architecture design to the deployment. I mostly worked on the front-end part of it.",
         "tooffice": "Developed a Window / Linux document editing software suite, called 'ToOffice.' I was responsible for building document layout algorithms and making UI features."
       },
